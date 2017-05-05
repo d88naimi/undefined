@@ -60,7 +60,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
-
+    showToPublic: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   }, {
     classMethods: {
       associate: function(models) {

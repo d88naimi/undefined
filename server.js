@@ -68,7 +68,7 @@ app.use(function (err, req, res, next) {
 /**
  * db sync and listen
  */
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(port, () => console.log("Server listening on " + port));
 });
 app.on('error', onError);
