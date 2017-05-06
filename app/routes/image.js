@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controller/api.controller');
+const controller = require('../controller/image.controller');
 const path = require('path');
 const config = require('../../config');
 

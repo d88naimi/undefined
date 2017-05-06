@@ -1,5 +1,5 @@
 'use strict';
-const User = require('../models').User;
+const User = require('../models').user;
 
 
 const index = function(req, res, next) {
@@ -28,8 +28,27 @@ const usersearch = function(req, res, next) {
 };
 
 
+const myPage = function (req, res, next) {
+  if(req.user) {
+    var user = req.user;
+  }
+  const userPromise = User.findById(user.id);
+  const projectPromise = Project.findAll({where: {user: user.id}});
+
+  Promise.all([userPromise, projectPromise]).then(values => { 
+    var userInfo = values[0];
+    var projectArray = values[1];
+
+    res.render('myDashboard', {userInfo: userInfo, projectInfo: ProjectArray});
+
+    //console.log(values); // [3, 1337, "foo"] 
+  });
+}
+
+
 module.exports = {
   index,
-  upload,
+  upload, 
+  myPage,
   usersearch
 };

@@ -11,8 +11,10 @@ router.get('/', controller.index);
 router.get('/upload', controller.upload);
 // router.get('/')
 
-
 //--added router for usersearch
 router.get('/usersearch', controller.usersearch);
+
+router.get('/mypage', controller.myPage)
+
 
 module.exports = router;
