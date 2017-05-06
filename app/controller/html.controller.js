@@ -22,8 +22,13 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
+var david = function(req, res) {
+  res.render('david-test', {name: "DAVID"});
+}
+
 
 module.exports = {
   index,
-  upload
+  upload,
+  david
 };

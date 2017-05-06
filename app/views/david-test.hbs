@@ -1,0 +1,45 @@
+
+
+<div class="jumbotron">
+        <div class="container text-center">
+            <h1>UNDEFINED</h1>
+            <div class="row">
+                <div class="col-md-7">
+                     <div class="top-bg"></div>
+                </div>
+
+<div class="container text-center">
+  
+  <p><a href="/upload">image upload page</a></p>
+
+  {{#if userInfo}}
+    <div>
+      <p>{{title}}</p>
+      <img class="thumbnail" src="{{userInfo.photo}}">
+      <ul>
+        <li>Name: {{userInfo.name}}</li>
+        <li>profileUrl: {{userInfo.profileUrl}}</li>
+        <li>Github ID: {{userInfo.githubId}}</li>
+      </ul>
+    </div>
+    <a class="btn btn-danger" href="/auth/logout">Log out</a>
+    {{else}}
+    <div>
+      <p><a href="/auth/github">GITHUB LOGIN</a></p>
+      <p><a href="/api/image/something">Something</a></p>
+    </div>
+    {{/if}}
+
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="author-container">
+					<h1>Developer</h1>
+					<form id="author-form">
+									<td colspan="4">
+										<input placeholder="Enter a name" id="author-name" type="text" />
+									</td>
+								<td></thead><button class="btn btn-primary btn-xl page-scroll data-login="loginWithGithub"><i class="fa fa-github"></i> | Log In With GitHub</button>	
+								
+								</form>
+
+</div>
