@@ -3,7 +3,7 @@
  */
 'use strict';
 const config = require('../../config');
-const Skill = require('../models').Skill;
+const Skill = require('../models').skill;
 
 const listAll = function (req, res, next) {
   Skill.findAll({})
