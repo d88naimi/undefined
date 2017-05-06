@@ -22,8 +22,14 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
+//using this for list of public profiles
+const usersearch = function(req, res, next) {
+  res.render('usersearch', {title: "Undefined Project"});
+};
+
 
 module.exports = {
   index,
-  upload
+  upload,
+  usersearch
 };
