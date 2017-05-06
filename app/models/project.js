@@ -75,7 +75,7 @@ module.exports = function(sequelize, DataTypes) {
           as: { singular: `skill`, plural: `skills` }
         });
       }
-    }
+    } 
   });
 
   return Project;
