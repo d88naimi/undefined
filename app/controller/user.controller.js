@@ -97,6 +97,8 @@ const showChart = function (req, res, next) {
   res.render('chart', {});
 };
 
+
+
 module.exports = {
   index,
   show,

@@ -11,9 +11,13 @@ router.get('/', controller.index);
 router.get('/upload', controller.upload);
 // router.get('/')
 
+router.get('/mypage', controller.myPage);
+
+router.get('/results', controller.searchForThis);
+
+router.get('/portfolio/:id', controller.myPortfolio)
+
 router.get('/david-test', controller.david)
 
-
-router.get('/mypage', controller.myPage)
 
 module.exports = router;
