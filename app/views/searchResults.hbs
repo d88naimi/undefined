@@ -1,0 +1,15 @@
+<section class="container-fluid">
+	<table class="table">
+		<tbody>
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td><a href="{{results.url}}"><img src="{{results.photo}}" alt="searchResults"></a></td>
+				<td>{{results.name}}</td>
+				<td>{{results.role}}</td>
+			</tr>
+		{{/each}}
+	{{/if}}
+		</tbody>
+	</table>
+</section>

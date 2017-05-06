@@ -38,11 +38,19 @@ const myPage = function (req, res, next) {
 
     //console.log(values); // [3, 1337, "foo"] 
   });
-}
+};
+
+const searchFor = function(req, res, next){
+
+  res.render('searchResults', {results: usersArray});
+
+};
+
 
 
 module.exports = {
   index,
   upload, 
-  myPage
+  myPage,
+  searchFor
 };

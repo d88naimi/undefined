@@ -11,6 +11,10 @@ router.get('/', controller.index);
 router.get('/upload', controller.upload);
 // router.get('/')
 
-router.get('/mypage', controller.myPage)
+router.get('/mypage', controller.myPage);
+
+router.get('/results', controller.searchFor);
+
+
 
 module.exports = router;
