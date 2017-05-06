@@ -13,7 +13,7 @@ function handleError(res, statusCode) {
  * Get list of users
  * only 'admin'???
  */
-module.exports.index = function(req, res) {
+const index = function(req, res) {
   return User.findAll({
     attributes: [
       'id',
@@ -29,12 +29,12 @@ module.exports.index = function(req, res) {
       res.status(200).json(users);
     })
     .catch(handleError(res));
-}
+};
 
 /**
  * Get a single user
  */
-module.exports.show = function(req, res, next) {
+const show = function(req, res, next) {
   const userId = req.params.id;
 
   return User.find({
@@ -49,24 +49,24 @@ module.exports.show = function(req, res, next) {
       res.json(user.profile);
     })
     .catch(err => next(err));
-}
+};
 
 /**
  * Deletes a user
  * restriction: 'admin'???????
  */
-module.exports.destroy = function(req, res) {
+const destroy = function(req, res) {
   return User.destroy({ where: { _id: req.params.id } })
     .then(function() {
       res.status(204).end();
     })
     .catch(handleError(res));
-}
+};
 
 /**
  * My info
  */
-module.exports.me = function(req, res, next) {
+const me = function(req, res, next) {
   const userId = req.user ? req.user.id: null;
   if(!userId) return res.status(401).end();
 
@@ -90,5 +90,17 @@ module.exports.me = function(req, res, next) {
       }
       res.json(user);
     })
-    .catch(err => next(err));
+    .catch(handleError(res));
+};
+
+const showChart = function (req, res, next) {
+  res.render('chart', {});
+};
+
+module.exports = {
+  index,
+  show,
+  destroy,
+  me,
+  showChart
 };
