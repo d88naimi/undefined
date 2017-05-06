@@ -17,5 +17,7 @@ router.get('/results', controller.searchForThis);
 
 router.get('/portfolio/:id', controller.myPortfolio)
 
+router.get('/david-test', controller.david)
+
 
 module.exports = router;

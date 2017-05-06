@@ -2,14 +2,9 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "burger_db",
+    "database": "project_undefined",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "pool": {
-      "maxConnections": 5,
-      "minConnections": 1,
-      "maxIdleTime": 5000
-    }
+    "dialect": "mysql"  
   },
   "test": {
     "username": "root",

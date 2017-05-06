@@ -306,5 +306,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 
 /*MARCO CSS END*/
 
+/*Davey*/
+
+#jumbotronHompage{
+	background-color: white;
+	font-family: Lobster;
+}
+
+#searchHompage{
+	width: 25em;  height: 4em;
+}
+
+#submitHompage{
+	margin-left: 10px;
+	width: 10em;  height: 4em;
+}
+
+#GitHubHomePage{
+	padding-top: 20px;
+
+}
+
+
 
 

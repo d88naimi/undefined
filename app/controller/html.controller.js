@@ -1,6 +1,13 @@
 'use strict';
 const User = require('../models').user;
+const Project = require('../models').project;
 
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function(err) {
+    return res.status(statusCode).send(err);
+  };
+}
 
 const index = function(req, res, next) {
   const userId = req.user ? req.user.id: null;
@@ -22,15 +29,20 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
+var david = function(req, res) {
+  res.render('david-test', {name: "DAVID"});
+}
+
 
 const myPage = function (req, res, next) {
   if(req.user) {
     var user = req.user;
   }
   const userPromise = User.findById(user.id);
-  const projectPromise = Project.findAll({where: {user: user.id}});
+  const projectPromise = Project.findAll({where: {userId: user.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => { 
+    // console.log(values);
     var userInfo = values[0];
     var projectArray = values[1];
 
@@ -68,7 +80,8 @@ const myPortolio = function (req, res, next) {
 
     res.render('myPublicPAge', {userInfo: userInfo, projectInfo: ProjectArray});
 
-  });
+  })
+  .catch(handleError(res));
 };
 
 
@@ -77,5 +90,6 @@ module.exports = {
   upload, 
   myPage,
   searchForThis,
-  myPortolio
+  myPortolio,
+  david
 };

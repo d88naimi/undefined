@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: null,
       values: ['Javascript', 'Java', 'Python', 'CSS', 'PHP',
-        'CSS', 'Ruby', 'C++', 'C', 'Shell', 'C#', 'Objective C',
+        'Ruby', 'C++', 'C', 'Shell', 'C#', 'Objective C',
         'R', 'Viml', 'Go', 'Perl', 'CoffeeScript', 'Tex', 'Swift',
         'Scala', 'Emacs Lisp', 'Haskell', 'Lua', 'Clojure',
         'Matlab', 'Arduino', 'Makefile', 'Groovy', 'Puppet', 'Rust', 'PowerShell']

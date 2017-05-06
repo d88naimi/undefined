@@ -22,7 +22,7 @@
 				</thead>
 				<tbody>
 					{{#each projectInfo}}
-						{{#if !projectInfo.selected}}
+						{{#if !projectInfo.showToPublic}}
 							<td>{{projectInfo.name}}</td>
 							<td>{{projectInfo.description}}</td>
 							<td>
