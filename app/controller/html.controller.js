@@ -29,6 +29,10 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
+var david = function(req, res) {
+  res.render('david-test', {name: "DAVID"});
+}
+
 
 const myPage = function (req, res, next) {
   if(req.user) {
@@ -50,6 +54,8 @@ const myPage = function (req, res, next) {
 
 module.exports = {
   index,
-  upload, 
-  myPage
+  upload,
+    myPage,
+  david
+
 };
