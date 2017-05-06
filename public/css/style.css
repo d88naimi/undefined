@@ -1,0 +1,24 @@
+a {
+	font-size: 30px;
+	font-weight: bold;
+	color: dodgerblue;
+}
+.mfu-file-list {
+	list-style: none;
+	width: 500px;
+}
+.mfu-file-list .file-field,
+.mfu-file-list .remove-row-link,
+.mfu-file-list input[type="file"] {
+	display: inline-block;
+}
+
+.mfu-file-list .remove-row-link {
+	position: relative;
+	top: 3px;
+	cursor: pointer;
+}
+
+.mfu-file-list abbr[title="required"] {
+	color: #ff0000;
+}
