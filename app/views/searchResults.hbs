@@ -1,0 +1,27 @@
+<div class="container">
+
+<section class="container-fluid">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+        <tbody>
+    {{#if userProfiles}}
+        {{#each userProfiles}}
+            <tr>
+                <td>
+                    <a href="{{url}}"><img class="userImg img-thumbnail" src="{{photo}}" alt="searchResults"></a> 
+                    <span class="userName">{{name}}</span>
+                </td>
+                <td class="userRole">{{role}}</td>
+            </tr>
+        {{/each}}
+    {{/if}}
+        </tbody>
+    </table>
+</section>
+
+</div>

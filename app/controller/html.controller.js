@@ -23,8 +23,26 @@ const upload = function (req, res, next) {
 };
 
 //using this for list of public profiles
-const usersearch = function(req, res, next) {
-  res.render('usersearch', {title: "Undefined Project"});
+const searchResults = function(req, res, next) {
+  const userId = req.user ? req.user.id: null;
+    User.findAll(
+    // need to update where for search
+  // {
+  //   where:{
+  //     name:{
+  //       $like: '%'+req.body.name+'%'}
+  //        }
+  // }
+  )
+  .then(function(results){
+    // res.json(results);
+    console.log(results);
+    var userProfiles = results[0];
+     console.log(userProfiles.name);
+     console.log(userProfiles.email);
+     console.log(userProfiles.role);
+      res.render('searchResults', { userProfiles: userProfiles});
+  });
 };
 
 
@@ -50,5 +68,5 @@ module.exports = {
   index,
   upload, 
   myPage,
-  usersearch
+  searchResults
 };
