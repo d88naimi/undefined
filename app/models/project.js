@@ -3,7 +3,7 @@
  */
 
 module.exports = function(sequelize, DataTypes) {
-  const Project = sequelize.define('Project', {
+  const Project = sequelize.define('project', {
 
     name: {
       type: DataTypes.STRING,
@@ -60,21 +60,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
-
+    showToPublic: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   }, {
     classMethods: {
       associate: function(models) {
-        Project.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false,
-            name: `user`
-          }
-        });
+        Project.belongsTo(models.user);
 
-        Project.belongsToMany(models.Skill, {
-          through: `ProjectSkills`,
+        Project.belongsToMany(models.skill, {
+          through: `projectskills`,
           foreignKey: `projectId`,
-          as: `skills`
+          as: { singular: `skill`, plural: `skills` }
         });
       }
     }

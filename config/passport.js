@@ -1,8 +1,8 @@
 /**
  * Created by Hyungwu Pae on 5/3/17.
  */
-const User = require('../app/models').User;
-const Project = require('../app/models').Project;
+const User = require('../app/models').user;
+const Project = require('../app/models').project;
 const GitHubStrategy = require('passport-github').Strategy;
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -54,7 +54,7 @@ module.exports.setup = function () {
                       forksCount: repo.forks_count,
                       stargazersCount: repo.stargazers_count,
                       watchersCount: repo.watchers_count,
-                      user: savedUser.id
+                      userId: savedUser.id
                     }
                   });
                   Project.bulkCreate(projects)

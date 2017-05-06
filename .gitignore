@@ -2,7 +2,6 @@
 .vscode
 node_modules
 npm-debug.log*
-/config/config.json
 /config/index.js
 /config/aws-config.json
 /public/upload/
