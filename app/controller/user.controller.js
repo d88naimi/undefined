@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require('../models').User;
+const User = require('../models').user;
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;

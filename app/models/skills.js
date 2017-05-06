@@ -4,7 +4,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  const Skill = sequelize.define('Skill', {
+  const Skill = sequelize.define('skill', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -46,10 +46,10 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
 
-        Skill.belongsToMany(models.Project, {
-          through: `ProjectSkills`,
+        Skill.belongsToMany(models.project, {
+          through: `projectskills`,
           foreignKey: `skillId`,
-          as: `projects`
+          as: { singular: `project`, plural: `projects` }
         });
       }
     }
