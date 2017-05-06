@@ -16,5 +16,4 @@ router.get('/david-test', controller.david)
 
 router.get('/mypage', controller.myPage)
 
- master
 module.exports = router;

@@ -1,45 +1,35 @@
+ <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
-<div class="jumbotron">
+
+<div id="jumbotronHompage" class="jumbotron">
         <div class="container text-center">
-            <h1>UNDEFINED</h1>
+        <i class="fa fa-github fa-5x " aria-hidden="true"></i> 
+            <h1>GIT ME</h1>
             <div class="row">
-                <div class="col-md-7">
-                     <div class="top-bg"></div>
-                </div>
+             
+</div>
 
-<div class="container text-center">
-  
-  <p><a href="/upload">image upload page</a></p>
-
-  {{#if userInfo}}
-    <div>
-      <p>{{title}}</p>
-      <img class="thumbnail" src="{{userInfo.photo}}">
-      <ul>
-        <li>Name: {{userInfo.name}}</li>
-        <li>profileUrl: {{userInfo.profileUrl}}</li>
-        <li>Github ID: {{userInfo.githubId}}</li>
-      </ul>
-    </div>
-    <a class="btn btn-danger" href="/auth/logout">Log out</a>
-    {{else}}
-    <div>
-      <p><a href="/auth/github">GITHUB LOGIN</a></p>
-      <p><a href="/api/image/something">Something</a></p>
-    </div>
-    {{/if}}
 
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="author-container">
 					<h1>Developer</h1>
 					<form id="author-form">
-									<td colspan="4">
-										<input placeholder="Enter a name" id="author-name" type="text" />
-									</td>
-								<td></thead><button class="btn btn-primary btn-xl page-scroll data-login="loginWithGithub"><i class="fa fa-github"></i> | Log In With GitHub</button>	
-								
-								</form>
+							<input id="searchHompage" placeholder="Enter a name" id="author-name" type="text" name="name"/>
+              
+              <input class="btn btn-primary " id="submitHompage" type="submit" name="submit">
+									
+					</form>	 
 
-</div>
+    <button id="GitHubHomePage" class="btn btn-primary btn-lg" id="addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Log In With GitHub </button	
+
+								
+							
+
+
+
+
+
+
