@@ -221,6 +221,88 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', end
 box-shadow: 0px 0px 13px limegreen;
 }
 
+/*PUBLIC VERSION  -----------------------------*/
+
+#mainDashboardContainer_PUBLIC{
+	display: flex;
+	color: white;
+}
+
+#leftSidebar_PUBLIC{
+	flex:1;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 20px;
+	font-family: sans-serif;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#aebcbf+0,6e7774+50,0a0e0a+51,0a0809+100;Black+Gloss */
+background: rgb(174,188,191); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(174,188,191,1) 0%, rgba(110,119,116,1) 50%, rgba(10,14,10,1) 51%, rgba(10,8,9,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(174,188,191,1) 0%,rgba(110,119,116,1) 50%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(174,188,191,1) 0%,rgba(110,119,116,1) 50%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', endColorstr='#0a0809',GradientType=0 ); /* IE6-9 */
+
+}
+
+#leftSidebar_PUBLIC img{
+	border-radius: 100%;
+	width: 250px;
+	
+	border:orange 4px solid;
+}
+
+#mainProjectsContainer_PUBLIC{
+	flex:3;
+	padding: 20px;
+	color: white;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+background: rgb(69,72,77); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	
+	display: flex;
+	flex-direction: row;
+}
+
+#buttonBox_PUBLIC{
+	flex-basis: 200px;
+}
+
+#projectBox_PUBLIC{
+	flex: 1;
+}
+
+#projectListButton_PUBLIC{
+	background-color: rgba(0,0,0,.2);
+	border:2px grey solid;
+}
+
+#projectListButton_PUBLIC:hover{
+	border: 2px solid #8ef140;
+	background-color: rgba(0,0,0,.4);
+}
+
+#chartButton_PUBLIC{
+	background-color: rgba(0,0,0,.2);
+	border:2px grey solid;
+}
+
+#chartButton_PUBLIC:hover{
+	border: 2px solid orange;
+	background-color: rgba(0,0,0,.4);
+}
+
+#mainProjectsContainer_PUBLIC table thead th{
+	color: #8ef140;
+	font-weight: bold;
+}
+
+
+#mainProjectsContainer_PUBLIC table tbody tr:hover{
+	background-color: rgba(0,0,0,.2);
+}
+
 
 /*MARCO CSS END*/
 
@@ -236,6 +318,27 @@ width 150px;
 .userRole {
 	text-transform: capitalize;
 }
+/*Stephen CSS end */
 
+/*Davey*/
+
+#jumbotronHompage{
+	background-color: white;
+	font-family: Lobster;
+}
+
+#searchHompage{
+	width: 25em;  height: 4em;
+}
+
+#submitHompage{
+	margin-left: 10px;
+	width: 10em;  height: 4em;
+}
+
+#GitHubHomePage{
+	padding-top: 20px;
+
+}
 
 

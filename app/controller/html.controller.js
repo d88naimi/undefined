@@ -1,6 +1,14 @@
 'use strict';
-const User = require('../models').user;
 
+const User = require('../models').user;
+const Project = require('../models').project;
+
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function(err) {
+    return res.status(statusCode).send(err);
+  };
+}
 
 const index = function(req, res, next) {
   const userId = req.user ? req.user.id: null;
@@ -45,8 +53,29 @@ const searchResults = function(req, res, next) {
   });
 };
 
+var david = function(req, res) {
+  res.render('david-test', {name: "DAVID"});
+}
 
 const myPage = function (req, res, next) {
+  if(req.user) {
+    var user = req.user;
+  }
+  const userPromise = User.findById(user.id);
+  const projectPromise = Project.findAll({where: {userId: user.id}});
+
+  Promise.all([userPromise, projectPromise]).then(values => { 
+    // console.log(values);
+    var userInfo = values[0];
+    var projectArray = values[1];
+
+    res.render('myDashboard', {userInfo: userInfo, projectInfo: ProjectArray});
+
+    //console.log(values); // [3, 1337, "foo"] 
+  });
+};
+
+const myPortolio = function (req, res, next) {
   if(req.user) {
     var user = req.user;
   }
@@ -57,16 +86,18 @@ const myPage = function (req, res, next) {
     var userInfo = values[0];
     var projectArray = values[1];
 
-    res.render('myDashboard', {userInfo: userInfo, projectInfo: ProjectArray});
+    res.render('myPublicPAge', {userInfo: userInfo, projectInfo: ProjectArray});
 
-    //console.log(values); // [3, 1337, "foo"] 
-  });
-}
+  })
+  .catch(handleError(res));
+};
 
 
 module.exports = {
   index,
   upload, 
   myPage,
-  searchResults
+  searchResults,
+  myPortolio,
+  david
 };
