@@ -40,17 +40,42 @@ const myPage = function (req, res, next) {
   });
 };
 
-const searchFor = function(req, res, next){
+const searchForThis = function(req, res, next){
 
-  res.render('searchResults', {results: usersArray});
+  User.findAll(
+  {
+    where:{
+      name:{
+        $like: '%'+req.body.name+'%'}
+         }
+  })
+  .then(function(results){
+      res.render('searchResults', { searchResults: results});
+  });
 
 };
 
+const myPortolio = function (req, res, next) {
+  if(req.user) {
+    var user = req.user;
+  }
+  const userPromise = User.findById(user.id);
+  const projectPromise = Project.findAll({where: {user: user.id}});
+
+  Promise.all([userPromise, projectPromise]).then(values => { 
+    var userInfo = values[0];
+    var projectArray = values[1];
+
+    res.render('myPublicPAge', {userInfo: userInfo, projectInfo: ProjectArray});
+
+  });
+};
 
 
 module.exports = {
   index,
   upload, 
   myPage,
-  searchFor
+  searchForThis,
+  myPortolio
 };

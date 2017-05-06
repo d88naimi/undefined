@@ -13,8 +13,9 @@ router.get('/upload', controller.upload);
 
 router.get('/mypage', controller.myPage);
 
-router.get('/results', controller.searchFor);
+router.get('/results', controller.searchForThis);
 
+router.get('/portfolio/:id', controller.myPortfolio)
 
 
 module.exports = router;

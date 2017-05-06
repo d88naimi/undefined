@@ -5,7 +5,7 @@
 <!-- left side bar containing main info -->
 	<div id="leftSidebar">
 		<!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
-		<img src="https://avatars0.githubusercontent.com/u/23092057?v=3&s=460">
+		<img src="{{userInfo.photo}}">
 		<h3>Hello, {{userInfo.name}} !</h3>
 		<h4>{{userInfo.githubUsername}}</h4>
 		<h4>{{userInfo.githubId}}</h4>
@@ -40,7 +40,7 @@
 	<!-- ADD ANTOHER PROJECT -->
 	<div id="addProjectBox" class="jumbotron">
 		
-		<p>Wanna add more?</p>
+		<p>Wanna add more projects?</p>
 		<button class="btn btn-primary btn-lg" id="addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project</button>
 
 	</div>
@@ -51,8 +51,8 @@
 
 	<div id="makePortfolioBox" class="jumbotron">
 		
-		<p>We'll do the rest</p>
-		<button type="submit" class="btn btn-danger btn-lg" id="makeProject"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Make My Portfolio</button>
+		<p>Save your public profile</p>
+		<button type="submit" class="btn btn-danger btn-lg" id="makeProject"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> SAVE</button>
 
 	</div>
 
@@ -109,6 +109,7 @@
 
         $.put("/updateSelected", {id: $(this).data('id')}, function(result){
         	console.log("Update project successful");
+        	// need to redirect to this same page after each project added
         });
 	});
 
@@ -122,6 +123,12 @@
 		
 		 $("#skillTable").append(row);
 		 count++;
+
+	});
+
+	$("#makeProject").on("click", function(event){
+
+		$.get("/portfolio/:id");
 
 	});
 

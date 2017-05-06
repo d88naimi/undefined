@@ -1,0 +1,55 @@
+
+<!-- body for layout -->
+<section id="mainDashboardContainer_PUBLIC">
+
+<!-- left side bar containing main info -->
+	<div id="leftSidebar_PUBLIC">
+		<!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
+		<img src="{{userInfo.photo}}">
+		<h3>{{userInfo.name}}</h3>
+		<h4>{{userInfo.githubUsername}}</h4>
+		<h4>{{userInfo.githubId}}</h4>
+		<br>
+		<a href="{{userInfo.email}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> CONTACT ME</a>
+	</div>
+
+<!-- right container with all the projects -->
+	<div id="mainProjectsContainer_PUBLIC">
+		
+		<div id="buttonBox_PUBLIC">
+			<div class="buttonBoxChild_PUBLIC">
+				<button id="projectListButton_PUBLIC">PROJECT LIST</button>
+			</div>
+			<div class="buttonBoxChild_PUBLIC">
+				<button id="chartButton_PUBLIC">MY CHART</button>
+			</div>
+		</div>
+
+
+		<div id="projectBox_PUBLIC">
+			<table class="table">
+				<thead>
+					<th>Project</th>
+					<th>Description</th>
+				</thead>
+				<tbody>
+					{{#each projectInfo}}
+						{{#if !projectInfo.selected}}
+							<td>{{projectInfo.name}}</td>
+							<td>{{projectInfo.description}}</td>
+						{{/if}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	</section>
+
+
+
+
+
+
+
+
