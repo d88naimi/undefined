@@ -11,6 +11,9 @@ router.get('/', controller.index);
 router.get('/upload', controller.upload);
 // router.get('/')
 
+router.get('/david-test', controller.david)
+
+
 router.get('/mypage', controller.myPage)
 
 module.exports = router;
