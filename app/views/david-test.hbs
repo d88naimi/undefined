@@ -1,21 +1,103 @@
  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
 
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Git Me </a>
+           </div>
+         
+           
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a class="page-scroll" href="#about">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Team</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Something</a>
+                    </li>
+                </ul>
+               
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+   
+   
+
+<!-- Carousel -->
+<!-- Surround everything with a div with the class carousel slide -->
+<div id="theCarousel" class="carousel slide" data-ride="carousel">
+ 
+  <!-- Define how many slides to put in the carousel -->
+  <ol class="carousel-indicators">
+    <li data-target="#theCarousel" data-slide-to="0" class="active"> </li >
+    <li data-target="#theCarousel" data-slide-to="1"> </li>
+    <li data-target ="#theCarousel" data-slide-to="2"> </li>
+  </ol >
+ 
+  <!-- Define the text to place over the image -->
+  <div class="carousel-inner">
+    <div class="item active" >
+    <div class ="slide1"></div>
+    <div class="carousel-caption">
+      <h1>Git-Me</h1>
+      <p>Developers  </p>
+      <p><a href="#" class="btn btn-primary btn-sm">Get them Now</a></p>
+    </div>
+  </div>
+  <div class="item">
+  <div class="slide2"></div>
+  <div class="carousel-caption">
+    <h1>Portfolio Builder</h1>
+    <p>All your skill sets in one place.</p>
+  </div>
+  </div>
+  <div class="item">
+  <div class="slide3"></div>
+  <div class="carousel-caption">
+  <h1>Employeers find your Developer</h1>
+  <p>Find your Developer</p>
+  </div>
+  </div>
+  </div>
+ 
+  <!-- Set the actions to take when the arrows are clicked -->
+  <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+  <span class="glyphicon glyphicon-chevron-left"> </span>
+  </a>
+  <a class="right carousel-control" href="#theCarousel" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+  </div>
 
 <div id="jumbotronHompage" class="jumbotron">
         <div class="container text-center">
         <i class="fa fa-github fa-5x " aria-hidden="true"></i> 
             <h1>GIT ME</h1>
-            <div class="row">
-             
+            <div class="row">             
 </div>
 
 
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="author-container">
-					<h1>Developer</h1>
+					<h1>Search for Developer</h1>
 					<form id="author-form">
 							<input id="searchHompage" placeholder="Enter a name" id="author-name" type="text" name="name"/>
               
@@ -23,8 +105,10 @@
 									
 					</form>	 
 
+
     <button id="GitHubHomePage" class="btn btn-primary btn-lg" id="addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Log In With GitHub </button	
 
+  
 								
 							
 
