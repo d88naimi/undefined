@@ -29,6 +29,28 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
+//using this for list of public profiles
+const searchResults = function(req, res, next) {
+  const userId = req.user ? req.user.id: null;
+    User.findAll(
+    // need to update where for search
+  // {
+  //   where:{
+  //     name:{
+  //       $like: '%'+req.body.name+'%'}
+  //        }
+  // }
+  )
+  .then(function(results){
+    // res.json(results);
+    console.log(results);
+    var userProfiles = results[0];
+     console.log(userProfiles.name);
+     console.log(userProfiles.email);
+     console.log(userProfiles.role);
+      res.render('searchResults', { userProfiles: userProfiles});
+  });
+};
 var david = function(req, res) {
   res.render('david-test', {name: "DAVID"});
 }
@@ -89,6 +111,7 @@ module.exports = {
   index,
   upload, 
   myPage,
+  searchResults
   searchForThis,
   myPortolio,
   david

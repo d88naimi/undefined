@@ -11,6 +11,9 @@ router.get('/', controller.index);
 router.get('/upload', controller.upload);
 // router.get('/')
 
+//--added router for searchResults
+router.get('/searchResults', controller.searchResults);
+
 router.get('/mypage', controller.myPage);
 
 router.get('/results', controller.searchForThis);
@@ -18,6 +21,5 @@ router.get('/results', controller.searchForThis);
 router.get('/portfolio/:id', controller.myPortfolio)
 
 router.get('/david-test', controller.david)
-
 
 module.exports = router;
