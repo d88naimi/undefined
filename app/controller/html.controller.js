@@ -109,7 +109,7 @@ module.exports = {
   index,
   upload, 
   myPage,
-  searchResults
+  searchResults,
   searchForThis,
   myPortfolio,
   david
