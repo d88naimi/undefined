@@ -70,8 +70,6 @@ module.exports = {
         backEnd: true,
         database: true
       }
-
-
     ], {});
 
 
