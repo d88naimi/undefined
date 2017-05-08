@@ -306,6 +306,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 
 /*MARCO CSS END*/
 
+/*Stephen CSS start*/
+.userImg {
+border-radius: 50%;
+height: 150px;
+width 150px;
+} 
+.userName {
+	text-transform: capitalize;
+}
+.userRole {
+	text-transform: capitalize;
+}
+
 /*Davey*/
 
 #jumbotronHompage{
@@ -357,7 +370,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 .carousel-caption p{
   font-size: 2em;
 }
-
-
 
 
