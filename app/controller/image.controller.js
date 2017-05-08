@@ -1,6 +1,8 @@
 'use strict';
 const aws = require('aws-sdk');
 const config = require('../../config');
+const User = require('../models').user;
+
 
 const doSomething = function(req, res, next) {
   res.json({result: "OK"});
@@ -39,9 +41,22 @@ const getSignedRequest = function (req, res, next) {
   });
 };
 
+const saveProfileImageUrl = function (req, res, next) {
+  if(!req.user) return res.status(401).end();
+  const userId = req.user.id;
+  const photo = req.body.photo;
+  console.log(req.requestUri);
+  User.update({photo}, {
+    limit: 1,
+    where: { id: userId }
+  }).then(result => {
+    res.json({result: "profile photo changed"});
+  })
+};
 
 module.exports = {
   doSomething,
   uploadImage,
-  getSignedRequest
+  getSignedRequest,
+  saveProfileImageUrl
 };
