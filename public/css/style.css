@@ -309,8 +309,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 /*Davey*/
 
 #jumbotronHompage{
-	background-color: white;
+	/*background-color: white;*/
 	font-family: Lobster;
+	background: url('/imgFolder/6.jpg') no-repeat center center;
 }
 
 #searchHompage{
@@ -325,6 +326,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 #GitHubHomePage{
 	padding-top: 20px;
 
+}
+/* Carousel Styling */
+.slide1{
+  background-image: url('../imgFolder/tools.jpg');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide2{
+  background-image: url('../imgFolder/tools.jpg.');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide3{
+  background-image: url('../imgFolder/tools.jpg');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.carousel-caption h1{
+  font-size: 5.4em;
+  font-family: 'Lobster', cursive;
+  padding-bottom: .4em;
+}
+.carousel-caption p{
+  font-size: 2em;
 }
 
 

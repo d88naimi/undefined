@@ -5,3 +5,5 @@ npm-debug.log*
 /config/index.js
 /config/aws-config.json
 /public/upload/
+/config/secret.json
+
