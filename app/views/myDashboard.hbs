@@ -22,13 +22,11 @@
 				</thead>
 				<tbody>
 					{{#each projectInfo}}
-						{{#if !projectInfo.showToPublic}}
 							<td>{{projectInfo.name}}</td>
 							<td>{{projectInfo.description}}</td>
 							<td>
 									<button type="submit" class="btn btn-danger" class="addBtn" data-id="{{projectInfo.id}}">Add</button>
 							</td>
-						{{/if}}
 					{{/each}}
 				</tbody>
 			</table>
@@ -39,7 +37,7 @@
 
 	<!-- ADD ANTOHER PROJECT -->
 	<div id="addProjectBox" class="jumbotron">
-		
+
 		<p>Wanna add more projects?</p>
 		<button class="btn btn-primary btn-lg" id="addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project</button>
 
@@ -50,7 +48,7 @@
 	</div>
 
 	<div id="makePortfolioBox" class="jumbotron">
-		
+
 		<p>Save your public profile</p>
 		<button type="submit" class="btn btn-danger btn-lg" id="makeProject"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> SAVE</button>
 
@@ -67,23 +65,25 @@
       <br>
       		<form action="/addProject" method="POST">
 
-			<input type="text" name="name" placeholder="" ="what's your project's name?">
+			<input class="form-control" type="text" name="name" placeholder="what's your project's name?">
 			<br>
-			<input type="text" name="description" placeholder="" ="give us a description">
+			<input class="form-control" type="text" name="description" placeholder="give us a description">
 			<br>
-			<input type="text" name="role" placeholder="" ="what was your role?">
+			<input class="form-control" type="text" name="role" placeholder="what was your role?">
 			<br>
-			<input type="text" name="teamMate" placeholder="" ="did you have teammates?">
+			<input class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">
 			<br>
 			<hr>
+      <h3>ADD YOUR SKILLS</h3>
 			<table>
 				<tbody id="skillTable">
-					<td>ADD YOUR SKILLS</td>
 				</tbody>
 			</table>
-			<br>
-			<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>
-			<br>
+      <input class="form-control" id="input-skill" type="text" list="skill-list">
+      <datalist id="skill-list"></datalist>
+      <br>
+			<!--<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>-->
+			<!--<br>-->
 			<hr>
 			<br>
 			<button type="submit" class="btn btn-primary btn-lg" id="submit"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Submit</button>
@@ -98,7 +98,10 @@
 
 
 <script type="text/javascript">
-	
+
+  const skills = ['jQuery', 'Angular', 'MongoDB', 'MySQL', 'Django', 'React', 'Sass', 'LESS', 'Express', 'ES6', 'Typescript', 'Firebase'];
+  let selectedSkills = [];
+
 	$('#addButton').on("click", function(event) {
 		event.preventDefault();
 
@@ -113,18 +116,27 @@
         });
 	});
 
-	var count=1;
+//	var count=1; // move to top~!!
 
-	$('#addSkillButton').on("click", function(event) {
-		event.preventDefault();
-		
-		var input= $("<input type='text' name='skill'"+count+">");
-		var row = $('<tr>').append(input);
-		
-		 $("#skillTable").append(row);
-		 count++;
-
-	});
+//	$('#addSkillButton').on("click", function(event) {
+//		event.preventDefault();
+//
+//    //add to selectedSkill array;
+//    selectedSkills = [];
+//    $('input.skill-input').each((idx, elem) => {
+//      selectedSkills.push(elem.value);
+//    });
+//    console.log(selectedSkills);
+//
+//
+//		const input= $(`<input class='skill-input' type='text' list='skill-list${count}' name='skill${count}'>`);
+//		const datalist = $(`<datalist id="skill-list${count}"></datalist>`);
+//		const row = $('<tr>').append(input).append(datalist);
+//		 $("#skillTable").append(row);
+//		 count++;
+//
+//
+//	});
 
 	$("#makeProject").on("click", function(event){
 
@@ -132,6 +144,44 @@
 
 	});
 
-	
+	// Add skill input auto completion.
+	$('#input-skill').on('input', function (ev) {
+    const typedText = $(ev.target).val();
+
+    if(typedText < 1) return;
+
+    //if user typed or selected the skill which exists in the skills array
+    if(skills.indexOf(typedText) > -1) return addToSkillList(typedText);
+
+    //else
+
+    const filteredSkills = skills.filter((skl, i) => {
+      return skl.toLowerCase().includes(typedText.toLowerCase()) && selectedSkills.indexOf(skl) < 0
+    });
+
+    //this means we should reduce options element list
+    if(filteredSkills.length < $('#skill-list').children().length) {
+      $('#skill-list').children().each(function (idx, elem) {
+        // remove if this skill name is not matched anymore
+        if(!filteredSkills.includes($(elem).attr("value"))) $(elem).remove();
+      });
+    } else if (filteredSkills.length === $('#skill-list').children().length) {
+      // do nothing
+    } else { //re render skills
+      filteredSkills.forEach(skl => $('#skill-list').append($("<option>").attr("value", skl)));
+    }
+  });
+
+	function addToSkillList(skillName) {
+    $('#skillTable').append(
+        $('<tr>').append(
+            $('<span class="label label-primary">').text(skillName)
+        )
+    );
+    $('#input-skill').val('');
+    selectedSkills.push(skillName);
+  }
+
+
 
 </script>

@@ -2,8 +2,10 @@
 .vscode
 node_modules
 npm-debug.log*
-/config/index.js
-/config/aws-config.json
+config/aws-config.json
+config/config.json
+config/sequelize-config.json
+config/index.js
 /public/upload/
 /config/secret.json
 
