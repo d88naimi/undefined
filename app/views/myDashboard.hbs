@@ -2,186 +2,117 @@
 <!-- body for layout -->
 <section id="mainDashboardContainer">
 
-<!-- left side bar containing main info -->
-	<div id="leftSidebar">
-		<!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
-		<img src="{{userInfo.photo}}">
-		<h3>Hello, {{userInfo.name}} !</h3>
-		<h4>{{userInfo.githubUsername}}</h4>
-		<h4>{{userInfo.githubId}}</h4>
-	</div>
+  <!-- left side bar containing main info -->
+  <div id="leftSidebar">
+    <!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
+    <div class="image-container">
+      <img src="{{userInfo.photo}}">
+      <button id="change-photo" class="btn btn-success">
+        <span class="glyphicon glyphicon-edit"></span> Edit
+      </button>
+    </div>
+    <input type="file" id="image-file-input" accept="image/*">
+    <h3>Hello, {{userInfo.name}} !</h3>
+    <h4>{{userInfo.githubUsername}}</h4>
+    <h4>{{userInfo.githubId}}</h4>
+  </div>
 
-<!-- right container with all the projects -->
-	<div id="mainProjectsContainer">
-		<div id="projectBox">
-			<table class="table">
-				<thead>
-					<th>Project</th>
-					<th>Description</th>
-					<th>Add to Portfolio</th>
-				</thead>
-				<tbody>
-					{{#each projectInfo}}
-							<td>{{projectInfo.name}}</td>
-							<td>{{projectInfo.description}}</td>
-							<td>
-									<button type="submit" class="btn btn-danger" class="addBtn" data-id="{{projectInfo.id}}">Add</button>
-							</td>
-					{{/each}}
-				</tbody>
-			</table>
-		</div>
-	</div>
+  <!-- right container with all the projects -->
+  <div id="mainProjectsContainer">
+    <div id="projectBox">
+      <table class="table">
+        <thead>
+        <th>Project</th>
+        <th>Description</th>
+        <th>Add to Portfolio</th>
+        </thead>
+        <tbody>
+        {{#each projectInfo}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.description}}</td>
+            <td>
+              <button type="submit" class="btn btn-danger" class="addBtn" data-id="{{this.id}}">Add</button>
+            </td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-	</section>
+</section>
 
-	<!-- ADD ANTOHER PROJECT -->
-	<div id="addProjectBox" class="jumbotron">
+<!-- ADD ANTOHER PROJECT -->
+<div id="addProjectBox" class="jumbotron">
 
-		<p>Wanna add more projects?</p>
-		<button class="btn btn-primary btn-lg" id="addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project</button>
+  <p>Wanna add more projects?</p>
+  <button class="btn btn-primary btn-lg" id="addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project</button>
 
-	</div>
+</div>
 
-	<div class="animatedBackground">
-		<br>
-	</div>
+<div class="animatedBackground">
+  <br>
+</div>
 
-	<div id="makePortfolioBox" class="jumbotron">
+<div id="makePortfolioBox" class="jumbotron">
 
-		<p>Save your public profile</p>
-		<button type="submit" class="btn btn-danger btn-lg" id="makeProject"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> SAVE</button>
+  <p>Save your public profile</p>
+  <button type="submit" class="btn btn-danger btn-lg" id="makeProject"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> SAVE</button>
 
-	</div>
+</div>
 
 
 
- <!-- ************************MODAL START*************************************** -->
-  <div id="addProjectModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<!-- ************************MODAL START*************************************** -->
+<div id="addProjectModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <h2>Tell us about your project</h2>
+    <!-- Modal content-->
+    <h2>Tell us about your project</h2>
+    <br>
+    <form action="/addProject" method="POST">
+
+      <input class="form-control" type="text" name="name" placeholder="what's your project's name?">
       <br>
-      		<form action="/addProject" method="POST">
-
-			<input class="form-control" type="text" name="name" placeholder="what's your project's name?">
-			<br>
-			<input class="form-control" type="text" name="description" placeholder="give us a description">
-			<br>
-			<input class="form-control" type="text" name="role" placeholder="what was your role?">
-			<br>
-			<input class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">
-			<br>
-			<hr>
+      <input class="form-control" type="text" name="description" placeholder="give us a description">
+      <br>
+      <input class="form-control" type="text" name="role" placeholder="what was your role?">
+      <br>
+      <input class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">
+      <br>
+      <hr>
       <h3>ADD YOUR SKILLS</h3>
-			<table>
-				<tbody id="skillTable">
-				</tbody>
-			</table>
+      <table>
+        <tbody id="skillTable">
+        </tbody>
+      </table>
       <input class="form-control" id="input-skill" type="text" list="skill-list">
       <datalist id="skill-list"></datalist>
       <br>
-			<!--<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>-->
-			<!--<br>-->
-			<hr>
-			<br>
-			<button type="submit" class="btn btn-primary btn-lg" id="submit"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Submit</button>
+      <!--<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>-->
+      <!--<br>-->
+      <hr>
+      <br>
+      <button type="submit" class="btn btn-primary btn-lg" id="submit"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Submit</button>
 
-		</form>
+    </form>
 
 
-    </div>
   </div>
- <!-- ************************MODAL END*************************************** -->
+</div>
+<!-- ************************MODAL END*************************************** -->
 
 
+<!--ALERT: PROFILE PHOTO CHANGE COMPLETE ALERT!-->
+<div id="upload-complete-alert" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Profile photo changed successfully.</strong>
+</div>
 
-<script type="text/javascript">
+<!--LOADING CIRCLE-->
+<div id="loading-wrapper">
+  <img src="public/img/loading.gif">
+</div>
 
-  const skills = ['jQuery', 'Angular', 'MongoDB', 'MySQL', 'Django', 'React', 'Sass', 'LESS', 'Express', 'ES6', 'Typescript', 'Firebase'];
-  let selectedSkills = [];
-
-	$('#addButton').on("click", function(event) {
-		event.preventDefault();
-
-		 $("#addProjectModal").modal('toggle');
-	});
-
-	$('#addBtn').on("click", function(event) {
-
-        $.put("/updateSelected", {id: $(this).data('id')}, function(result){
-        	console.log("Update project successful");
-        	// need to redirect to this same page after each project added
-        });
-	});
-
-//	var count=1; // move to top~!!
-
-//	$('#addSkillButton').on("click", function(event) {
-//		event.preventDefault();
-//
-//    //add to selectedSkill array;
-//    selectedSkills = [];
-//    $('input.skill-input').each((idx, elem) => {
-//      selectedSkills.push(elem.value);
-//    });
-//    console.log(selectedSkills);
-//
-//
-//		const input= $(`<input class='skill-input' type='text' list='skill-list${count}' name='skill${count}'>`);
-//		const datalist = $(`<datalist id="skill-list${count}"></datalist>`);
-//		const row = $('<tr>').append(input).append(datalist);
-//		 $("#skillTable").append(row);
-//		 count++;
-//
-//
-//	});
-
-	$("#makeProject").on("click", function(event){
-
-		$.get("/portfolio/:id");
-
-	});
-
-	// Add skill input auto completion.
-	$('#input-skill').on('input', function (ev) {
-    const typedText = $(ev.target).val();
-
-    if(typedText < 1) return;
-
-    //if user typed or selected the skill which exists in the skills array
-    if(skills.indexOf(typedText) > -1) return addToSkillList(typedText);
-
-    //else
-
-    const filteredSkills = skills.filter((skl, i) => {
-      return skl.toLowerCase().includes(typedText.toLowerCase()) && selectedSkills.indexOf(skl) < 0
-    });
-
-    //this means we should reduce options element list
-    if(filteredSkills.length < $('#skill-list').children().length) {
-      $('#skill-list').children().each(function (idx, elem) {
-        // remove if this skill name is not matched anymore
-        if(!filteredSkills.includes($(elem).attr("value"))) $(elem).remove();
-      });
-    } else if (filteredSkills.length === $('#skill-list').children().length) {
-      // do nothing
-    } else { //re render skills
-      filteredSkills.forEach(skl => $('#skill-list').append($("<option>").attr("value", skl)));
-    }
-  });
-
-	function addToSkillList(skillName) {
-    $('#skillTable').append(
-        $('<tr>').append(
-            $('<span class="label label-primary">').text(skillName)
-        )
-    );
-    $('#input-skill').val('');
-    selectedSkills.push(skillName);
-  }
-
-
-
-</script>
+<script src="public/js/myDashBoard.js"></script>

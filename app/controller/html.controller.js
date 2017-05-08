@@ -64,7 +64,7 @@ const myPage = function (req, res, next) {
   const projectPromise = Project.findAll({where: {userId: user.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => { 
-    // console.log(values);
+    console.log(values[1]);
     var userInfo = values[0];
     var projectArray = values[1];
 
