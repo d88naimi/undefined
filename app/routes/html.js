@@ -21,5 +21,4 @@ router.get('/mypage', controller.myPage);
 
 router.get('/david-test', controller.david)
 
-
 module.exports = router;

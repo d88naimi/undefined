@@ -76,11 +76,38 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', end
 
 }
 
-#leftSidebar img{
+.image-container {
+	position: relative;
+}
+.image-container img{
 	border-radius: 100%;
 	width: 250px;
-	
+	display: block;
 	border:#ebffaa 4px solid;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.image-container:hover img{
+	opacity: 0.5;
+}
+
+.image-container #change-photo {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -60%);
+	-ms-transform: translate(-50%, -60%)
+}
+
+.image-container:hover #change-photo {
+	opacity: 1;
+}
+
+#image-file-input {
+	display: none;
 }
 
 #mainProjectsContainer{
@@ -323,8 +350,9 @@ width 150px;
 /*Davey*/
 
 #jumbotronHompage{
-	background-color: white;
+	/*background-color: white;*/
 	font-family: Lobster;
+	background: url('../../public/img/6.jpg') no-repeat center center;
 }
 
 #searchHompage{
@@ -340,5 +368,57 @@ width 150px;
 	padding-top: 20px;
 
 }
+/* Carousel Styling */
+.slide1{
+  background-image: url('../../public/img/tools.jpg');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide2{
+  background-image: url('../../public/img/tools.jpg');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide3{
+  background-image: url('../../public/img/tools.jpg');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.carousel-caption h1{
+  font-size: 5.4em;
+  font-family: 'Lobster', cursive;
+  padding-bottom: .4em;
+}
+.carousel-caption p{
+  font-size: 2em;
+}
 
+/*hyungwu pae*/
+#upload-complete-alert {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	display: none;
+}
 
+#loading-wrapper {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 10000px;
+	background-color: rgba(0, 0, 0, 0.8)
+}
+#loading-wrapper img {
+	position: fixed;
+	left: 50%;
+	top: 30%;
+	transform: translate(-50%, -30%);
+}

@@ -23,4 +23,5 @@ const upload = multer({
 router.get('/something', controller.doSomething);
 router.post('/upload', upload.single('screenshot'), controller.uploadImage);
 router.get('/s3-signed-req', controller.getSignedRequest);
+router.put('/profile-image', controller.saveProfileImageUrl);
 module.exports = router;

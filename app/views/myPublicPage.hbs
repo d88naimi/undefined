@@ -34,10 +34,15 @@
 				</thead>
 				<tbody>
 					{{#each projectInfo}}
-						{{#if !projectInfo.selected}}
-							<td>{{projectInfo.name}}</td>
-							<td>{{projectInfo.description}}</td>
-						{{/if}}
+						<tr>
+              {{#if this.showToPublic}}
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+              {{else}}
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+              {{/if}}
+            </tr>
 					{{/each}}
 				</tbody>
 			</table>

@@ -65,28 +65,41 @@ const myPage = function (req, res, next) {
   const projectPromise = Project.findAll({where: {userId: user.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => { 
-    // console.log(values);
+    console.log(values[1]);
     var userInfo = values[0];
     var projectArray = values[1];
 
-    res.render('myDashboard', {userInfo: userInfo, projectInfo: ProjectArray});
+    res.render('myDashboard', {userInfo: userInfo, projectInfo: projectArray});
 
     //console.log(values); // [3, 1337, "foo"] 
   });
 };
 
-const myPortolio = function (req, res, next) {
-  if(req.user) {
-    var user = req.user;
-  }
-  const userPromise = User.findById(user.id);
-  const projectPromise = Project.findAll({where: {user: user.id}});
+const searchForThis = function(req, res, next){
+
+  User.findAll(
+  {
+    where:{
+      name:{
+        $like: '%'+req.body.name+'%'}
+         }
+  })
+  .then(function(results){
+      res.render('searchResults', { searchResults: results});
+  });
+
+};
+
+const myPortfolio = function (req, res, next) {
+  const userPromise = User.findById(req.params.id);
+  const projectPromise = Project.findAll({where: {userId: req.params.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => { 
-    var userInfo = values[0];
-    var projectArray = values[1];
+    const userInfo = values[0];
+    const projectArray = values[1];
+    console.log(projectArray);
 
-    res.render('myPublicPAge', {userInfo: userInfo, projectInfo: ProjectArray});
+    res.render('myPublicPage', {userInfo: userInfo, projectInfo: projectArray});
 
   })
   .catch(handleError(res));
@@ -98,6 +111,7 @@ module.exports = {
   upload, 
   myPage,
   searchResults,
-  myPortolio,
+  searchForThis,
+  myPortfolio,
   david
 };
