@@ -19,6 +19,7 @@
     "express": "^4.15.2",
     "hbs": "~4.0.1",
     "install": "^0.9.6",
+    "jquery-typeahead": "^2.8.0",
     "jsonwebtoken": "^7.4.0",
     "method-override": "^2.3.8",
     "morgan": "~1.8.1",

@@ -22,9 +22,20 @@ const listAll = function (req, res, next) {
 
 const findProject = function (req, res, next) {
   Project.findById(req.params.id)
-    .then(skill => {
-      res.json(skill);
+    .then(projects => {
+      res.json(projects);
     })
+    .catch(e => res.status(404).end());
+};
+
+const findUserProjects = function (req, res, next) {
+  const userId = req.params.userId;
+  Project.findAll({where: {userId}})
+    .then(result => {
+      res.json({projects: result});
+    })
+    .catch(e => res.status(404).end());
+
 };
 
 const createProject = function(req, res, next) {
@@ -84,5 +95,6 @@ module.exports = {
   createProject,
   deleteProject,
   addSkillToPjt,
-  addSkillsToPjt
+  addSkillsToPjt,
+  findUserProjects
 };

@@ -60,6 +60,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    language: {
+      type: DataTypes.STRING,
+      defaultValue: null
+    },
     showToPublic: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

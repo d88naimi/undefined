@@ -1,3 +1,4 @@
+<!-- this is copied from Davids branch -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,12 +27,26 @@
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+      <!-- autocomplete search bar using typeahead -->
+
+
+      <form id="form-user_v1" name="form-user_v1">
+          <div class="typeahead__container">
+              <div class="typeahead__field">
+       
+                  <span class="typeahead__query">
+                      <input class="js-typeahead-user_v1" name="user_v1[query]" type="search" placeholder="Search" autocomplete="off">
+                  </span>
+                  <span class="typeahead__button">
+                      <button type="submit">
+                          <i class="glyphicon glyphicon-search typeahead__search-icon"></i>
+                      </button>
+                  </span>
+       
+              </div>
+          </div>
       </form>
+      <!-- search bar end -->
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
       </ul>
@@ -39,5 +54,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 {{{body}}}
+<!-- Required JavaScript for typeahead -->
+<script src="public/js/auto.js"></script>
 </body>
 </html>
