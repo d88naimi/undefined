@@ -57,9 +57,8 @@ var david = function(req, res) {
 
 
 const myPage = function (req, res, next) {
-  if(req.user) {
-    var user = req.user;
-  }
+  if(!req.user) return res.render('error', {message: 'Please login to see the content'});
+  var user = req.user;
   const userPromise = User.findById(user.id);
   const projectPromise = Project.findAll({where: {userId: user.id}});
 
@@ -71,7 +70,8 @@ const myPage = function (req, res, next) {
     res.render('myDashboard', {userInfo: userInfo, projectInfo: projectArray});
 
     //console.log(values); // [3, 1337, "foo"] 
-  });
+  })
+  .catch(e => res.status(404).end());
 };
 
 const searchForThis = function(req, res, next){
