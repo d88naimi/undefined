@@ -15,10 +15,9 @@ router.get('/upload', controller.upload);
 router.get('/searchResults', controller.searchResults);
 
 router.get('/mypage', controller.myPage);
+// duplicate from searchResults router.get('/results', controller.searchForThis);
 
-// duplicate-->router.get('/results', controller.searchForThis);
-
-router.get('/portfolio/:id', controller.myPortfolio)
+// router.get('/portfolio/:id', controller.myPortfolio)
 
 router.get('/david-test', controller.david)
 

@@ -36,13 +36,8 @@ module.exports = function(sequelize, DataTypes) {
       type:   DataTypes.ENUM,
       allowNull: true,
       defaultValue: null,
-<<<<<<< HEAD
-      values: ['Javascript', 'Java', 'Python', 'PHP',
-        'CSS', 'Ruby', 'C++', 'C', 'Shell', 'C#', 'Objective C',
-=======
       values: ['Javascript', 'Java', 'Python', 'CSS', 'PHP',
         'Ruby', 'C++', 'C', 'Shell', 'C#', 'Objective C',
->>>>>>> master
         'R', 'Viml', 'Go', 'Perl', 'CoffeeScript', 'Tex', 'Swift',
         'Scala', 'Emacs Lisp', 'Haskell', 'Lua', 'Clojure',
         'Matlab', 'Arduino', 'Makefile', 'Groovy', 'Puppet', 'Rust', 'PowerShell']
