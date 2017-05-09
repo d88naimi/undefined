@@ -4,13 +4,13 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
 
     return queryInterface.describeTable('projects').then(function(attributes) {
-      if(!attributes.hasOwnProperty('showToPublic')) {
+      if(!attributes.hasOwnProperty('language')) {
         return queryInterface.addColumn(
           'projects',
-          'showToPublic',
+          'language',
           {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
+            type: Sequelize.STRING,
+            defaultValue: null
           }
         );
       }

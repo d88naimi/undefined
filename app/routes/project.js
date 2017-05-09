@@ -8,6 +8,7 @@ const controller = require('../controller/project.controller');
 
 router.get('/', controller.listAll);
 router.get('/:id', controller.findProject);
+router.get('/user/:userId', controller.findUserProjects);
 router.post('/', controller.createProject);
 router.put('/:id/skill', controller.addSkillToPjt);
 router.put('/:id/skills', controller.addSkillsToPjt);

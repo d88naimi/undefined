@@ -81,6 +81,27 @@
 						</table>
 					</div>
 
+		<div id="projectBox_PUBLIC">
+			<table class="table">
+				<thead>
+					<th>Project</th>
+					<th>Description</th>
+				</thead>
+				<tbody>
+					{{#each projectInfo}}
+						<tr>
+              {{#if this.showToPublic}}
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+              {{else}}
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+              {{/if}}
+            </tr>
+					{{/each}}
+				</tbody>
+			</table>
+
 		</div>
 		 <div role="tabpanel" class="tab-pane" id="chartTab">
 	    	This will host the chart
