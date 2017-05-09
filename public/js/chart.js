@@ -3,7 +3,7 @@
  */
 (function(){
   // $.get('/api/project/user')
-  console.log(projects)
+  console.log(projects);
 
   // const languageData = [
   //   { label: 'Javascript', count: 26 },
@@ -132,8 +132,15 @@
 
 
 
-})();
+  /**
+   * Skill chart
+   */
+  
 
-/**
- * Skill chart
- */
+
+
+
+
+
+
+})();

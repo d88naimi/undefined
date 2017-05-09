@@ -58,14 +58,13 @@ var david = function(req, res) {
 
 const myPage = function (req, res, next) {
   if(!req.user) return res.render('error', {message: 'Please login to see the content'});
-  var user = req.user;
+  const user = req.user;
   const userPromise = User.findById(user.id);
   const projectPromise = Project.findAll({where: {userId: user.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => { 
-    console.log(values[1]);
-    var userInfo = values[0];
-    var projectArray = values[1];
+    const userInfo = values[0];
+    const projectArray = values[1];
 
     res.render('myDashboard', {userInfo: userInfo, projectInfo: projectArray});
 

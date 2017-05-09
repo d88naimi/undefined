@@ -70,8 +70,10 @@ app.use(function (err, req, res, next) {
  * db sync and listen
  */
 db.sequelize.sync({}).then(() => {
+  console.log("Connected to mysql db");
   app.listen(port, () => console.log("Server listening on " + port));
-});
+})
+  .catch(err => console.log("Could not connect to db."));
 app.on('error', onError);
 app.on('listening', onListening);
 

@@ -4,7 +4,9 @@
 'use strict';
 const config = require('../../config');
 const Skill = require('../models').skill;
+const User = require('../models').user;
 const Project = require('../models').project;
+const request = require('request-promise');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -89,6 +91,64 @@ const addSkillsToPjt = function (req, res, next) {
 
 };
 
+const githubSync = function (req, res, next) {
+  if(!req.user) return res.status(401).end();
+
+  const userId = req.user.id;
+  User.findById(userId)
+    .then(user => {
+      const options = {
+        uri: `https://api.github.com/users/${user.githubUsername}/repos`,
+        qs: {
+          client_id: config.github.clientID,
+          client_secret: config.github.clientSecret
+        },
+        headers: {
+          'User-Agent': 'Request-Promise'
+        },
+        json: true
+      };
+
+      request(options)
+        .then(repos => {
+          const projects = repos.map(repo => {
+            return {
+              name: repo.name,
+              githubRepo: repo.html_url,
+              description: repo.description || null,
+              hasGithubRepo: true,
+              forksCount: repo.forks_count,
+              stargazersCount: repo.stargazers_count,
+              watchersCount: repo.watchers_count,
+              userId: user.id,
+              language: repo.language || null,
+              url: repo.homepage || null,
+            }
+          });
+          Project.destroy({
+            where: {
+              githubRepo: { $ne: null },
+              userId: userId
+            }
+          }).then(() => {
+            Project.bulkCreate(projects)
+              .then(() => {
+                console.log("user repos imported.");
+                res.json({result: "Done"});
+              });
+          });
+
+        });
+    }).catch(e => {
+    console.log(e);
+    res.status(500).end()
+  });
+
+
+
+};
+
+
 module.exports = {
   listAll,
   findProject,
@@ -96,5 +156,6 @@ module.exports = {
   deleteProject,
   addSkillToPjt,
   addSkillsToPjt,
-  findUserProjects
+  findUserProjects,
+  githubSync
 };
