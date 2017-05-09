@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('../models').user;
+const Project = require('../models').project;
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -94,7 +95,12 @@ const me = function(req, res, next) {
 };
 
 const showChart = function (req, res, next) {
-  res.render('chart', {});
+  const userId = req.params.id;
+  Project.findAll({where: {userId}})
+    .then(result => {
+      console.log(result);
+      res.render('chart', {projects: JSON.stringify(result), message: "HEY!!!!"});
+    });
 };
 
 
