@@ -30,41 +30,7 @@ module.exports.setup = function () {
           user.save()
             .then(savedUser => {
               done(null, savedUser);
-              /** fetch git repo */
-              const options = {
-                uri: `https://api.github.com/users/${savedUser.githubUsername}/repos`,
-                qs: {
-                  client_id: config.github.clientID,
-                  client_secret: config.github.clientSecret
-                },
-                headers: {
-                  'User-Agent': 'Request-Promise'
-                },
-                json: true
-              };
-
-              request(options)
-                .then(repos => {
-                  const projects = repos.map(repo => {
-                    return {
-                      name: repo.name,
-                      githubRepo: repo.html_url,
-                      description: repo.description || null,
-                      hasGithubRepo: true,
-                      forksCount: repo.forks_count,
-                      stargazersCount: repo.stargazers_count,
-                      watchersCount: repo.watchers_count,
-                      userId: savedUser.id
-                    }
-                  });
-                  Project.bulkCreate(projects)
-                    .then(() => {
-                      console.log("user repos imported.");
-                    })
-                });
-
-
-
+              getRepos(savedUser);
             })
             .catch(err => done(err));
         })
@@ -102,4 +68,41 @@ function signToken(id, role) {
   return jwt.sign({ id, role }, config.secrets, {
     expiresIn: 60 * 60 * 24 * 365 * 10 // 10 years
   });
+}
+
+function getRepos(user) {
+  /** fetch git repo */
+  const options = {
+    uri: `https://api.github.com/users/${user.githubUsername}/repos`,
+    qs: {
+      client_id: config.github.clientID,
+      client_secret: config.github.clientSecret
+    },
+    headers: {
+      'User-Agent': 'Request-Promise'
+    },
+    json: true
+  };
+
+  request(options)
+    .then(repos => {
+      const projects = repos.map(repo => {
+        return {
+          name: repo.name,
+          githubRepo: repo.html_url,
+          description: repo.description || null,
+          hasGithubRepo: true,
+          forksCount: repo.forks_count,
+          stargazersCount: repo.stargazers_count,
+          watchersCount: repo.watchers_count,
+          userId: user.id,
+          language: repo.language || null
+        }
+      });
+      Project.bulkCreate(projects)
+        .then(() => {
+          console.log("user repos imported.");
+        })
+    });
+
 }
