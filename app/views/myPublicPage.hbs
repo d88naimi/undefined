@@ -59,6 +59,7 @@
 								<th>Project</th>
 								<th>Description</th>
 								<th>Repository</th>
+								<th>URL</th>
 							</thead>
 							<tbody>
 								{{#each projectInfo}}
@@ -68,6 +69,11 @@
 										<td>{{projectInfo.description}}</td>
 										<td>
 										<a href="{{projectInfo.githubRepository}}" target="_blank"><span class="glyphicon glyphicon-folder-open repoLink" aria-hidden="true"></span></a></td>
+										{{#if projectInfo.url}}
+											<a href="{{projectInfo.url}}" target="_blank"><span class="glyphicon glyphicon-globe repoLink" aria-hidden="true"></span></a>
+											{{else}}
+											<td>N/A</td>
+										{{/if}}
 									</tr>
 									{{/if}}
 								{{/each}}
