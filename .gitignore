@@ -7,5 +7,3 @@ config/config.json
 config/sequelize-config.json
 config/index.js
 /public/upload/
-/config/secret.json
-
