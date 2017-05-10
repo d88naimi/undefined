@@ -564,7 +564,7 @@ width 150px;
 #jumbotronHompage{
 	/*background-color: white;*/
 	font-family: Lobster;
-	background: url('../../public/img/6.jpg') no-repeat center center;
+	/*background: url('../../public/img/tools.jpg') no-repeat center center;*/
 }
 
 #searchHompage{
@@ -582,14 +582,14 @@ width 150px;
 }
 /* Carousel Styling */
 .slide1{
-  background-image: url('../../public/img/tools.jpg');
+  background-image: url('../../public/img/coding.jpeg');
   height: 400px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .slide2{
-  background-image: url('../../public/img/tools.jpg');
+  background-image: url('../../public/img/codingbrain.jpg');
   height: 400px;
   background-repeat: no-repeat;
   background-position: center;
@@ -610,6 +610,16 @@ width 150px;
 .carousel-caption p{
   font-size: 2em;
 }
+#navGit{
+	font-family: Lobster;
+	font-size: 35px;
+}
+#login-overlay{
+	font-family: Lobster;
+	font-size: 35px;
+	padding-bottom: 35px;
+}
+
 
 
 /*hyungwu pae*/

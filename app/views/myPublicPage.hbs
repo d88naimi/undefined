@@ -1,149 +1,111 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- loads jquery -->
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<!-- loads in bootstrp js -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel='stylesheet' href='css/style.css' />
-	<title></title>
-</head>
-<body>
 
 
 <!-- body for layout -->
 <section id="mainDashboardContainer_PUBLIC">
 
-<!-- left side bar containing main info -->
-	<div id="leftSidebar_PUBLIC">
-		<!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
-		<img src="https://avatars0.githubusercontent.com/u/23092057?v=3&s=460" class="bounce-in-fwd">
+  <!-- left side bar containing main info -->
+  <div id="leftSidebar_PUBLIC">
+    <!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
+    <img src="{{userInfo.photo}}" class="bounce-in-fwd">
 
-		<br>
-		<hr>
-			<h3>{{userInfo.name}}</h3>
-			<h4>{{userInfo.githubUsername}}</h4>
-			<h4>{{userInfo.githubId}}</h4>
-		<br>
-		<a href="{{userInfo.email}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> CONTACT ME</a>
-	</div>
+    <br>
+    <hr>
+    <h3>{{userInfo.name}}</h3>
+    <h4>{{userInfo.githubUsername}}</h4>
+    <h4>{{userInfo.githubId}}</h4>
+    <br>
+    <a href="{{userInfo.email}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> CONTACT ME</a>
+  </div>
 
-<!-- right container with all the projects -->
-<div id="mainProjectsContainer_PUBLIC">
-		
-		<div id="buttonBox_PUBLIC">
-			 <!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#listTab" aria-controls="listTab" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span> My Projects</a></li>
-			    <li role="presentation"><a href="#chartTab" aria-controls="chartTab" role="tab" data-toggle="tab"> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> My Chart</a></li>
-			  </ul>
-		</div>
+  <!-- right container with all the projects -->
+  <div id="mainProjectsContainer_PUBLIC">
 
-		
+    <div id="buttonBox_PUBLIC">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#listTab" aria-controls="listTab" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span> My Projects</a></li>
+        <li role="presentation"><a href="#chartTab" aria-controls="chartTab" role="tab" data-toggle="tab"> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> My Chart</a></li>
+      </ul>
+    </div>
 
 
-		  <!-- Tab panes -->
-  <div class="tab-content">
 
-	    <div role="tabpanel" class="tab-pane active" id="listTab">
 
-	    			<div id="projectBox_PUBLIC">
+    <!-- Tab panes -->
+    <div class="tab-content">
 
-	    			<div id="imageBox">
-						<h1>{{userInfo.name}}</h1>
-					</div>
+      <div role="tabpanel" class="tab-pane active" id="listTab">
 
-						<table class="table">
-							<thead>
-								<th>Project</th>
-								<th>Description</th>
-								<th>Repository</th>
-								<th>URL</th>
-							</thead>
-							<tbody>
-								{{#each projectInfo}}
-									{{#if !projectInfo.selected}}
-									<tr class="projectRow" data-screenshot="{{projectInfo.screenshot}}">
-										<td>{{projectInfo.name}}</td>
-										<td>{{projectInfo.description}}</td>
-										<td>
-										<a href="{{projectInfo.githubRepository}}" target="_blank"><span class="glyphicon glyphicon-folder-open repoLink" aria-hidden="true"></span></a></td>
-										{{#if projectInfo.url}}
-											<a href="{{projectInfo.url}}" target="_blank"><span class="glyphicon glyphicon-globe repoLink" aria-hidden="true"></span></a>
-											{{else}}
-											<td>N/A</td>
-										{{/if}}
-									</tr>
-									{{/if}}
-								{{/each}}
-							</tbody>
-						</table>
-					</div>
+        <div id="projectBox_PUBLIC">
 
-		<div id="projectBox_PUBLIC">
-			<table class="table">
-				<thead>
-					<th>Project</th>
-					<th>Description</th>
-				</thead>
-				<tbody>
-					{{#each projectInfo}}
-						<tr>
+          <div id="imageBox">
+            <h1>{{userInfo.name}}</h1>
+          </div>
+
+          <table class="table">
+            <thead>
+            <th>Project</th>
+            <th>Description</th>
+            <th>Repository</th>
+            <th>URL</th>
+            </thead>
+            <tbody>
+            {{#each projectInfo}}
               {{#if this.showToPublic}}
-                <td>{{this.name}}</td>
-                <td>{{this.description}}</td>
-              {{else}}
-                <td>{{this.name}}</td>
-                <td>{{this.description}}</td>
+                <tr class="projectRow" data-screenshot="{{projectInfo.screenshot}}">
+                  <td>{{this.name}}</td>
+                  <td>{{this.description}}</td>
+                  <td>
+                    <a href="{{this.githubRepo}}" target="_blank"><span class="glyphicon glyphicon-folder-open repoLink" aria-hidden="true"></span></a>
+                  </td>
+                  {{#if this.url}}
+                    <td>
+                      <a href="{{this.url}}" target="_blank"><span class="glyphicon glyphicon-globe repoLink" aria-hidden="true"></span></a>
+                    </td>
+                  {{else}}
+                    <td>N/A</td>
+                  {{/if}}
+                </tr>
               {{/if}}
-            </tr>
-					{{/each}}
-				</tbody>
-			</table>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="chartTab">
+          "This will host the chart"
+        </div>
 
-		</div>
-		 <div role="tabpanel" class="tab-pane" id="chartTab">
-	    	This will host the chart
-	    </div>
+      </div>
 
     </div>
-   
-</div>
-
+  </div>
 </section>
 
 <script type="text/javascript">
 
   $(document).ready(function() {
 
-	       
-		$(".projectRow").mouseenter(function (event) {
 
-			var screenshot = $(this).data('screenshot').toString();
-			//console.log("SS: "+screenshot);
+    $(".projectRow").mouseenter(function (event) {
 
-			if( screenshot === "{{projectInfo.screenshot}}" || "undefined" || null){
-				$("#imageBox").css({"background-image": "url('https://jerryswiatek.com/wp-content/uploads/2016/03/code_banner.png')"});
-			}
-			else{
+      var screenshot = $(this).data('screenshot').toString();
+      //console.log("SS: "+screenshot);
 
-				$("#imageBox").css({"background-image": "url("+ screenshot +")"});
-			}
-		});
+      if( screenshot === "{{projectInfo.screenshot}}" || "undefined" || null){
+        $("#imageBox").css({"background-image": "url('/public/img/code_banner.png')"});
+      }
+      else{
 
-			$(".projectRow").mouseleave(function (event) {
-
-			
-			$("#imageBox").css({"background-image": "url('https://diasp.org/camo/39765a8710b39978abe757fb42785537a348ff2b/68747470733a2f2f36382e6d656469612e74756d626c722e636f6d2f66393932343061616565363061336662613530393030353833366533643735622f74756d626c725f6f677374316e77374a66317332743363746f315f3530302e676966')"});
-			
-		});
-
+        $("#imageBox").css({"background-image": "url("+ screenshot +")"});
+      }
     });
-	
+
+    $(".projectRow").mouseleave(function (event) {
+      $("#imageBox").css({"background-image": "url('/public/img/star.gif')"});
+    });
+
+  });
+
 
 
 </script>
-
-</body>
-</html>

@@ -1,3 +1,94 @@
+{{!--
 <h1>{{message}}</h1>
 <h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<pre>{{error.stack}}</pre>--}} {{!--
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+  crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+  crossorigin="anonymous">
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="davestyle.css"> --}}
+
+
+<h1>--------------------------------</h1>
+
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+
+    <a id="navGit" class="navbar-brand page-scroll" href="#page-top">Git Me </a>
+
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="" id="mobileScreen">
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="error-template center">
+        {{#switch statusCode}} 
+        {{#case 404}}
+        <h2>Not found...The requested resource could not be found but may be available in the future. Subsequent requests by
+          the client are permissible.</h2>
+        {{/case}} 
+        {{#case 401}}
+         unauthorized access...The request requires user authentication. 
+         {{/case}}
+         {{#case 400}} 
+         Bad Request...The request
+        could not be understood by the server due to malformed syntax. 
+        {{/case}}
+         {{#case 500}} 
+         Internal Server Error...The
+        server encountered an unexpected condition which prevented it from fulfilling the request. 
+        {{/case}} 
+        {{#case 403}}
+        Forbidden...The server understood the request, but is refusing to fulfill it.
+         {{/case}} 
+         {{#case 501}} 
+         Not Implemented...The
+        server does not support the functionality required to fulfill the request.
+         {{/case}} 
+        {{#case 408}} 
+        Request Timeout..The
+        client did not produce a request within the time that the server was prepared to wait. 
+        {{/case}} 
+        {{/switch}}
+
+
+        <h1>
+          Oops!</h1>
+        <h2>
+          404 Not Found</h2>
+        <div class="error-details">
+          Sorry, an error has occured, Requested page not found!
+        </div>
+        <div class="error-actions ">
+          <a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

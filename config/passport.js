@@ -6,7 +6,7 @@ const Project = require('../app/models').project;
 const GitHubStrategy = require('passport-github').Strategy;
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-var request = require('request-promise');
+const request = require('request-promise');
 const config = require('./index');
 
 module.exports.setup = function () {
@@ -51,7 +51,14 @@ module.exports.setTokenCookie = function (req, res) {
 
 
 module.exports.serializeUser = function(req, res, next) {
-  const token = req.cookies.id_token;
+  let token;
+  if(req.headers.authorization) {
+    token = req.headers.authorization;
+    console.log(token);
+    console.log(req.cookies.id_token);
+  }
+
+  else token = req.cookies.id_token;
   if(token) {
     jwt.verify(token, config.secrets, function (err, user) {
       if(err) {
@@ -96,7 +103,8 @@ function getRepos(user) {
           stargazersCount: repo.stargazers_count,
           watchersCount: repo.watchers_count,
           userId: user.id,
-          language: repo.language || null
+          language: repo.language || null,
+          url: repo.homepage || null
         }
       });
       Project.bulkCreate(projects)
