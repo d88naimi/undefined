@@ -25,7 +25,7 @@ const listAll = function (req, res, next) {
 const findProject = function (req, res, next) {
   Project.findById(req.params.id)
     .then(project => {
-      if(!project) return res.render('error', {letter: 'a', statusCode: 4})
+      if(!project) return res.render('error', {letter: 'a', statusCode: 404})
       res.json(project);
     })
     .catch(e => res.status(404).end());

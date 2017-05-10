@@ -1,13 +1,90 @@
 <div class="container">
-  <p>style.css is located in public/css folder</p>
-  <p><a href="/upload">image upload page</a></p>
+
+<!-- Carousel -->
+  <!-- Surround everything with a div with the class carousel slide -->
+  <div id="theCarousel" class="carousel slide" data-ride="carousel">
+
+    <!-- Define how many slides to put in the carousel -->
+    <ol class="carousel-indicators">
+      <li data-target="#theCarousel" data-slide-to="0" class="active"> </li>
+      <li data-target="#theCarousel" data-slide-to="1"> </li>
+      <li data-target="#theCarousel" data-slide-to="2"> </li>
+    </ol>
+
+    <!-- Define the text to place over the image -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="slide1"></div>
+        <div class="carousel-caption">
+          <h1>Git-Me</h1>
+          <p>Developers </p>
+
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide2"></div>
+        <div class="carousel-caption">
+          <h1>Portfolio Builder</h1>
+          <p>All your skill sets in one place.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide3"></div>
+        <div class="carousel-caption">
+          <h1>Employeers find your Developer</h1>
+          <p>Find your Developer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set the actions to take when the arrows are clicked -->
+    <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"> </span>
+    </a>
+    <a class="right carousel-control" href="#theCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+
+  <div id="login-overlay" class="modal-dialog">
+    <div class="modal-content ">
+      <div class="modal-header ">
+
+        <h4 class="modal-title  " id="myModalLabel">Git Me Login</h4>
+      </div>
+
+      <div class="modal-body text-center">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="well">
+              <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                <div class="form-group">
+                  <i class="fa fa-github fa-2x " aria-hidden="true"></i>
+                  <label for="username" class="control-label">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username"
+                    placeholder="Name">
+                  <span class="help-block"></span>
+                </div>
+
+
+                <button type="submit" class="btn btn-success btn-block">Login</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h2>----------------Temporary--------------</h2>
   <p><a href="/searchResults">searchResults table</a></p>
   <p><a href="/api/user/chart-test">Chart test page</a></p>
 
   {{#if userInfo}}
     <div>
       <p>{{title}}</p>
-      <img class="thumbnail" src="{{userInfo.photo}}">
+      <img style="width: 200px;" class="thumbnail" src="{{userInfo.photo}}">
       <ul>
         <li>Name: {{userInfo.name}}</li>
         <li>profileUrl: {{userInfo.profileUrl}}</li>
