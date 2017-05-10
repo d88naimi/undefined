@@ -423,6 +423,32 @@ width 150px;
 
 /*--------Davey--------*/
 
+body{
+	background-color: #323232;
+}
+.navContainer{
+	padding: 5px;
+}
+
+#gitMeImage{
+	padding: 100px;
+	background-color: #f2f2f2;
+	text-align: center;
+}
+
+#gitMeImage img{
+width: 400px;
+height:auto;
+margin: auto;
+display: block;
+}
+
+#gitMeImage a{
+	margin:20px;
+	font-size: 24px;
+	text-align: center;
+}
+
 #jumbotronHompage{
 	/*background-color: white;*/
 	font-family: Lobster;
@@ -443,9 +469,14 @@ width 150px;
 
 }
 /* Carousel Styling */
+#carouselMargin{
+	margin-top: 25px;
+
+}
 .slide1{
   background-image: url('../../public/img/codingbrain.jpg');
   height: 400px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -454,6 +485,7 @@ width 150px;
 .slide2{
   background-image: url('../../public/img/coding.jpeg');
   height: 400px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -461,6 +493,7 @@ width 150px;
 .slide3{
   background-image: url('../../public/img/tools.jpg');
   height: 400px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -478,7 +511,7 @@ width 150px;
 
 #navGit{
 	font-family: Lobster;
-	font-size: 50px;
+	font-size: 40px;
 	color:#8ef140;
 
 }
