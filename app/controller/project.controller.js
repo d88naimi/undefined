@@ -84,7 +84,7 @@ const addSkillsToPjt = function (req, res, next) {
           res.status(200).end();
         });
     })
-    .catch(handleError(res))
+    .catch(handleError(res));
 
 
 };

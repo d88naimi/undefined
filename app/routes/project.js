@@ -14,3 +14,4 @@ router.put('/:id/skill', controller.addSkillToPjt);
 router.put('/:id/skills', controller.addSkillsToPjt);
 router.delete('/:id', controller.deleteProject);
 module.exports = router;
+
