@@ -24,14 +24,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    android: {
+    buildTool: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    ios: {
+    testing: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+
     language: {
       type:   DataTypes.ENUM,
       allowNull: true,

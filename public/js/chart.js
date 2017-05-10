@@ -3,17 +3,35 @@
  */
 (function(){
   // $.get('/api/project/user')
+  console.log(projects);
+
+  // const languageData = [
+  //   { label: 'Javascript', count: 26 },
+  //   { label: 'C++', count: 15 },
+  //   { label: 'Ruby', count: 10 },
+  //   { label: 'Scala', count: 8 },
+  //   { label: 'Matlab', count: 6 },
+  //   { label: 'Haskell', count: 12 },
+  //   { label: 'Python', count: 4 }
+  // ];
 
 
-  const languageData = [
-    { label: 'Javascript', count: 26 },
-    { label: 'C++', count: 15 },
-    { label: 'Ruby', count: 10 },
-    { label: 'Scala', count: 8 },
-    { label: 'Matlab', count: 6 },
-    { label: 'Haskell', count: 12 },
-    { label: 'Python', count: 4 }
-  ];
+  /**
+   * Language Chart
+   */
+  const languageData = projects.map(pjt => pjt.language)
+    .reduce((data, language) => {
+      const indexOfLangObj = data.map(langData => langData.label).indexOf(language);
+      if(indexOfLangObj > -1) {
+        data[indexOfLangObj].count += 1;
+      } else {
+        data.push({ label: language, count: 1});
+      }
+      return data;
+    },[]);
+  
+  console.log(languageData);
+
 
   const tooltip = d3.select('#chart')
     .append('div')
@@ -64,7 +82,7 @@
     .style("font", "bold 12px")
     .text(function(d) {
       const total = d3.sum(languageData.map(d => d.count));
-      const percent = Math.round(1000 * d.data.count / total) / 10;
+      const percent = Math.round(100 * d.data.count / total);
       return percent + '%';
     });
 
@@ -109,6 +127,17 @@
     .attr('x', legendRectSize + legendSpacing)
     .attr('y', legendRectSize - legendSpacing)
     .text(function(d) { return d; });
+
+
+
+
+
+  /**
+   * Skill chart
+   */
+  
+
+
 
 
 

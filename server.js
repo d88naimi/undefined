@@ -7,15 +7,14 @@ const passport = require('passport');
 const config = require('./config');
 const app = express();
 const port = process.env.PORT || '3000';
-const hbs = require('hbs');
 const aws = require('aws-sdk');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 const db = require('./app/models');
+const handlebars = require('./config/handlebars');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'hbs');
-
 
 // cookie, logger, body-parser, method-override
 app.use(cookieParser());
@@ -70,8 +69,10 @@ app.use(function (err, req, res, next) {
  * db sync and listen
  */
 db.sequelize.sync({}).then(() => {
+  console.log("Connected to mysql db");
   app.listen(port, () => console.log("Server listening on " + port));
-});
+})
+  .catch(err => console.log("Could not connect to db."));
 app.on('error', onError);
 app.on('listening', onListening);
 

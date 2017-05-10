@@ -12,7 +12,10 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    githubRepo: DataTypes.STRING,
+    githubRepo: {
+      type: DataTypes.STRING,
+      defaultValue: null
+    },
     url: {
       type: DataTypes.STRING,
       defaultValue: null,
@@ -66,7 +69,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     showToPublic: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: true
     },
   }, {
     classMethods: {
