@@ -7,15 +7,14 @@ const passport = require('passport');
 const config = require('./config');
 const app = express();
 const port = process.env.PORT || '3000';
-const hbs = require('hbs');
 const aws = require('aws-sdk');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 const db = require('./app/models');
+const handlebars = require('./config/handlebars');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'hbs');
-
 
 // cookie, logger, body-parser, method-override
 app.use(cookieParser());

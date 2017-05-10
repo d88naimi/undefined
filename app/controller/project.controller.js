@@ -24,8 +24,9 @@ const listAll = function (req, res, next) {
 
 const findProject = function (req, res, next) {
   Project.findById(req.params.id)
-    .then(projects => {
-      res.json(projects);
+    .then(project => {
+      if(!project) return res.render('error', {letter: 'a', statusCode: 4})
+      res.json(project);
     })
     .catch(e => res.status(404).end());
 };
@@ -63,7 +64,7 @@ const addSkillToPjt = function (req, res, next) {
 
   Project.findById(projectId)
     .then(project => {
-      if(!project) res.status(404).end();
+      if(!project) return res.render('error', {message: "Could not find a project"})
       project.addSkill(skillId)
         .then(() => {
           res.status(200).end();
@@ -76,7 +77,7 @@ const addSkillToPjt = function (req, res, next) {
 const addSkillsToPjt = function (req, res, next) {
   const projectId = req.param.id;
   const skillIds = req.body.skills;
-  if(!skillIds) res.status(400);
+  if(!skillIds.length) return res.status(400).end();
 
   Project.findById(projectId)
     .then(project => {
@@ -87,9 +88,29 @@ const addSkillsToPjt = function (req, res, next) {
         });
     })
     .catch(handleError(res))
+};
+
+const editProject = function(req, res, next) {
+  if(!res.user) return res.status(400).end();
+  const userId = req.user.id;
+  Project.findById(projectId)
+    .then(project => {
+      if(project.userId !== userId) return res.status(401).end(); 
+      if(!project) return res.render('error', {message: "Could not find a project"})
+
+      
+
+      project.addSkills(skillIds)
+        .then(() => {
+          res.status(200).end();
+        });
+    }).catch(handleError(res, 404));
+
+  
 
 
 };
+
 
 const githubSync = function (req, res, next) {
   if(!req.user) return res.status(401).end();
@@ -157,5 +178,6 @@ module.exports = {
   addSkillToPjt,
   addSkillsToPjt,
   findUserProjects,
-  githubSync
+  githubSync,
+  editProject
 };
