@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: null
     },
-    url: {
+    url: {//
       type: DataTypes.STRING,
       defaultValue: null,
       allowNull: true,
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true
       }
     },
-    role: {
+    role: {//
       type: DataTypes.STRING,
       defaultValue: null,
       allowNull: true,
@@ -33,12 +33,12 @@ module.exports = function(sequelize, DataTypes) {
         len: [2, 150]
       }
     },
-    teamMate: {
+    teamMate: {//
       type: DataTypes.STRING, //jSON
       defaultValue: null,
       allowNull: true
     },
-    screenshot: {
+    screenshot: {// 
       type: DataTypes.STRING, // JSON
       defaultValue: null,
       allowNull: true,
