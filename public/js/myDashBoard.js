@@ -15,6 +15,7 @@
     event.preventDefault();
 
     $("#addProjectModal").modal('toggle');
+
   });
 
   $('#addBtn').on("click", function(event) {
@@ -130,6 +131,76 @@
   function hideLoadingCircle () {
     $('#loading-wrapper').css('display', 'none');
   }
+
+// edit button loading info to modal
+   $('.editBtn').on("click", function(event) {
+    event.preventDefault();
+
+    var editID= $(this).attr('data-id');
+    var editName= $(this).attr('data-name');
+    var editDescription= $(this).attr('data-description');
+    var editRole= $(this).attr('data-role');
+    var editTeamMate= $(this).attr('data-teamMate');
+    var editURL= $(this).attr('data-url');
+    var editScreenshot =$(this).attr('data-screenshot');
+
+    if(editScreenshot === null || "{{this.screenshot}}"){
+      editScreenshot = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQFEeGt4l7ksmLOwwBkvt5IaQYiQnbRvRscbCRBP823VxROxGGX"
+    };
+
+
+    $("#editProjectModal").modal('toggle');
+    $("#projectImage").attr('src', editScreenshot).attr('data-id', editID);      
+    $("#input1").val(editName);
+    $("#input2").val(editDescription);
+    $("#input3").val(editRole);
+    $("#input4").val(editTeamMate);
+    $("#input5").val(editURL);
+    
+  });
+
+   $('.mypic').hover(function(){
+      $('.mypic').toggleClass('heartbeat');
+   });
+
+// submit button on edit modal
+   $('#editSubmitButton').on("click", function(event) {
+    event.preventDefault();
+
+    var projectID = $("#projectImage").attr('data-id');
+    var name= $("#input1").val();
+    var desc= $("#input2").val();
+    var role= $("#input3").val();
+    var teammate= $("#input4").val();
+    var url= $("#input5").val();
+    var screenshot =$('#projectImage').attr('src');
+
+    var newInfo={
+      name: name,
+      decription: desc,
+      role: role,
+      teamMate: teammate,
+      url: url,
+      screenshot: screenshot
+    };
+
+    showLoadingCircle();
+    $("#editProjectModal").modal('toggle'); 
+
+      $.ajax({
+      type: 'PUT',
+      url: "/api/project/"+projectID,
+      data: newInfo
+    }).then(res => {
+
+      hideLoadingCircle();
+      
+
+      $("[data-rowId='"+res.id+"'] td:nth-child(1)").html(name);
+      $("[data-rowId='"+res.id+"'] td:nth-child(2)").html(desc);
+
+      });
+    });
 
 
 
