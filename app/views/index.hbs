@@ -4,14 +4,14 @@
   <!-- Surround everything with a div with the class carousel slide -->
   <div id="theCarousel" class="carousel slide" data-ride="carousel">
 
-    <!-- Define how many slides to put in the carousel -->
+   <!-- Define how many slides to put in the carousel -->
     <ol class="carousel-indicators">
       <li data-target="#theCarousel" data-slide-to="0" class="active"> </li>
       <li data-target="#theCarousel" data-slide-to="1"> </li>
       <li data-target="#theCarousel" data-slide-to="2"> </li>
     </ol>
 
-    <!-- Define the text to place over the image -->
+   <!-- Define the text to place over the image -->
     <div class="carousel-inner">
       <div class="item active">
         <div class="slide1"></div>
@@ -19,7 +19,7 @@
           <h1>Git-Me</h1>
           <p>Developers </p>
 
-        </div>
+       </div>
       </div>
       <div class="item">
         <div class="slide2"></div>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <!-- Set the actions to take when the arrows are clicked -->
+   <!-- Set the actions to take when the arrows are clicked -->
     <a class="left carousel-control" href="#theCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"> </span>
     </a>
@@ -46,30 +46,19 @@
     </a>
   </div>
 
-  <div id="login-overlay" class="modal-dialog">
+ <div id="login-overlay" class="modal-dialog">
     <div class="modal-content ">
       <div class="modal-header ">
 
-        <h4 class="modal-title  " id="myModalLabel">Git Me Login</h4>
+       <h4 class="modal-title" id="myModalLabel">Git Me Login</h4>
       </div>
 
-      <div class="modal-body text-center">
+     <div class="modal-body text-center">
         <div class="row">
           <div class="col-xs-12">
             <div class="well">
-              <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
-                <div class="form-group">
-                  <i class="fa fa-github fa-2x " aria-hidden="true"></i>
-                  <label for="username" class="control-label">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username"
-                    placeholder="Name">
-                  <span class="help-block"></span>
-                </div>
-
-
-                <button type="submit" class="btn btn-success btn-block">Login</button>
-
-              </form>
+            
+               <p><a id="loginSubmitButton" class="btn btn-success btn-block" href="/auth/github"><i class="fa fa-github fa-3x" aria-hidden="true"></i>  Login with Github</a></p>
             </div>
           </div>
         </div>
@@ -81,7 +70,7 @@
   <p><a href="/searchResults">searchResults table</a></p>
   <p><a href="/api/user/chart-test">Chart test page</a></p>
 
-  {{#if userInfo}}
+ {{#if userInfo}}
     <div>
       <p>{{title}}</p>
       <img style="width: 200px;" class="thumbnail" src="{{userInfo.photo}}">

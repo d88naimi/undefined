@@ -421,7 +421,7 @@ width 150px;
 	text-transform: capitalize;
 }
 
-/*Davey*/
+/*--------Davey--------*/
 
 #jumbotronHompage{
 	/*background-color: white;*/
@@ -444,14 +444,15 @@ width 150px;
 }
 /* Carousel Styling */
 .slide1{
-  background-image: url('../../public/img/coding.jpeg');
+  background-image: url('../../public/img/codingbrain.jpg');
   height: 400px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  color:red;
 }
 .slide2{
-  background-image: url('../../public/img/codingbrain.jpg');
+  background-image: url('../../public/img/coding.jpeg');
   height: 400px;
   background-repeat: no-repeat;
   background-position: center;
@@ -468,13 +469,18 @@ width 150px;
   font-size: 5.4em;
   font-family: 'Lobster', cursive;
   padding-bottom: .4em;
+  color:#FFFAF0;
 }
 .carousel-caption p{
   font-size: 2em;
+  color:#FFFAF0;
 }
+
 #navGit{
 	font-family: Lobster;
-	font-size: 35px;
+	font-size: 50px;
+	color:#8ef140;
+
 }
 #login-overlay{
 	font-family: Lobster;
@@ -491,6 +497,14 @@ margin-top:15px;margin-bottom:15px;
 .error-actions .btn { 
 margin-right:10px; 
 }
+
+#errorPage{
+	color: white;
+}
+#loginSubmitButton{
+	font-size: 25px;
+}
+/*David Naimi*/
 
 /*hyungwu pae*/
 #upload-complete-alert {
