@@ -11,7 +11,7 @@
         <span class="glyphicon glyphicon-edit"></span> Edit
       </button>
     </div>
-    <input type="file" id="image-file-input" accept="image/*">
+    <input type="file" id="profile-image-input" accept="image/*">
     <h3>Hello, <b>{{userInfo.name}}</b> !</h3>
     <h4>{{userInfo.githubUsername}}</h4>
     <h4>{{userInfo.githubId}}</h4>
@@ -122,7 +122,7 @@
     <h2>Edit your project</h2>
     <br>
     <form action='/update-portfolio?_method=PUT' method='POST'>
-	<img class="projectThumbnail" id="projectImage" src="" alt="project thumbnail">
+	<img class="projectThumbnail" style="cursor: pointer" id="projectImage" src="" alt="project thumbnail">
 	<br>
 	<br>
       <input id="input1" class="form-control" type="text" name="name" placeholder="what's your project's name?">

@@ -105,7 +105,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', end
 	opacity: 1;
 }
 
-#image-file-input {
+#profile-image-input, # {
 	display: none;
 }
 

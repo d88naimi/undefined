@@ -63,14 +63,19 @@
     selectedSkills.push(skillName);
   }
 
+  //change project screenshot
+  $('#projectImage').on('click', function() {
+
+  });
+
 
   //change user's photo
   $('#change-photo').on('click', function () {
-    $('#image-file-input').trigger('click');
+    $('#profile-image-input').trigger('click');
   });
 
   //on select file
-  $('#image-file-input').change(function (ev) {
+  $('#profile-image-input').change(function (event) {
     const files = event.target.files;
     const file = files[0];
     if(file == null){
@@ -113,7 +118,7 @@
   function saveProfileImageUrl(photo) {
     $.ajax({
       type: 'PUT',
-      url: '/api/image/profile-image',
+      url: '/api/user/profile-image',
       data: {photo}
     }).then(() => {
       hideLoadingCircle();

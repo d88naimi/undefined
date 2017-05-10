@@ -107,6 +107,7 @@ const editProject = function(req, res, next) {
       if(req.body.role) toBeUpdated.role = req.body.role;
       if(req.body.teammate) toBeUpdated.teammate = req.body.teammate;
       if(req.body.url) toBeUpdated.url = req.body.url;
+      if(req.body.screenshot) toBeUpdated.screenshot = req.body.screenshot;
 
       project.update(toBeUpdated)
         .then(result => {
