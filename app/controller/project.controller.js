@@ -78,8 +78,12 @@ const createProject = function(req, res, next) {
     newProject.thumbnail = urlArry[0] + "-thumbnail.s3.amazonaws.com/thumbnail-" + urlArry[1];
   }
   Project.create(newProject)
-    .then(result => {
-      res.json(result);
+    .then(project => {
+      project.addSkills(JSON.parse(req.body.skills))
+        .then(skills => {
+          res.json({project, skills: skills[0]});
+        })
+        .catch(e => handleError(e, req, res));
     })
     .catch(e => handleError(e, req, res));
 
