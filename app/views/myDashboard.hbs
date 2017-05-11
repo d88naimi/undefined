@@ -35,13 +35,17 @@
             {{#if this.thumbnail}}
             <td><img class="projectThumbnail" src="{{this.screenshot}}" alt="project thumbnail"></td>
             {{else}}
-            <td>N/A</td>
+            <td style="text-align: center;">N/A</td>
             {{/if}}
             <td class="descField">{{this.description}}</td>
-            <td>
+            {{#if this.showToPublic}}
+            <td style="text-align: center;"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></td>
+            {{else}}
+            <td style="text-align: center;">
               <button type="submit" class="btn btn-danger addBtn"  data-id="{{this.id}}">Add</button>
             </td>
-            <td>
+            {{/if}}
+            <td style="text-align: center;">
               <button type="submit" class="btn btn-warning editBtn"  data-id="{{this.id}}" data-name="{{this.name}}" data-description="{{this.description}}" data-role="{{this.role}}" data-teamMates="{{this.teamMate}}" data-url="{{this.url}}"" data-screenshot="{{this.screenshot}}">Edit</button>
             </td>
           </tr>

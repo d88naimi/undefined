@@ -195,9 +195,7 @@
 
       hideLoadingCircle();
       
-
-      $("[data-rowId='"+res.id+"'] td:nth-child(1)").html(name);
-      $("[data-rowId='"+res.id+"'] td:nth-child(2)").html(desc);
+      res.redirect('/mypage');
 
       });
     });
