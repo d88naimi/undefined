@@ -105,7 +105,7 @@ function getRepos(user) {
           stargazersCount: repo.stargazers_count,
           watchersCount: repo.watchers_count,
           userId: user.id,
-          language: repo.language || null,
+          language: repo.language || 'etc.',
           url: repo.homepage || null
         }
       });

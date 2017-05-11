@@ -126,6 +126,7 @@
   legend.append('text')
     .attr('x', legendRectSize + legendSpacing)
     .attr('y', legendRectSize - legendSpacing)
+    .style('fill', 'white')
     .text(function(d) { return d; });
 
 

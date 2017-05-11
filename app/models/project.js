@@ -65,7 +65,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     language: {
       type: DataTypes.STRING,
-      defaultValue: null
+      defaultValue: ''
     },
     showToPublic: {
       type: DataTypes.BOOLEAN,
