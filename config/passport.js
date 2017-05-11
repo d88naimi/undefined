@@ -54,11 +54,7 @@ module.exports.serializeUser = function(req, res, next) {
   let token;
   if(req.headers.authorization) {
     token = req.headers.authorization;
-    console.log(token);
-    console.log(req.cookies.id_token);
-  }
-
-  else token = req.cookies.id_token;
+  } else token = req.cookies.id_token;
   if(token) {
     jwt.verify(token, config.secrets, function (err, user) {
       if(err) {

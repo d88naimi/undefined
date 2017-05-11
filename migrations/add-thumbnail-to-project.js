@@ -4,13 +4,13 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
 
     return queryInterface.describeTable('projects').then(function(attributes) {
-      if(!attributes.hasOwnProperty('weightValue')) {
+      if(!attributes.hasOwnProperty('thumbnail')) {
         return queryInterface.addColumn(
           'projects',
-          'weightValue',
+          'thumbnail',
           {
-            type: Sequelize.INTEGER,
-            defaultValue: 0
+            type: Sequelize.STRING,
+            defaultValue: null
           }
         );
       }

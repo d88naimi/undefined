@@ -2,6 +2,7 @@
 
 const User = require('../models').user;
 const Project = require('../models').project;
+const Skill = require('../models').skill;
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -56,13 +57,20 @@ const myPage = function (req, res, next) {
   if(!req.user) return res.render('error', {message: 'Please login to see the content'});
   const user = req.user;
   const userPromise = User.findById(user.id);
-  const projectPromise = Project.findAll({where: {userId: user.id}});
-
+  const projectPromise = Project.findAll({
+    where: {userId: user.id},
+    include: [{
+      model: Skill,
+      as: 'skills',
+      attributes: ['id', 'name']
+    }]
+  });
   Promise.all([userPromise, projectPromise]).then(values => { 
     const userInfo = values[0];
     const projectArray = values[1];
+    const skills = projectArray.skills;
 
-    res.render('myDashboard', {userInfo: userInfo, projectInfo: projectArray});
+    res.render('myDashboard', {userInfo: userInfo, projectInfo: projectArray, skills});
 
     //console.log(values); // [3, 1337, "foo"] 
   })
