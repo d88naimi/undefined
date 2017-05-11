@@ -95,7 +95,7 @@
 
 
   // Edit project button loading info to modal
-  $('.editBtn').on("click", function (event) {
+  $('#projectBox').on("click", '.editBtn', function (event) {
     $('#modal-title').html("Edit your project");
     $('#createSubmitButton').css({display: 'none'});
     $('#editSubmitButton').css({display: 'inline-block'});
@@ -299,14 +299,14 @@
 
   function UpdateProjectView(projectObj) {
     const updatedProject = projectObj.project;
-    const skills = projectObj.skills;
-    console.log(skills);
+    const skills = makeArrOfSkillObj();
     const tds = $(`#project${updatedProject.id} td`);
     tds.eq(0).html(updatedProject.name);
     if(updatedProject.screenshot) tds.eq(1).find('img').attr('src', updatedProject.screenshot);
     tds.eq(2).html(updatedProject.description);
 
     tds.eq(4).find('button').attr({
+      'data-id': updatedProject.id,
       'data-name': updatedProject.name,
       'data-role': updatedProject.role,
       'data-description': updatedProject.description,
@@ -320,14 +320,18 @@
   }
 
   function createProjectView(projectObj) {
+    console.log(projectObj);
     const createdProject = projectObj.project;
-    const skills = projectObj.skills;
+    const skills = makeArrOfSkillObj();
+
+
     const newProjectTrElem = $('<tr id=`project${createdProject.id}`>')
       .append($('<td>').html(createdProject.name))
       .append($('<td class="text-center">').append( $('<img class="projectThumbnail" alt="project thumbnail">').attr('src', createdProject.screenshot || '/public/img/project-default.png')) )
       .append($('<td class="descField">').html(createdProject.description))
-      .append($('<td>').append( $('<button class="btn btn-danger addBtn">').attr('data-id', createdProject.id).html('Add') ))
-      .append($('<td>').append( $('<button class="btn btn-warning editBtn">').attr({
+      .append($('<td class="text-center">').append( $('<span class="glyphicon glyphicon-ok-sign" aria-hidden="true">').attr('data-id', createdProject.id) ))
+      .append($('<td class="text-center">').append( $('<button class="btn btn-warning editBtn">').attr({
+          'data-id': createdProject.id,
           'data-name': createdProject.name,
           'data-role': createdProject.role,
           'data-description': createdProject.description,
@@ -342,6 +346,14 @@
     $('#projectBox tbody').append(newProjectTrElem);
     hideLoadingCircle();
 
+  }
+
+  function makeArrOfSkillObj() {
+    let skills = [];
+    for(let i=0; i < selectedSkillIds.length; i++) {
+      skills.push({id: selectedSkillIds[i], name: selectedSkillNames[i]});
+    }
+    return skills;
   }
 
   function initSelectedSkills() {
