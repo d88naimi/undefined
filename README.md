@@ -1,5 +1,6 @@
 [Live](https://google.com/) Fake link.
 
+
 # Git Me
 
 Git-Me is a one stop shop portfolio builder for GitHub developers. Simply login in with your github username and add or edit the skills you desire. Results page will formulate your chart of developers skill set.
@@ -50,6 +51,22 @@ GitMe is currently extended with the following plugins. Instructions on how to u
 
 
 
+
+* Clone the repo: `git clone https://github.com/d88naimi/undefined.git`
+* Fork the repo
+
+# Prerequisites
+What things you need to install the software and how to install them
+Github Account
+*Node.js
+MySQL 
+Workbench mySQL
+
+# To Begin
+Enter terminal 
+Npm install
+Create new MySQL connection using the information provided from sequelize.config.json file under config folder.
+
 # Motivation
 GitHub developer lack a section in their GitHub profile that demonstrates all there skillset in one clean location. GitMe allows GitHub developers to use this resource and share to the world and future employers. 
 
@@ -59,6 +76,7 @@ Stephen Urena(https://github.com/stephenurena)
 David Naimi(https://github.com/d88naimi)
 					
 # Tests
+
 Describe and show how to run the tests with code examples.
 
 End with an example of getting some data out of the system or using it for a little demo
@@ -93,6 +111,8 @@ Add additional notes about how to deploy this on a live system
 
 
 #License
+
+
 
 
 

@@ -103,6 +103,17 @@ const showChart = function (req, res, next) {
     });
 };
 
+const saveProfileImageUrl = function (req, res, next) {
+  if(!req.user) return res.status(401).end();
+  const userId = req.user.id;
+  const photo = req.body.photo;
+  User.update({photo}, {
+    limit: 1,
+    where: { id: userId }
+  }).then(result => {
+    res.json({result: "profile photo changed"});
+  })
+};
 
 
 module.exports = {
@@ -110,5 +121,6 @@ module.exports = {
   show,
   destroy,
   me,
-  showChart
+  showChart,
+  saveProfileImageUrl
 };

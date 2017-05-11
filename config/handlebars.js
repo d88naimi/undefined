@@ -12,5 +12,5 @@ handlebars.registerHelper("case", function(value, options) {
     return options.fn(this);
   }
 });
-
+handlebars.registerHelper('json', object => JSON.stringify(object));
 module.exports = handlebars;

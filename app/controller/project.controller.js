@@ -10,42 +10,75 @@ const request = require('request-promise');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
-  return function(err) {
-    res.status(statusCode).send(err);
-  };
+  return res.render('error', {statusCode});
 }
 
 const listAll = function (req, res, next) {
   Project.findAll({})
-    .then(skills => {
-      res.json({skills});
+    .then(pjts => {
+      res.json({pjts});
     })
 };
 
 const findProject = function (req, res, next) {
-  console.log("HERE")
-  Project.findById(req.params.id)
+  Project.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: [{
+      model: Skill,
+      through: {
+        where: { projectId }
+      }
+    }]
+  })
     .then(project => {
-      if(!project) return res.render('error', {letter: 'a', statusCode: 404})
+      if(!project) return handleError(res, 404);
       res.json(project);
     })
-    .catch(e => res.status(404).end());
+    .catch(e => handleError(res, 404));
 };
 
 const findUserProjects = function (req, res, next) {
+  console.log("WOWOWO")
   const userId = req.params.userId;
-  Project.findAll({where: {userId}})
+  Project.findAll({
+    where: {userId},
+    include: [{
+      model: Skill,
+      as: 'skills',
+      attributes: ['id', 'name']
+    }]
+  })
     .then(result => {
       res.json({projects: result});
     })
-    .catch(e => res.status(404).end());
+    .catch(e => {
+      console.log(e);
+      handleError(res, 404);
+    });
 
 };
 
 const createProject = function(req, res, next) {
-  Project.create(req.body)
-    .then(() => {
-      res.json({result:"created"});
+  if(!req.user) return handleError(res, 401);
+  if(!req.body.name) return handleError(res, 400);
+  const userId = +req.user.id;
+
+  let newProject = { userId };
+  newProject.name = req.body.name;
+  if(req.body.description) newProject.description = req.body.description;
+  if(req.body.role) newProject.role = req.body.role;
+  if(req.body.teamMate) newProject.teamMate = req.body.teamMate;
+  if(req.body.url) newProject.url = req.body.url;
+  if(req.body.screenshot) {
+    newProject.screenshot = req.body.screenshot;
+    const urlArry = req.body.screenshot.split(".s3.amazonaws.com/");
+    newProject.thumbnail = urlArry[0] + "-thumbnail.s3.amazonaws.com/thumbnail-" + urlArry[1];
+  }
+  Project.create(newProject)
+    .then(result => {
+      res.json(result);
     });
 };
 
@@ -65,58 +98,76 @@ const addSkillToPjt = function (req, res, next) {
 
   Project.findById(projectId)
     .then(project => {
-      if(!project) return res.render('error', {message: "Could not find a project"})
+      if(!project) return handleError(res, 404);
       project.addSkill(skillId)
         .then(() => {
           res.status(200).end();
         });
     })
-    .catch(handleError(res))
+    .catch(e => handleError(res))
 
 };
 
 const addSkillsToPjt = function (req, res, next) {
   const projectId = req.param.id;
   const skillIds = req.body.skills;
-  if(!skillIds.length) return res.status(400).end();
+  if(!skillIds.length) return handleError(res, 400);
 
   Project.findById(projectId)
     .then(project => {
-      if(project) res.status(404).end();
+      if(project) return handleError(res, 404);
       project.addSkills(skillIds)
         .then(() => {
           res.status(200).end();
         });
     })
-    .catch(handleError(res))
+    .catch(e => handleError(res))
 };
 
 const editProject = function(req, res, next) {
-  if(!res.user) return res.status(400).end();
-  const userId = req.user.id;
+  if(!req.user) return handleError(res, 401);
+  const userId = +req.user.id;
+  const projectId = +req.params.id;
+
   Project.findById(projectId)
     .then(project => {
-      if(project.userId !== userId) return res.status(401).end(); 
-      if(!project) return res.render('error', {message: "Could not find a project"})
+      //Not found
+      if(!project) return handleError(res, 404);
+      //This project is not yours!
+      if(project.userId !== userId) return handleError(res, 401);
 
-      
+      //exclude unnecessary info.
+      let toBeUpdated = {};
+      if(req.body.description) toBeUpdated.description = req.body.description;
+      if(req.body.name) toBeUpdated.name = req.body.name;
+      if(req.body.role) toBeUpdated.role = req.body.role;
+      if(req.body.teamMate) toBeUpdated.teamMate = req.body.teamMate;
+      if(req.body.url) toBeUpdated.url = req.body.url;
+      if(req.body.screenshot) {
+        toBeUpdated.screenshot = req.body.screenshot;
+        const urlArry = req.body.screenshot.split(".s3.amazonaws.com/");
+        toBeUpdated.thumbnail = urlArry[0] + "-thumbnail.s3.amazonaws.com/thumbnail-" + urlArry[1];
+      }
 
-      project.addSkills(skillIds)
-        .then(() => {
-          res.status(200).end();
+      let promiseArray = [];
+      promiseArray.push(project.update(toBeUpdated));
+      if(req.body.skills) promiseArray.push(project.addSkills(JSON.parse(req.body.skills)));
+      Promise.all(promiseArray)
+        .then(([project, skills]) => {
+          res.json({project, skills: skills[0]});
         });
-    }).catch(handleError(res, 404));
-
-  
 
 
+
+
+    }).catch(e => handleError(res));
 };
 
 
 const githubSync = function (req, res, next) {
-  if(!req.user) return res.status(401).end();
+  if(!req.user) return handleError(res, 401);
 
-  const userId = req.user.id;
+  const userId = +req.user.id;
   User.findById(userId)
     .then(user => {
       const options = {
@@ -161,10 +212,8 @@ const githubSync = function (req, res, next) {
           });
 
         });
-    }).catch(e => {
-    console.log(e);
-    res.status(500).end()
-  });
+    }).catch(e => handleError(res));
+
 
 
 
