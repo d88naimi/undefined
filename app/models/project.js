@@ -12,8 +12,11 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    githubRepo: DataTypes.STRING,
-    url: {
+    githubRepo: {
+      type: DataTypes.STRING,
+      defaultValue: null
+    },
+    url: {//
       type: DataTypes.STRING,
       defaultValue: null,
       allowNull: true,
@@ -22,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true
       }
     },
-    role: {
+    role: {//
       type: DataTypes.STRING,
       defaultValue: null,
       allowNull: true,
@@ -30,12 +33,12 @@ module.exports = function(sequelize, DataTypes) {
         len: [2, 150]
       }
     },
-    teamMate: {
+    teamMate: {//
       type: DataTypes.STRING, //jSON
       defaultValue: null,
       allowNull: true
     },
-    screenshot: {
+    screenshot: {// 
       type: DataTypes.STRING, // JSON
       defaultValue: null,
       allowNull: true,
@@ -66,7 +69,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     showToPublic: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: true
     },
   }, {
     classMethods: {

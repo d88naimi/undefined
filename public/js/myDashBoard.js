@@ -2,13 +2,20 @@
  * Created by Hyungwu Pae on 5/8/17.
  */
 (function($) {
-  const skills = ['jQuery', 'Angular', 'MongoDB', 'MySQL', 'Django', 'React', 'Sass', 'LESS', 'Express', 'ES6', 'Typescript', 'Firebase'];
+  // const skills = ['jQuery', 'Angular', 'MongoDB', 'MySQL', 'Django', 'React', 'Sass', 'LESS', 'Express', 'ES6', 'Typescript', 'Firebase'];
+  let skills = [];
+  $.get('/api/skill')
+    .then(res => {
+      skills = res.skills.map(skillObj => skillObj.name);
+    });
+
   let selectedSkills = [];
 
   $('#addButton').on("click", function(event) {
     event.preventDefault();
 
     $("#addProjectModal").modal('toggle');
+
   });
 
   $('#addBtn').on("click", function(event) {
@@ -29,28 +36,21 @@
   $('#input-skill').on('input', function (ev) {
     const typedText = $(ev.target).val();
 
-    if(typedText < 1) return;
+    if(typedText.length < 2) return;
 
     //if user typed or selected the skill which exists in the skills array
     if(skills.indexOf(typedText) > -1) return addToSkillList(typedText);
 
     //else
-
     const filteredSkills = skills.filter((skl, i) => {
       return skl.toLowerCase().includes(typedText.toLowerCase()) && selectedSkills.indexOf(skl) < 0
     });
 
-    //this means we should reduce options element list
-    if(filteredSkills.length < $('#skill-list').children().length) {
-      $('#skill-list').children().each(function (idx, elem) {
-        // remove if this skill name is not matched anymore
-        if(!filteredSkills.includes($(elem).attr("value"))) $(elem).remove();
-      });
-    } else if (filteredSkills.length === $('#skill-list').children().length) {
-      // do nothing
-    } else { //re render skills
-      filteredSkills.forEach(skl => $('#skill-list').append($("<option>").attr("value", skl)));
-    }
+    //delete previous <option> tags
+    $('#skill-list').empty();
+
+    //re render skills
+    filteredSkills.forEach(skl => $('#skill-list').append($("<option>").attr("value", skl)));
   });
 
   function addToSkillList(skillName) {
@@ -131,6 +131,76 @@
   function hideLoadingCircle () {
     $('#loading-wrapper').css('display', 'none');
   }
+
+// edit button loading info to modal
+   $('.editBtn').on("click", function(event) {
+    event.preventDefault();
+
+    var editID= $(this).attr('data-id');
+    var editName= $(this).attr('data-name');
+    var editDescription= $(this).attr('data-description');
+    var editRole= $(this).attr('data-role');
+    var editTeamMate= $(this).attr('data-teamMate');
+    var editURL= $(this).attr('data-url');
+    var editScreenshot =$(this).attr('data-screenshot');
+
+    if(editScreenshot === null || "{{this.screenshot}}"){
+      editScreenshot = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQFEeGt4l7ksmLOwwBkvt5IaQYiQnbRvRscbCRBP823VxROxGGX"
+    };
+
+
+    $("#editProjectModal").modal('toggle');
+    $("#projectImage").attr('src', editScreenshot).attr('data-id', editID);      
+    $("#input1").val(editName);
+    $("#input2").val(editDescription);
+    $("#input3").val(editRole);
+    $("#input4").val(editTeamMate);
+    $("#input5").val(editURL);
+    
+  });
+
+   $('.mypic').hover(function(){
+      $('.mypic').toggleClass('heartbeat');
+   });
+
+// submit button on edit modal
+   $('#editSubmitButton').on("click", function(event) {
+    event.preventDefault();
+
+    var projectID = $("#projectImage").attr('data-id');
+    var name= $("#input1").val();
+    var desc= $("#input2").val();
+    var role= $("#input3").val();
+    var teammate= $("#input4").val();
+    var url= $("#input5").val();
+    var screenshot =$('#projectImage').attr('src');
+
+    var newInfo={
+      name: name,
+      decription: desc,
+      role: role,
+      teamMate: teammate,
+      url: url,
+      screenshot: screenshot
+    };
+
+    showLoadingCircle();
+    $("#editProjectModal").modal('toggle'); 
+
+      $.ajax({
+      type: 'PUT',
+      url: "/api/project/"+projectID,
+      data: newInfo
+    }).then(res => {
+
+      hideLoadingCircle();
+      
+
+      $("[data-rowId='"+res.id+"'] td:nth-child(1)").html(name);
+      $("[data-rowId='"+res.id+"'] td:nth-child(2)").html(desc);
+
+      });
+    });
 
 
 

@@ -14,62 +14,47 @@ module.exports = {
      */
 
     return queryInterface.bulkInsert('skills', [
+
+
       {
-        name: 'jQuery',
+        name: 'Photoshop',
         frontEnd: true,
-        language: 'Javascript'
-      },
-      {
-        name: 'Angular',
+      },{
+        name: 'GIMP',
         frontEnd: true,
-        language: 'Javascript'
+      },{
+        name: 'SketchBook',
+        frontEnd: true,
+      },{
+        name: 'Pixelmator',
+        frontEnd: true,
+        language: 'UI'
+      },{
+        name: 'Aperture',
+        frontEnd: true,
+        language: 'UI'
       },
+
+
+      //Web development platform
       {
-        name: 'MongoDB',
-        backEnd: true,
-        database: true
-      },
-      {
-        name: 'MySQL',
-        backEnd: true,
-        database: true
-      },
-      {
-        name: 'Django',
-        backEnd: true,
-        language: 'Python'
-      },
-      {
-        name: 'React',
+        name: 'Word Press',
         frontEnd: true
       },
       {
-        name: 'Sass',
-        frontEnd: true,
-        language: 'CSS'
+        name: 'Drupal',
+        frontEnd: true
       },
       {
-        name: 'LESS',
-        frontEnd: true,
-        language: 'CSS'
+        name: 'Squarespace',
+        frontEnd: true
       },
       {
-        name: 'Express',
-        backEnd: true,
-        language: 'Javascript'
-      },
-      {
-        name: 'ES6',
-      },
-      {
-        name: 'Typescript',
-        language: 'Javascript'
-      },
-      {
-        name: 'Firebase',
-        backEnd: true,
-        database: true
+        name: 'Wix',
+        frontEnd: true
       }
+
+
     ], {});
 
 
