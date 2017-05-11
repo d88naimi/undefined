@@ -12,7 +12,7 @@ router.get('/upload', controller.upload);
 // router.get('/')
 
 //--added router for searchResults
-router.get('/search', controller.search);
+// router.get('/search', controller.search);
 
 router.get('/mypage', controller.myPage);
 // duplicate from searchResults router.get('/results', controller.searchForThis);

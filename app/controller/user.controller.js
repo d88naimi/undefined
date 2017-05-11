@@ -116,7 +116,12 @@ const saveProfileImageUrl = function (req, res, next) {
 };
 
 const findUserMatched = function(req, res, next) {
-  const qs = req.params.qs;
+  console.log("CALLED?");
+  console.log("CALLED?");
+  console.log("CALLED?");
+  console.log("CALLED?");
+
+  const qs = req.query.qs;
   User.findAll(
     {
       where: { name: { $like: qs } }
@@ -125,6 +130,7 @@ const findUserMatched = function(req, res, next) {
         //add a template to throw a non-match
         console.log("No users with that name");
       }
+      console.log(JSON.stringify(users));
       res.json({users});
       console.log(users)
     });

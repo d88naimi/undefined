@@ -33,7 +33,7 @@ const upload = function (req, res, next) {
 
 //using this for list of public profiles
 const search = function(req, res, next) {
-  const qs = req.params.qs;
+  const qs = req.query.qs;
   User.findAll(
     {
       where: { name: { $like: '%' + qs + '%' } }
