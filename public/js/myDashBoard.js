@@ -40,7 +40,7 @@
   // Add skill input auto completion.
   $('#input-skill').on('input', function (ev) {
     const typedText = $(this).val();
-    console.log(typedText)
+    console.log(typedText);
     if (typedText.length < 2) return;
 
     //if user typed or selected the skill which exists in the skills array
@@ -52,9 +52,8 @@
       return name.toLowerCase().includes(typedText.toLowerCase()) && selectedSkillNames.indexOf(name) < 0
     });
 
-    //delete previous <option> tags
-    $('#skill-list').empty();
 
+    $('#skill-list').empty();
     //re render skills
     filteredSkills.forEach(skl => $('#skill-list').append($("<option>").attr("value", skl)));
   });
@@ -110,6 +109,9 @@
     const editURL = $(this).attr('data-url');
     const editScreenshot = $(this).attr('data-screenshot') || "/public/img/project-default.png";
 
+    //file input => null
+    $('#project-image-input').val(null);
+
     //reset selectedSkills
     emptySkillTable();
     initSelectedSkills();
@@ -118,7 +120,7 @@
     if($(this).attr('data-skills')) {
       const selectedSkills = JSON.parse($(this).attr('data-skills'));
       console.log(selectedSkills);
-       selectedSkills.forEach(skill => {
+      selectedSkills.forEach(skill => {
         addToSkillTable(skill.name, skill.id);
       });
     }
@@ -135,6 +137,10 @@
   //Add project button click
   $('#addButton').on("click", function (event) {
     event.preventDefault();
+
+    //input elem init (including file input elem)
+    $('#editProjectModal input').val(null);
+    $('#projectImage').attr('src', '/public/img/project-default.png');
 
     //reset selectedSkills
     emptySkillTable();
@@ -294,9 +300,10 @@
   function UpdateProjectView(projectObj) {
     const updatedProject = projectObj.project;
     const skills = projectObj.skills;
+    console.log(skills);
     const tds = $(`#project${updatedProject.id} td`);
     tds.eq(0).html(updatedProject.name);
-    tds.eq(1).find('img').attr('src', updatedProject.screenshot);
+    if(updatedProject.screenshot) tds.eq(1).find('img').attr('src', updatedProject.screenshot);
     tds.eq(2).html(updatedProject.description);
 
     tds.eq(4).find('button').attr({
@@ -304,7 +311,7 @@
       'data-role': updatedProject.role,
       'data-description': updatedProject.description,
       'data-url': updatedProject.url,
-      'data-screenshot': updatedProject.screenshot,
+      'data-screenshot': updatedProject.screenshot || '/public/img/project-default.png',
       'data-teamMate': updatedProject.teamMate,
       'data-skills': JSON.stringify(skills)
     });
@@ -317,7 +324,7 @@
     const skills = projectObj.skills;
     const newProjectTrElem = $('<tr id=`project${createdProject.id}`>')
       .append($('<td>').html(createdProject.name))
-      .append($('<td class="text-center">').append( $('<img class="projectThumbnail" alt="project thumbnail">').attr('src', createdProject.screenshot)) )
+      .append($('<td class="text-center">').append( $('<img class="projectThumbnail" alt="project thumbnail">').attr('src', createdProject.screenshot || '/public/img/project-default.png')) )
       .append($('<td class="descField">').html(createdProject.description))
       .append($('<td>').append( $('<button class="btn btn-danger addBtn">').attr('data-id', createdProject.id).html('Add') ))
       .append($('<td>').append( $('<button class="btn btn-warning editBtn">').attr({
@@ -325,7 +332,7 @@
           'data-role': createdProject.role,
           'data-description': createdProject.description,
           'data-url': createdProject.url,
-          'data-screenshot': createdProject.screenshot,
+          'data-screenshot': createdProject.screenshot || '/public/img/project-default.png',
           'data-teamMate': createdProject.teamMate,
           'data-skills': JSON.stringify(skills)
         })
@@ -349,7 +356,7 @@
   }
 
   $('#closeModalButton').on('click', function(){
-    
+
     $("#editProjectModal").modal('toggle');
   });
 
