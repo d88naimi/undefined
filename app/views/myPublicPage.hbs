@@ -1,111 +1,12 @@
-
-
 <!-- body for layout -->
 <section id="mainDashboardContainer_PUBLIC">
 
   <!-- left side bar containing main info -->
-  <div id="leftSidebar_PUBLIC">
-    <!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
-    <img src="{{userInfo.photo}}" class="bounce-in-fwd">
-
-    <br>
-    <hr>
-    <h3>{{developer.name}}</h3>
-    <h4>{{developer.githubUsername}}</h4>
-    <h4>{{developer.githubId}}</h4>
-    <br>
-    <a href="{{developer.email}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> CONTACT ME</a>
-  </div>
+  {{> public_portfolio_left}}
 
   <!-- right container with all the projects -->
-  <div id="mainProjectsContainer_PUBLIC">
+  {{> public_portfolio_main}}
 
-    <div id="buttonBox_PUBLIC">
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#listTab" aria-controls="listTab" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span> My Projects</a></li>
-        <li role="presentation"><a href="#chartTab" aria-controls="chartTab" role="tab" data-toggle="tab"> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> My Chart</a></li>
-      </ul>
-    </div>
-
-
-
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-
-      <div role="tabpanel" class="tab-pane active" id="listTab">
-
-        <div id="projectBox_PUBLIC">
-
-          <div id="imageBox">
-            <h1>{{developer.name}}</h1>
-          </div>
-
-          <table class="table">
-            <thead>
-            <th>Project</th>
-            <th>Description</th>
-            <th>Repository</th>
-            <th>URL</th>
-            </thead>
-            <tbody>
-            {{#each projectInfo}}
-              {{#if this.showToPublic}}
-                <tr class="projectRow" data-screenshot="{{projectInfo.screenshot}}">
-                  <td>{{this.name}}</td>
-                  <td>{{this.description}}</td>
-                  <td>
-                    <a href="{{this.githubRepo}}" target="_blank"><span class="glyphicon glyphicon-folder-open repoLink" aria-hidden="true"></span></a>
-                  </td>
-                  {{#if this.url}}
-                    <td>
-                      <a href="{{this.url}}" target="_blank"><span class="glyphicon glyphicon-globe repoLink" aria-hidden="true"></span></a>
-                    </td>
-                  {{else}}
-                    <td>N/A</td>
-                  {{/if}}
-                </tr>
-              {{/if}}
-            {{/each}}
-            </tbody>
-          </table>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="chartTab">
-          "This will host the chart"
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 </section>
 
-<script type="text/javascript">
-
-  $(document).ready(function() {
-
-
-    $(".projectRow").mouseenter(function (event) {
-
-      var screenshot = $(this).data('screenshot').toString();
-      //console.log("SS: "+screenshot);
-
-      if( screenshot === "{{projectInfo.screenshot}}" || "undefined" || null){
-        $("#imageBox").css({"background-image": "url('/public/img/code_banner.png')"});
-      }
-      else{
-
-        $("#imageBox").css({"background-image": "url("+ screenshot +")"});
-      }
-    });
-
-    $(".projectRow").mouseleave(function (event) {
-      $("#imageBox").css({"background-image": "url('/public/img/star.gif')"});
-    });
-
-  });
-
-
-
-</script>
+<script src="/public/js/myPublicPage.js"></script>

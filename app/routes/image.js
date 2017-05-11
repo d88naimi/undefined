@@ -20,7 +20,6 @@ const upload = multer({
 });
 
 /* API endpoint */
-router.get('/something', controller.doSomething);
 router.post('/upload', upload.single('screenshot'), controller.uploadImage);
 router.get('/s3-signed-req', controller.getSignedRequest);
 module.exports = router;

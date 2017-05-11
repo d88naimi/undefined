@@ -1,4 +1,6 @@
 const handlebars = require('hbs');
+const config = require('./index');
+const path = require('path');
 
 handlebars.registerHelper("switch", function(value, options) {
   this._switch_value_ = value;
@@ -13,4 +15,7 @@ handlebars.registerHelper("case", function(value, options) {
   }
 });
 handlebars.registerHelper('json', object => JSON.stringify(object));
+
+handlebars.registerPartials(path.join(config.root, '/app/views/partials'));
+
 module.exports = handlebars;

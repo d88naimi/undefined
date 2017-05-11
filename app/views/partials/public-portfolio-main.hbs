@@ -1,0 +1,58 @@
+<div id="mainProjectsContainer_PUBLIC">
+
+  <div id="buttonBox_PUBLIC">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#listTab" aria-controls="listTab" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span> My Projects</a></li>
+      <li role="presentation"><a href="#chartTab" aria-controls="chartTab" role="tab" data-toggle="tab"> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> My Chart</a></li>
+    </ul>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <div role="tabpanel" class="tab-pane active" id="listTab">
+
+      <div id="projectBox_PUBLIC">
+
+        <div id="imageBox">
+          <h1>{{developer.name}}</h1>
+        </div>
+
+        <table class="table">
+          <thead>
+          <th>Project</th>
+          <th>Description</th>
+          <th>Repository</th>
+          <th>URL</th>
+          </thead>
+          <tbody>
+          {{#each projectInfo}}
+            {{#if this.showToPublic}}
+              <tr class="projectRow" data-screenshot="{{projectInfo.screenshot}}">
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td>
+                  <a href="{{this.githubRepo}}" target="_blank"><span class="glyphicon glyphicon-folder-open repoLink" aria-hidden="true"></span></a>
+                </td>
+                {{#if this.url}}
+                  <td>
+                    <a href="{{this.url}}" target="_blank"><span class="glyphicon glyphicon-globe repoLink" aria-hidden="true"></span></a>
+                  </td>
+                {{else}}
+                  <td>N/A</td>
+                {{/if}}
+              </tr>
+            {{/if}}
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="chartTab">
+        "This will host the chart"
+      </div>
+
+    </div>
+
+  </div>
+</div>
