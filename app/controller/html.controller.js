@@ -31,23 +31,24 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
-//using this for list of public profiles
-const search = function(req, res, next) {
-  const qs = req.query.qs;
-  User.findAll(
-    {
-      where: { name: { $like: '%' + qs + '%' } }
-    })
-  .then(function(results){
-    if (!results.length) {
-        //add a template to throw a non-match
-        console.log("No users with that name");
-      }
-    // res.json(results);
-    console.log(results);
-      res.render('searchResults', { userProfiles: results});
-  });
-};
+//using this for list of public profiles,
+//we are using the search under user.controller.js
+// const search = function(req, res, next) {
+//   const qs = req.body.qs;
+//   User.findAll(
+//     {
+//       where: { name: { $like: qs } }
+//     }).then(function(users) {
+//       if (!users.length) {
+//         //add a template to throw a non-match
+//         console.log("No users with that name");
+//       }
+//       console.log(JSON.stringify(users));
+//       // res.json(users)
+//       res.render('search', {users:users});
+//       console.log(users)
+//     });
+// };
 
 var david = function(req, res) {
   res.render('david-test', {name: "DAVID"});
@@ -97,7 +98,7 @@ module.exports = {
   index,
   upload, 
   myPage,
-  search,
+  // search,
   // searchForThis,
   myPortfolio,
   david

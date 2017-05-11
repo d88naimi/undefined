@@ -131,7 +131,8 @@ const findUserMatched = function(req, res, next) {
         console.log("No users with that name");
       }
       console.log(JSON.stringify(users));
-      res.json({users});
+      // res.json(users)
+      res.render('search', {users:users});
       console.log(users)
     });
 };

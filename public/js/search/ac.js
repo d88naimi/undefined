@@ -1,5 +1,3 @@
-// $(document).ready(function() {
-
 $("#userQuery").on("click",
     function findUser(ev) {
         console.log("IS THIS CALLED?")
@@ -8,11 +6,9 @@ $("#userQuery").on("click",
         $.get(url)
             .then(function(result) {
                 var foundUsers = result.users;
-            // for(var i = 0; i<foundUsers.length; i++){
-            //     console.log(foundUsers[i]);
-            // }
+                window.location.href = "/search"
+
         });
 })
 
-// });
 

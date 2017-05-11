@@ -12,6 +12,7 @@ router.get('/upload', controller.upload);
 // router.get('/')
 
 //--added router for searchResults
+//  we are using the search in routes- user.js
 // router.get('/search', controller.search);
 
 router.get('/mypage', controller.myPage);
