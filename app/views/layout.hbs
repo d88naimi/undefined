@@ -4,6 +4,27 @@
 
 <head>
   <title>GitME</title>
+  <!-- meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://gitme.herokuapp.com">
+  <meta property="og:site_name" content="GitMe">
+  <meta property="og:title" content="GitMe | The ideal solution to land your dream job" />
+  <meta name="description" content="GitMe is where developers come to showcase their prized work and employers come to discover potential employees." />
+  <meta property="og:image" content="./public/img/gitme.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="268">
+  <meta property="og:image:height" content="915">
+
+  <meta property="fb:app_id" content="271756813287209" />
+
+  <meta name="twitter:title" content="GitMe | The ideal solution to land your dream job" />
+  <meta name="twitter:image" content="./public/img/gitme.png" />
+  <meta name="twitter:url" content="https://gitme.herokuapp.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:description" content="GitMe is where developers come to showcase their prized work and employers come to discover potential employees." />
+ 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <link rel='stylesheet' href='/public/css/style.css' />
@@ -17,7 +38,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-  
+
 </head>
 
 <body>
@@ -32,9 +53,9 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="" id="mobileScreen">
-        <form class="navbar-form navbar-right" role="search">
+        <form accept-charset="UTF-8" action="/search" class="navbar-form navbar-right" id="search_form" method="get" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search GitMe" type="text" name="qs" spellcheck="false">
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>

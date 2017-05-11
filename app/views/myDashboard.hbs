@@ -6,7 +6,7 @@
   <div id="leftSidebar">
     <!-- <img src="{{userInfo.photo}}" alt="userPhoto"> -->
     <div class="image-container">
-      <img src="{{userInfo.photo}}" alt="user-photo" class="mypic">
+      <img src="{{userInfo.photo}}" alt="{{userInfo.name}} profile image for dashboard" class="mypic">
       <button id="change-photo" class="btn btn-success">
         <span class="glyphicon glyphicon-edit"></span> Edit
       </button>
@@ -33,7 +33,7 @@
           <tr data-rowId="{{this.id}}">
             <td><b>{{this.name}}</b></td>
             {{#if this.thumbnail}}
-            <td><img class="projectThumbnail" src="{{this.screenshot}}" alt="project thumbnail"></td>
+            <td><img class="projectThumbnail" src="{{this.screenshot}}" alt="Project {{this.name}} live screenshot"></td>
             {{else}}
             <td>N/A</td>
             {{/if}}

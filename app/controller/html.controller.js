@@ -31,11 +31,11 @@ const upload = function (req, res, next) {
 };
 
 //using this for list of public profiles
-const searchResults = function(req, res, next) {
+const search = function(req, res, next) {
   const qs = req.params.qs;
   User.findAll(
     {
-      where: { name: { $like: qs } }
+      where: { name: { $like: '%' + qs + '%' } }
     })
   .then(function(results){
     if (!results.length) {
@@ -89,7 +89,7 @@ module.exports = {
   index,
   upload, 
   myPage,
-  searchResults,
+  search,
   // searchForThis,
   myPortfolio,
   david
