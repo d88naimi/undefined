@@ -115,6 +115,27 @@ const saveProfileImageUrl = function (req, res, next) {
   })
 };
 
+const findUserMatched = function(req, res, next) {
+  console.log("CALLED?");
+  console.log("CALLED?");
+  console.log("CALLED?");
+  console.log("CALLED?");
+
+  const qs = req.query.qs;
+  User.findAll(
+    {
+      where: { name: { $like: qs } }
+    }).then(function(users) {
+      if (!users.length) {
+        //add a template to throw a non-match
+        console.log("No users with that name");
+      }
+      console.log(JSON.stringify(users));
+      // res.json(users)
+      res.render('search', {users:users});
+      console.log(users)
+    });
+};
 
 module.exports = {
   index,
@@ -122,5 +143,6 @@ module.exports = {
   destroy,
   me,
   showChart,
+  findUserMatched,
   saveProfileImageUrl
 };

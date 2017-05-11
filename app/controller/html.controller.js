@@ -1,4 +1,5 @@
 'use strict';
+
 const User = require('../models').user;
 const Project = require('../models').project;
 const Skill = require('../models').skill;
@@ -30,32 +31,28 @@ const upload = function (req, res, next) {
   res.render('upload', {allowRemove: true})
 };
 
-//using this for list of public profiles
-const searchResults = function(req, res, next) {
-  const userId = req.user ? req.user.id: null;
-    User.findAll(
-    // need to update where for search
-  // {
-  //   where:{
-  //     name:{
-  //       $like: '%'+req.body.name+'%'}
-  //        }
-  // }
-  )
-  .then(function(results){
-    // res.json(results);
-    console.log(results);
-    var userProfiles = results[0];
-     console.log(userProfiles.name);
-     console.log(userProfiles.email);
-     console.log(userProfiles.role);
-      res.render('searchResults', { userProfiles: userProfiles});
-  });
-};
+//using this for list of public profiles,
+//we are using the search under user.controller.js
+// const search = function(req, res, next) {
+//   const qs = req.body.qs;
+//   User.findAll(
+//     {
+//       
+//     }).then(function(users) {
+//       if (!users.length) {
+//         //add a template to throw a non-match
+//         console.log("No users with that name");
+//       }
+//       console.log(JSON.stringify(users));
+//       // res.json(users)
+//       res.render('search', {users:users});
+//       console.log(users)
+//     });
+// };
+
 var david = function(req, res) {
   res.render('david-test', {name: "DAVID"});
 }
-
 
 const myPage = function (req, res, next) {
   if(!req.user) return res.render('error', {message: 'Please login to see the content'});
@@ -81,21 +78,6 @@ const myPage = function (req, res, next) {
   .catch(e => res.status(404).end());
 };
 
-const searchForThis = function(req, res, next){
-
-  User.findAll(
-  {
-    where:{
-      name:{
-        $like: '%'+req.body.name+'%'}
-         }
-  })
-  .then(function(results){
-      res.render('searchResults', { searchResults: results});
-  });
-
-};
-
 const myPortfolio = function (req, res, next) {
   const userPromise = User.findById(req.params.id);
   const projectPromise = Project.findAll({where: {userId: req.params.id}});
@@ -116,8 +98,8 @@ module.exports = {
   index,
   upload, 
   myPage,
-  searchResults,
-  searchForThis,
+  // search,
+  // searchForThis,
   myPortfolio,
   david
 };

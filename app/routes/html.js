@@ -12,13 +12,13 @@ router.get('/upload', controller.upload);
 // router.get('/')
 
 //--added router for searchResults
-router.get('/searchResults', controller.searchResults);
+//  we are using the search in routes- user.js
+// router.get('/search', controller.search);
 
 router.get('/mypage', controller.myPage);
+// duplicate from searchResults router.get('/results', controller.searchForThis);
 
-router.get('/results', controller.searchForThis);
-
-router.get('/portfolio/:id', controller.myPortfolio)
+// router.get('/portfolio/:id', controller.myPortfolio)
 
 router.get('/david-test', controller.david)
 

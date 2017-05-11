@@ -1,12 +1,37 @@
+<!-- this is copied from Davids branch -->
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>GitME</title>
+  <!-- meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://gitme.herokuapp.com">
+  <meta property="og:site_name" content="GitMe">
+  <meta property="og:title" content="GitMe | The ideal solution to land your dream job" />
+  <meta name="description" content="GitMe is where developers come to showcase their prized work and employers come to discover potential employees." />
+  <meta property="og:image" content="./public/img/gitme.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="268">
+  <meta property="og:image:height" content="915">
+
+  <meta property="fb:app_id" content="271756813287209" />
+
+  <meta name="twitter:title" content="GitMe | The ideal solution to land your dream job" />
+  <meta name="twitter:image" content="./public/img/gitme.png" />
+  <meta name="twitter:url" content="https://gitme.herokuapp.com" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:description" content="GitMe is where developers come to showcase their prized work and employers come to discover potential employees." />
+ 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <link rel='stylesheet' href='/public/css/style.css' />
+  <!-- Typeahead CSS -->
+  <link rel="stylesheet" href="/public/css/search/jquery.typeahead.min.css">
 
+  
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -14,11 +39,12 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
   <link rel="shortcut icon" type="image/png" href="public/img/favicon.png"/>
+
 </head>
 
 <body>
-
 
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
@@ -26,12 +52,12 @@
     <div class="navbar-header">
       <a style="color: #8ef140;" id="navGit" class="navbar-brand" href="/">GitME</a>
     </div>
-    <form class="navbar-form navbar-right" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
-      </div>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+    <!-- search bar -->
+    <div class="form-group">
+      <input id="search" class="form-control" placeholder="Search GitMe" type="text" name="qs" spellcheck="false">
+    </div>
+    <button type="button" id="userQuery" class="btn btn-success">Submit</button>
+
     {{#if userInfo}}
 
         <img class=" navbar-right"  alt="Brand" src="{{userInfo.photo}}" id="loginPhoto">
@@ -48,6 +74,8 @@
 
 {{{body}}}
 
+<!-- js for search -->
+<script type="text/javascript" src="./public/js/search/ac.js"></script>
 </body>
 
 </html>
