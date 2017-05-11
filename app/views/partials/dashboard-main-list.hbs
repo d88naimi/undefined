@@ -13,9 +13,7 @@
         <tr id="project{{this.id}}">
           <td><b>{{this.name}}</b></td>
           {{#if this.thumbnail}}
-
             <td class="text-center"><img class="projectThumbnail" src="{{this.thumbnail}}" alt="project thumbnail"></td>
-
           {{else}}
             <td class="text-center"><img class="projectThumbnail" src="/public/img/project-default.png" alt="project thumbnail"></td>
           {{/if}}
@@ -27,7 +25,7 @@
               <button type="submit" class="btn btn-danger addBtn"  data-id="{{this.id}}">Add</button>
             </td>
           {{/if}}
-          <td>
+          <td class="text-center">
             <button type="submit" class="btn btn-warning editBtn" data-id="{{this.id}}" data-name="{{this.name}}" data-description="{{this.description}}" data-role="{{this
             .role}}"
                     data-teamMate="{{this.teamMate}}" data-skills="{{json skills}}" data-url="{{this.url}}" data-screenshot="{{this.screenshot}}">Edit</button>
