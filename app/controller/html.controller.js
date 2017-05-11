@@ -32,27 +32,18 @@ const upload = function (req, res, next) {
 };
 
 //using this for list of public profiles,
-//we are using the search under user.controller.js
-// const search = function(req, res, next) {
-//   const qs = req.body.qs;
-//   User.findAll(
-//     {
-//       
-//     }).then(function(users) {
-//       if (!users.length) {
-//         //add a template to throw a non-match
-//         console.log("No users with that name");
-//       }
-//       console.log(JSON.stringify(users));
-//       // res.json(users)
-//       res.render('search', {users:users});
-//       console.log(users)
-//     });
-// };
+const search = function(req, res, next) {
+  const qs = req.query.qs;
+  User.findAll(
+    {
+      attributes: ['id', 'name', 'email', 'profileUrl', 'photo', 'role'],
+      where: { name: { $like: qs } },
 
-var david = function(req, res) {
-  res.render('david-test', {name: "DAVID"});
-}
+    }).then(function(users) {
+    res.render('search', {users:users});
+  });
+};
+
 
 const myPage = function (req, res, next) {
   if(!req.user) return res.render('error', {message: 'Please login to see the content'});
@@ -66,7 +57,7 @@ const myPage = function (req, res, next) {
       attributes: ['id', 'name']
     }]
   });
-  Promise.all([userPromise, projectPromise]).then(values => { 
+  Promise.all([userPromise, projectPromise]).then(values => {
     const userInfo = values[0];
     const projectArray = values[1];
     const skills = projectArray.skills;
@@ -75,14 +66,14 @@ const myPage = function (req, res, next) {
 
     //console.log(values); // [3, 1337, "foo"] 
   })
-  .catch(e => res.status(404).end());
+    .catch(e => res.status(404).end());
 };
 
 const myPortfolio = function (req, res, next) {
   const userPromise = User.findById(req.params.id);
   const projectPromise = Project.findAll({where: {userId: req.params.id}});
 
-  Promise.all([userPromise, projectPromise]).then(values => { 
+  Promise.all([userPromise, projectPromise]).then(values => {
     const userInfo = values[0];
     const projectArray = values[1];
     console.log(projectArray);
@@ -90,16 +81,15 @@ const myPortfolio = function (req, res, next) {
     res.render('myPublicPage', {userInfo: userInfo, projectInfo: projectArray});
 
   })
-  .catch(handleError(res));
+    .catch(handleError(res));
 };
 
 
 module.exports = {
   index,
-  upload, 
+  upload,
   myPage,
-  // search,
+  search,
   // searchForThis,
-  myPortfolio,
-  david
+  myPortfolio
 };

@@ -26,23 +26,21 @@
   <meta name="twitter:description" content="GitMe is where developers come to showcase their prized work and employers come to discover potential employees." />
  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
   <link rel='stylesheet' href='/public/css/style.css' />
+  <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png"/>
+
   <!-- Typeahead CSS -->
   <link rel="stylesheet" href="/public/css/search/jquery.typeahead.min.css">
-
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-    crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-
-  <link rel="shortcut icon" type="image/png" href="public/img/favicon.png"/>
-
 </head>
+
 
 <body>
 
@@ -52,12 +50,12 @@
     <div class="navbar-header">
       <a style="color: #8ef140;" id="navGit" class="navbar-brand" href="/">GitME</a>
     </div>
-    <!-- search bar -->
-    <div class="form-group">
-      <input id="search" class="form-control" placeholder="Search GitMe" type="text" name="qs" spellcheck="false">
-    </div>
-    <button type="button" id="userQuery" class="btn btn-success">Submit</button>
-
+    <form class="navbar-form navbar-right" action="/search?_method=GET" role="search">
+      <div class="form-group">
+        <input id="search-input" name="qs" type="text" class="form-control" placeholder="Search">
+      </div>
+      <!--<button type="submit" class="btn btn-success">Submit</button>-->
+    </form>
     {{#if userInfo}}
 
         <img class=" navbar-right"  alt="Brand" src="{{userInfo.photo}}" id="loginPhoto">
@@ -67,15 +65,13 @@
       <button type="submit" class="btn btn-danger">Log Out</button>
     </form>
     {{/if}}
+  </div>
 </nav>
 
-
-
-
+<div class="content">
 {{{body}}}
+</div>
 
-<!-- js for search -->
-<script type="text/javascript" src="./public/js/search/ac.js"></script>
 </body>
 
 </html>
