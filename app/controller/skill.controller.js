@@ -6,16 +6,20 @@ const config = require('../../config');
 const Skill = require('../models').skill;
 const Project = require('../models').project;
 
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return res.render('error', {statusCode});
+function handleError(err, req, res, statusCode) {
+  err = err ? err : new Error();
+  err.status = statusCode || 500;
+  let obj = {err};
+  if(req.user) obj.userInfo = req.user;
+  return res.status(err.status).render('error', obj);
 }
 
 const listAll = function (req, res, next) {
   Skill.findAll({})
     .then(skills => {
-    res.json(skills);
+      res.json(skills);
     })
+    .catch(e => handleError(e, req, res));
 };
 
 const findSkill = function (req, res, next) {
@@ -23,33 +27,15 @@ const findSkill = function (req, res, next) {
     .then(skill => {
       res.json(skill);
     })
-};
-
-const findSkillOfProject = function (req, res, next) {
-  const projectId = +req.params.projectId;
-  Project.getSkills({
-    include: [{ //TODO: NOT WORKING !!@#
-      model: Project,
-      through: {
-        where: { projectId }
-      }
-    }]
-  })
-    .then(results => {
-      console.log(results);
-      return res.json(results)
-    })
-    .catch(e => {
-      console.log(e);
-      handleError(res, 500)
-    });
+    .catch(e => handleError(e, req, res));
 };
 
 const createSkill = function(req, res, next) {
   Skill.create(req.body)
     .then(() => {
       res.json({result:"created"});
-    });
+    })
+    .catch(e => handleError(e, req, res));
 };
 
 const deleteSkill = function(req, res, next) {
@@ -57,7 +43,8 @@ const deleteSkill = function(req, res, next) {
   Skill.delete({where: { id }})
     .then(() => {
       res.json({result:"deleted"});
-    });
+    })
+    .catch(e => handleError(e, req, res));
 };
 
 module.exports = {
@@ -65,5 +52,4 @@ module.exports = {
   findSkill,
   createSkill,
   deleteSkill,
-  findSkillOfProject
 };

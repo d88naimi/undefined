@@ -5,7 +5,6 @@ const router = express.Router();
 const passportConfig = require('../../config/passport')
 
 passportConfig.setup();
-console.log("HAHAHA");
 router
   .get('/github', passport.authenticate('github', {
     failureRedirect: '/',

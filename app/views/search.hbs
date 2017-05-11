@@ -1,0 +1,28 @@
+<div class="container">
+
+  <section class="container-fluid">
+    <h3 style="color: white">Background color is dark, so we can't see black color text</h3>
+    <table class="table" style="color: white">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#if users}}
+        {{#each users}}
+          <tr>
+            <td> <span  class="userName">{{name}}</span></td>
+            <td>
+              <a href="/portfolio/{{id}}"><img class="userImg img-thumbnail" src="{{photo}}" alt="searchResults"></a>
+            </td>
+            <td class="userRole">{{email}}</td>
+          </tr>
+        {{/each}}
+      {{/if}}
+      </tbody>
+    </table>
+  </section>
+
+</div>

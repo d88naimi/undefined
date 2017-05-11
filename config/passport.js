@@ -44,7 +44,13 @@ module.exports.setTokenCookie = function (req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }
-  const token = signToken(req.user.id, req.user.role);
+  console.log(req.user);
+  const token = signToken({
+    id: req.user.id,
+    photo: req.user.photo,
+    name: req.user.name,
+    role: req.user.role
+  });
   res.cookie('id_token', token);
   res.redirect('/');
 };
@@ -67,8 +73,8 @@ module.exports.serializeUser = function(req, res, next) {
   else next();
 };
 
-function signToken(id, role) {
-  return jwt.sign({ id, role }, config.secrets, {
+function signToken(user) {
+  return jwt.sign(user, config.secrets, {
     expiresIn: 60 * 60 * 24 * 365 * 10 // 10 years
   });
 }

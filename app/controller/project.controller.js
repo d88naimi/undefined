@@ -8,9 +8,12 @@ const User = require('../models').user;
 const Project = require('../models').project;
 const request = require('request-promise');
 
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return res.render('error', {statusCode});
+function handleError(err, req, res, statusCode) {
+  err = err ? err : new Error();
+  err.status = statusCode || 500;
+  let obj = {err};
+  if(req.user) obj.userInfo = req.user;
+  return res.status(err.status).render('error', obj);
 }
 
 const listAll = function (req, res, next) {
@@ -18,6 +21,7 @@ const listAll = function (req, res, next) {
     .then(pjts => {
       res.json({pjts});
     })
+    .catch(e => handleError(e, req, res));
 };
 
 const findProject = function (req, res, next) {
@@ -33,14 +37,13 @@ const findProject = function (req, res, next) {
     }]
   })
     .then(project => {
-      if(!project) return handleError(res, 404);
+      if(!project) return handleError(null, req, res, 404);
       res.json(project);
     })
-    .catch(e => handleError(res, 404));
+    .catch(e => handleError(e, req, res));
 };
 
 const findUserProjects = function (req, res, next) {
-  console.log("WOWOWO")
   const userId = req.params.userId;
   Project.findAll({
     where: {userId},
@@ -53,16 +56,14 @@ const findUserProjects = function (req, res, next) {
     .then(result => {
       res.json({projects: result});
     })
-    .catch(e => {
-      console.log(e);
-      handleError(res, 404);
-    });
+    .catch(e => handleError(e, req, res));
+
 
 };
 
 const createProject = function(req, res, next) {
-  if(!req.user) return handleError(res, 401);
-  if(!req.body.name) return handleError(res, 400);
+  if(!req.user) return handleError(null, req, res, 401);
+  if(!req.body.name) return handleError(null, req, res, 400);
   const userId = +req.user.id;
 
   let newProject = { userId };
@@ -79,7 +80,9 @@ const createProject = function(req, res, next) {
   Project.create(newProject)
     .then(result => {
       res.json(result);
-    });
+    })
+    .catch(e => handleError(e, req, res));
+
 };
 
 const deleteProject = function(req, res, next) {
@@ -87,54 +90,55 @@ const deleteProject = function(req, res, next) {
   Project.delete({where: { id }})
     .then(() => {
       res.json({result:"deleted"});
-    });
+    })
+    .catch(e => handleError(e, req, res));
 };
 
 const addSkillToPjt = function (req, res, next) {
   const projectId = +req.params.id;
   const skillId = +req.body.skill;
 
-  if(!skillId) return res.status(400).end();
+  if(!skillId) return handleError(null, req, res, 400);
 
   Project.findById(projectId)
     .then(project => {
-      if(!project) return handleError(res, 404);
+      if(!project) return handleError(null, req, res, 404);
       project.addSkill(skillId)
         .then(() => {
           res.status(200).end();
         });
     })
-    .catch(e => handleError(res))
+    .catch(e => handleError(e, req, res));
 
 };
 
 const addSkillsToPjt = function (req, res, next) {
   const projectId = req.param.id;
   const skillIds = req.body.skills;
-  if(!skillIds.length) return handleError(res, 400);
+  if(!skillIds.length) return handleError(req, res, 400);
 
   Project.findById(projectId)
     .then(project => {
-      if(project) return handleError(res, 404);
+      if(project) return handleError(req, res, 404);
       project.addSkills(skillIds)
         .then(() => {
           res.status(200).end();
         });
     })
-    .catch(e => handleError(res))
+    .catch(e => handleError(e, req, res, null));
 };
 
 const editProject = function(req, res, next) {
-  if(!req.user) return handleError(res, 401);
+  if(!req.user) return handleError(req, res, 401);
   const userId = +req.user.id;
   const projectId = +req.params.id;
 
   Project.findById(projectId)
     .then(project => {
       //Not found
-      if(!project) return handleError(res, 404);
+      if(!project) return handleError(null, req, res, 404);
       //This project is not yours!
-      if(project.userId !== userId) return handleError(res, 401);
+      if(project.userId !== userId) return handleError(null, req, res, 401);
 
       //exclude unnecessary info.
       let toBeUpdated = {};
@@ -155,17 +159,19 @@ const editProject = function(req, res, next) {
       Promise.all(promiseArray)
         .then(([project, skills]) => {
           res.json({project, skills: skills[0]});
-        });
+        })
+        .catch(e => handleError(e, req, res));
 
 
 
 
-    }).catch(e => handleError(res));
+    }).catch(e => handleError(e, req, res));
+
 };
 
 
 const githubSync = function (req, res, next) {
-  if(!req.user) return handleError(res, 401);
+  if(!req.user) return handleError(null, req, res, 401);
 
   const userId = +req.user.id;
   User.findById(userId)
@@ -212,7 +218,9 @@ const githubSync = function (req, res, next) {
           });
 
         });
-    }).catch(e => handleError(res));
+    })
+    .catch(e => handleError(e, req, res));
+
 
 
 

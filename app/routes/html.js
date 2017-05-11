@@ -7,19 +7,9 @@ const controller = require('../controller/html.controller');
 
 /* API endpoint */
 router.get('/', controller.index);
-// router.post('/something', controller.doAnother);
-router.get('/upload', controller.upload);
-// router.get('/')
-
-//--added router for searchResults
-router.get('/searchResults', controller.searchResults);
-
+router.get('/search', controller.search);
 router.get('/mypage', controller.myPage);
+router.get('/portfolio/:id', controller.publicPortfolio);
 
-router.get('/results', controller.searchForThis);
-
-router.get('/portfolio/:id', controller.myPortfolio)
-
-router.get('/david-test', controller.david)
 
 module.exports = router;

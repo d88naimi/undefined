@@ -1,12 +1,14 @@
 'use strict';
 const aws = require('aws-sdk');
 const config = require('../../config');
-const User = require('../models').user;
 
-
-const doSomething = function(req, res, next) {
-  res.json({result: "OK"});
-};
+function handleError(err, req, res, statusCode) {
+  err = err ? err : new Error();
+  err.status = statusCode || 500;
+  let obj = {err};
+  if(req.user) obj.userInfo = req.user;
+  return res.status(err.status).render('error', obj);
+}
 
 const uploadImage = function (req, res, next) {
   //will not using this...??
@@ -28,10 +30,7 @@ const getSignedRequest = function (req, res, next) {
   };
 
   s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
+    if(err) return handleError(null, req, res, 500);
     const returnData = {
       signedRequest: data,
       url: `https://${bucket}.s3.amazonaws.com/${newFilename}`,
@@ -44,7 +43,6 @@ const getSignedRequest = function (req, res, next) {
 
 
 module.exports = {
-  doSomething,
   uploadImage,
   getSignedRequest
 };

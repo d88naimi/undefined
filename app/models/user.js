@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
           name: this.name,
           profileUrl: this.profileUrl,
           photo: this.photo,
-          githubId: this.githubId
+          githubUsername: this.githubUsername
         };
       }
     },
