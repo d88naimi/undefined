@@ -227,16 +227,16 @@ box-shadow: 0px 0px 13px white;
 
 #editProjectModal{
 	width: 700px;
-	height: 700px;
+	height: 500px;
 	margin:auto;
+	margin-top: 100px;
 	overflow: scroll;
-
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#606c88+0,3f4c6b+100;Grey+3D+%232 */
-background: rgb(96,108,136); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+	background: rgb(96,108,136); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
 
 }
 
@@ -249,7 +249,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', end
 }
 
 #editProjectModal button{
-		background-color: rgba(0,0,0,.2);
+	background-color: rgba(0,0,0,.2);
 	border:2px grey solid;
 }
 
@@ -461,10 +461,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 #projectImage{
-	width:50px;
+	width:100px;
 	height: auto;
 	border-radius: 5px;
-	border: 2px solid #8ef140;
 }
 
 /* ----------------------------------------------
@@ -544,6 +543,23 @@ text-align: center;
 	box-shadow: 0px 0px 5px #8ef140;
 }
 
+.modal-dialog{
+	position: relative;
+}
+
+#closeModalButton{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px;
+	font-size: 2em;
+	color: white;
+	cursor: pointer;
+}
+
+#closeModalButton:hover{
+	color: #8ef140;
+}
 
 /*MARCO CSS END*/
 
@@ -735,6 +751,8 @@ margin-right:10px;
 }
 .projectThumbnail {
 	max-height: 45px;
+	max-width: 45px;
+	object-fit: cover;
 	cursor: pointer;
 	border-radius: 10%;
 }
