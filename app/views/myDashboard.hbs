@@ -39,9 +39,9 @@
             {{/if}}
             <td class="descField">{{this.description}}</td>
             {{#if this.showToPublic}}
-            <td style="text-align: center;"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></td>
+            <td class="text-center"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></td>
             {{else}}
-            <td style="text-align: center;">
+            <td class="text-center">
               <button type="submit" class="btn btn-danger addBtn"  data-id="{{this.id}}">Add</button>
             </td>
             {{/if}}
@@ -79,46 +79,6 @@
 
 </div>
 
-
-
-<!--&lt;!&ndash; ************************MODAL START*************************************** &ndash;&gt;-->
-<!--<div id="addProjectModal" class="modal fade" role="dialog">-->
-  <!--<div class="modal-dialog">-->
-
-    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
-    <!--<h2>Tell us about your project</h2>-->
-    <!--<br>-->
-    <!--<form action="/addProject" method="POST">-->
-
-      <!--<input class="form-control" type="text" name="name" placeholder="what's your project's name?">-->
-      <!--<br>-->
-      <!--<input class="form-control" type="text" name="description" placeholder="give us a description">-->
-      <!--<br>-->
-      <!--<input class="form-control" type="text" name="role" placeholder="what was your role?">-->
-      <!--<br>-->
-      <!--<input class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">-->
-      <!--<br>-->
-      <!--<hr>-->
-      <!--<h3>ADD YOUR SKILLS</h3>-->
-      <!--<table>-->
-        <!--<tbody id="skillTable">-->
-        <!--</tbody>-->
-      <!--</table>-->
-      <!--<input class="form-control" id="input-skill" type="text" list="skill-list">-->
-      <!--<datalist id="skill-list"></datalist>-->
-      <!--<br>-->
-      <!--&lt;!&ndash;<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>&ndash;&gt;-->
-      <!--&lt;!&ndash;<br>&ndash;&gt;-->
-      <!--<hr>-->
-      <!--<br>-->
-      <!--<button type="submit" class="btn btn-primary btn-lg" id="submit"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Submit</button>-->
-
-    <!--</form>-->
-
-
-  <!--</div>-->
-<!--</div>-->
-<!-- ************************MODAL END*************************************** -->
 
 <!-- ******************** EDIT MODAL START*************************************** -->
 <div id="editProjectModal" class="modal fade" role="dialog">
