@@ -560,7 +560,64 @@ width: 150px;
 	text-transform: capitalize;
 }
 
-/*Davey*/
+/*--------Davey--------*/
+
+body{
+	background-color: #323232;
+}
+#logOutButton{
+	padding: 6px;
+    margin: 8px;
+}
+#profileImgNav{
+height:10px;
+width:10px;
+
+}
+
+#loginPhoto{
+	margin-top:6px;
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+	border-radius: 100%;
+	border:#8ef140 solid 2px;
+}
+
+
+#profileImgIndex{
+	border-radius: 50%;
+	/*margin-left: 25px;*/
+	margin: auto;
+	height: auto;
+	width: auto;
+}
+
+
+}
+.navContainer{
+	padding: 5px;
+}
+
+#gitMeImage{
+	padding: 100px;
+	background-color: #f2f2f2;
+	text-align: center;
+}
+
+#gitMeImage img{
+width: 400px;
+height:auto;
+margin: auto;
+display: block;
+}
+
+#gitMeImage a{
+	margin:20px;
+	font-size: 24px;
+	text-align: center;
+}
 
 #jumbotronHompage{
 	/*background-color: white;*/
@@ -582,23 +639,31 @@ width: 150px;
 
 }
 /* Carousel Styling */
+#carouselMargin{
+	margin-top: 25px;
+
+}
 .slide1{
-  background-image: url('../../public/img/coding.jpeg');
+  background-image: url('../../public/img/indexbackground1.jpg');
   height: 400px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  color:red;
 }
 .slide2{
-  background-image: url('../../public/img/codingbrain.jpg');
+  background-image: url('../../public/img/indexbackground2.jpeg');
   height: 400px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .slide3{
-  background-image: url('../../public/img/tools.jpg');
+  background-image: url('../../public/img/indexbackground3.jpeg');
   height: 400px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -607,13 +672,17 @@ width: 150px;
   font-size: 5.4em;
   font-family: 'Lobster', cursive;
   padding-bottom: .4em;
+  color:#FFFAF0;
 }
 .carousel-caption p{
   font-size: 2em;
+  color:#FFFAF0;
 }
+
 #navGit{
 	font-family: Lobster;
-	font-size: 35px;
+	color:#8ef140;
+
 }
 #login-overlay{
 	font-family: Lobster;
@@ -621,7 +690,23 @@ width: 150px;
 	padding-bottom: 35px;
 }
 
+.error-template {
+padding: 40px 15px;text-align: center;}
 
+.error-actions {
+margin-top:15px;margin-bottom:15px;
+}
+.error-actions .btn { 
+margin-right:10px; 
+}
+
+#errorPage{
+	color: white;
+}
+#loginSubmitButton{
+	font-size: 25px;
+}
+/*David Naimi*/
 
 /*hyungwu pae*/
 #upload-complete-alert {
