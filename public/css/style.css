@@ -426,6 +426,37 @@ width 150px;
 body{
 	background-color: #323232;
 }
+#logOutButton{
+	padding: 6px;
+    margin: 8px;
+}
+#profileImgNav{
+height:10px;
+width:10px;
+
+}
+
+#loginPhoto{
+	margin-top:6px;
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+	border-radius: 100%;
+	border:#8ef140 solid 2px;
+}
+
+
+#profileImgIndex{
+	border-radius: 50%;
+	/*margin-left: 25px;*/
+	margin: auto;
+	height: auto;
+	width: auto;
+}
+
+
+}
 .navContainer{
 	padding: 5px;
 }
@@ -474,7 +505,7 @@ display: block;
 
 }
 .slide1{
-  background-image: url('../../public/img/codingbrain.jpg');
+  background-image: url('../../public/img/indexbackground1.jpg');
   height: 400px;
   width: 100%;
   background-repeat: no-repeat;
@@ -483,7 +514,7 @@ display: block;
   color:red;
 }
 .slide2{
-  background-image: url('../../public/img/coding.jpeg');
+  background-image: url('../../public/img/indexbackground2.jpeg');
   height: 400px;
   width: 100%;
   background-repeat: no-repeat;
@@ -491,7 +522,7 @@ display: block;
   background-size: cover;
 }
 .slide3{
-  background-image: url('../../public/img/tools.jpg');
+  background-image: url('../../public/img/indexbackground3.jpeg');
   height: 400px;
   width: 100%;
   background-repeat: no-repeat;
@@ -511,7 +542,6 @@ display: block;
 
 #navGit{
 	font-family: Lobster;
-	font-size: 40px;
 	color:#8ef140;
 
 }

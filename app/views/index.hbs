@@ -2,7 +2,10 @@
   <img src="../public/img/gitme.png" alt="logo">
   <br>
   <a id="loginSubmitButton" class="btn btn-lg btn-success" href="/auth/github"><i class="fa fa-github" aria-hidden="true"></i>  Login with Github</a>
+
 </div>
+
+
 
 <div id="carouselMargin" class="container-fluid">
 
@@ -22,7 +25,7 @@
       <div class="item active">
         <div class="slide1"></div>
         <div class="carousel-caption">
-          <h1>Git-Me</h1>
+          <h1>Welcome</h1>
           <p>Developers </p>
 
        </div>
@@ -52,30 +55,8 @@
     </a>
   </div>
 </div>
- 
-
-<h2>----------------Temporary--------------</h2>
-<div class="jumbotron">
-  <p><a href="/searchResults">searchResults table</a></p>
-  <p><a href="/api/user/chart-test">Chart test page</a></p>
-
- {{#if userInfo}}
-    <div>
-      <p>{{title}}</p>
-      <img style="width: 200px;" class="thumbnail" src="{{userInfo.photo}}">
-      <ul>
-        <li>Name: {{userInfo.name}}</li>
-        <li>profileUrl: {{userInfo.profileUrl}}</li>
-        <li>Github ID: {{userInfo.githubId}}</li>
-      </ul>
-    </div>
-    <a class="btn btn-danger" href="/auth/logout">Log out</a>
-    {{else}}
-    <div>
-      <p><a href="/auth/github">GITHUB LOGIN</a></p>
-    </div>
-    {{/if}}
 
 
 
-</div>
+
+
