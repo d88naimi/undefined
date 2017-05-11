@@ -32,24 +32,19 @@ const upload = function (req, res, next) {
 
 //using this for list of public profiles
 const searchResults = function(req, res, next) {
-  const userId = req.user ? req.user.id: null;
-    User.findAll(
-    // need to update where for search
-  // {
-  //   where:{
-  //     name:{
-  //       $like: '%'+req.body.name+'%'}
-  //        }
-  // }
-  )
+  const qs = req.params.qs;
+  User.findAll(
+    {
+      where: { name: { $like: qs } }
+    })
   .then(function(results){
+    if (!results.length) {
+        //add a template to throw a non-match
+        console.log("No users with that name");
+      }
     // res.json(results);
     console.log(results);
-    var userProfiles = results[0];
-     console.log(userProfiles.name);
-     console.log(userProfiles.email);
-     console.log(userProfiles.role);
-      res.render('searchResults', { userProfiles: userProfiles});
+      res.render('searchResults', { userProfiles: results});
   });
 };
 
@@ -75,21 +70,6 @@ const myPage = function (req, res, next) {
   });
 };
 
-const searchForThis = function(req, res, next){
-
-  User.findAll(
-  {
-    where:{
-      name:{
-        $like: '%'+req.body.name+'%'}
-         }
-  })
-  .then(function(results){
-      res.render('searchResults', { searchResults: results});
-  });
-
-};
-
 const myPortfolio = function (req, res, next) {
   const userPromise = User.findById(req.params.id);
   const projectPromise = Project.findAll({where: {userId: req.params.id}});
@@ -111,7 +91,7 @@ module.exports = {
   upload, 
   myPage,
   searchResults,
-  searchForThis,
+  // searchForThis,
   myPortfolio,
   david
 };

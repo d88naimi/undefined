@@ -104,11 +104,26 @@ const showChart = function (req, res, next) {
 };
 
 
+const findUserMatched = function(req, res, next) {
+  const qs = req.params.qs;
+  User.findAll(
+    {
+      where: { name: { $like: qs } }
+    }).then(function(users) {
+      if (!users.length) {
+        //add a template to throw a non-match
+        console.log("No users with that name");
+      }
+      res.json({users});
+      console.log(users)
+    });
+};
 
 module.exports = {
   index,
   show,
   destroy,
   me,
-  showChart
+  showChart,
+  findUserMatched
 };

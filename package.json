@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.48.0",
+    "bloodhound-js": "^1.2.1",
     "body-parser": "^1.17.1",
     "cookie-parser": "~1.4.3",
     "crypto": "0.0.3",
