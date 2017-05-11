@@ -1,26 +1,35 @@
+<div id="gitMeImage" class="container-fluid">
+  <img src="../public/img/gitme.png" alt="logo">
+  <br>
+  <a id="loginSubmitButton" class="btn btn-lg btn-success" href="/auth/github"><i class="fa fa-github" aria-hidden="true"></i>  Login with Github</a>
 
-<div class="container">
+</div>
+
+
+
+<div id="carouselMargin" class="container-fluid">
+
 
 <!-- Carousel -->
   <!-- Surround everything with a div with the class carousel slide -->
   <div id="theCarousel" class="carousel slide" data-ride="carousel">
 
-    <!-- Define how many slides to put in the carousel -->
+   <!-- Define how many slides to put in the carousel -->
     <ol class="carousel-indicators">
       <li data-target="#theCarousel" data-slide-to="0" class="active"> </li>
       <li data-target="#theCarousel" data-slide-to="1"> </li>
       <li data-target="#theCarousel" data-slide-to="2"> </li>
     </ol>
 
-    <!-- Define the text to place over the image -->
+   <!-- Define the text to place over the image -->
     <div class="carousel-inner">
       <div class="item active">
         <div class="slide1"></div>
         <div class="carousel-caption">
-          <h1>Git-Me</h1>
+          <h1>Welcome</h1>
           <p>Developers </p>
 
-        </div>
+       </div>
       </div>
       <div class="item">
         <div class="slide2"></div>
@@ -38,7 +47,7 @@
       </div>
     </div>
 
-    <!-- Set the actions to take when the arrows are clicked -->
+   <!-- Set the actions to take when the arrows are clicked -->
     <a class="left carousel-control" href="#theCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"> </span>
     </a>
@@ -46,47 +55,10 @@
       <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
   </div>
-
-  <div id="login-overlay" class="modal-dialog">
-    <div class="modal-content ">
-      <div class="modal-header ">
-
-        <h4 class="modal-title" id="myModalLabel">Git Me Login</h4>
-      </div>
-
-      <div class="modal-body text-center">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="well">
-              <a class="btn btn-success btn-block">Login with Github</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<h2>----------------Temporary--------------</h2>
-  <p><a href="/searchResults">searchResults table</a></p>
-  <p><a href="/api/user/chart-test">Chart test page</a></p>
-
-  {{#if userInfo}}
-    <div>
-      <p>{{title}}</p>
-      <img style="width: 200px;" class="thumbnail" src="{{userInfo.photo}}">
-      <ul>
-        <li>Name: {{userInfo.name}}</li>
-        <li>profileUrl: {{userInfo.profileUrl}}</li>
-        <li>Github ID: {{userInfo.githubId}}</li>
-      </ul>
-    </div>
-    <a class="btn btn-danger" href="/auth/logout">Log out</a>
-    {{else}}
-    <div>
-      <p><a href="/auth/github">GITHUB LOGIN</a></p>
-    </div>
-    {{/if}}
-
-
-
 </div>
+
+
+
+
+
+
