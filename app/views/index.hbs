@@ -1,7 +1,10 @@
 <div id="gitMeImage" class="container-fluid">
   <img src="../public/img/gitme.png" alt="logo">
   <br>
-  <a id="loginSubmitButton" class="btn btn-lg btn-success" href="/auth/github"><i class="fa fa-github" aria-hidden="true"></i>  Login with Github</a>
+  {{#if userInfo}}
+  {{else}}
+    <a id="loginSubmitButton" class="btn btn-lg btn-success" href="/auth/github"><i class="fa fa-github" aria-hidden="true"></i>  Login with Github</a>
+  {{/if}}
 
 </div>
 
@@ -10,18 +13,18 @@
 <div id="carouselMargin" class="container-fluid">
 
 
-<!-- Carousel -->
+  <!-- Carousel -->
   <!-- Surround everything with a div with the class carousel slide -->
   <div id="theCarousel" class="carousel slide" data-ride="carousel">
 
-   <!-- Define how many slides to put in the carousel -->
+    <!-- Define how many slides to put in the carousel -->
     <ol class="carousel-indicators">
       <li data-target="#theCarousel" data-slide-to="0" class="active"> </li>
       <li data-target="#theCarousel" data-slide-to="1"> </li>
       <li data-target="#theCarousel" data-slide-to="2"> </li>
     </ol>
 
-   <!-- Define the text to place over the image -->
+    <!-- Define the text to place over the image -->
     <div class="carousel-inner">
       <div class="item active">
         <div class="slide1"></div>
@@ -29,7 +32,7 @@
           <h1>Welcome</h1>
           <p>Developers </p>
 
-       </div>
+        </div>
       </div>
       <div class="item">
         <div class="slide2"></div>
@@ -47,7 +50,7 @@
       </div>
     </div>
 
-   <!-- Set the actions to take when the arrows are clicked -->
+    <!-- Set the actions to take when the arrows are clicked -->
     <a class="left carousel-control" href="#theCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"> </span>
     </a>

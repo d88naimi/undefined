@@ -37,11 +37,15 @@ const search = function(req, res, next) {
   User.findAll(
     {
       attributes: ['id', 'name', 'email', 'profileUrl', 'photo', 'role'],
-      where: { name: { $like: qs } },
+      where: { name: { $like: `${qs}%` } },
 
-    }).then(function(users) {
-    res.render('search', {users:users});
-  });
+    })
+    .then(function(users) {
+      let obj = {users};
+      if(req.user) obj.userInfo = req.user;
+
+      res.render('search', obj);
+    });
 };
 
 
@@ -74,11 +78,11 @@ const myPortfolio = function (req, res, next) {
   const projectPromise = Project.findAll({where: {userId: req.params.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => {
-    const userInfo = values[0];
-    const projectArray = values[1];
-    console.log(projectArray);
-
-    res.render('myPublicPage', {userInfo: userInfo, projectInfo: projectArray});
+    const developer = values[0];
+    const projectInfo = values[1];
+    let obj = {developer, projectInfo};
+    if(req.user) obj.userInfo = req.user;
+    res.render('myPublicPage', obj);
 
   })
     .catch(handleError(res));
@@ -90,6 +94,5 @@ module.exports = {
   upload,
   myPage,
   search,
-  // searchForThis,
   myPortfolio
 };
