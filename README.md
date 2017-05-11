@@ -1,5 +1,6 @@
 [Live](https://google.com/) Fake link.
 
+![Alt text](public/img/gitme.png?raw=true "GitMe")
 
 # Git Me
 
@@ -50,8 +51,6 @@ GitMe is currently extended with the following plugins. Instructions on how to u
 | config   | [https://github.com/hassankhan/config] [PlMe] |
 
 
-
-
 * Clone the repo: `git clone https://github.com/d88naimi/undefined.git`
 * Fork the repo
 
@@ -70,49 +69,25 @@ Create new MySQL connection using the information provided from sequelize.config
 # Motivation
 GitHub developer lack a section in their GitHub profile that demonstrates all there skillset in one clean location. GitMe allows GitHub developers to use this resource and share to the world and future employers. 
 
-GitMe was created by and maintained by  Hyungwu Pae (https://github.com/monad98)
-Marco Alvarado(https://github.com/marcodarko) 
-Stephen Urena(https://github.com/stephenurena)
-David Naimi(https://github.com/d88naimi)
 					
 # Tests
-
-Describe and show how to run the tests with code examples.
-
-End with an example of getting some data out of the system or using it for a little demo
-
-Running the tests
-
-Explain how to run the automated tests for this system
-
-Break down into end to end tests
-
-Explain what these tests test and why
-
-Give an example
-And coding style tests
-
-Explain what these tests test and why
-
-Give an example
-Deployment
-
-Add additional notes about how to deploy this on a live system 
-(website)
 
 
 ### Todos
 
  - Write MOAR Tests
  - Add Widgets
- -Add easier layout for Employers 
+ - Add easier layout for Employers 
 
 
 
 
 #License
 
-
+© GitMe was created by and maintained by  Hyungwu Pae (https://github.com/monad98)
+Marco Alvarado(https://github.com/marcodarko) 
+Stephen Urena(https://github.com/stephenurena)
+David Naimi(https://github.com/d88naimi)
 
 
 
