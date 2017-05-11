@@ -37,7 +37,7 @@ const upload = function (req, res, next) {
 //   const qs = req.body.qs;
 //   User.findAll(
 //     {
-//       where: { name: { $like: qs } }
+//       
 //     }).then(function(users) {
 //       if (!users.length) {
 //         //add a template to throw a non-match
