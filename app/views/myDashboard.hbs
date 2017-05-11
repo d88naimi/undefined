@@ -30,19 +30,21 @@
         </thead>
         <tbody>
         {{#each projectInfo}}
-          <tr data-rowId="{{this.id}}">
+          <tr id="project{{this.id}}">
             <td><b>{{this.name}}</b></td>
             {{#if this.thumbnail}}
-            <td><img class="projectThumbnail" src="{{this.screenshot}}" alt="project thumbnail"></td>
+            <td class="text-center"><img class="projectThumbnail" src="{{this.thumbnail}}" alt="project thumbnail"></td>
             {{else}}
-            <td>N/A</td>
+            <td class="text-center"><img class="projectThumbnail" src="/public/img/project-default.png" alt="project thumbnail"></td>
             {{/if}}
             <td class="descField">{{this.description}}</td>
             <td>
               <button type="submit" class="btn btn-danger addBtn"  data-id="{{this.id}}">Add</button>
             </td>
             <td>
-              <button type="submit" class="btn btn-warning editBtn"  data-id="{{this.id}}" data-name="{{this.name}}" data-description="{{this.description}}" data-role="{{this.role}}" data-teamMates="{{this.teamMate}}" data-url="{{this.url}}"" data-screenshot="{{this.screenshot}}">Edit</button>
+              <button type="submit" class="btn btn-warning editBtn" data-id="{{this.id}}" data-name="{{this.name}}" data-description="{{this.description}}" data-role="{{this
+              .role}}"
+                      data-teamMate="{{this.teamMate}}" data-url="{{this.url}}" data-screenshot="{{this.screenshot}}">Edit</button>
             </td>
           </tr>
         {{/each}}
@@ -75,43 +77,43 @@
 
 
 
-<!-- ************************MODAL START*************************************** -->
-<div id="addProjectModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<!--&lt;!&ndash; ************************MODAL START*************************************** &ndash;&gt;-->
+<!--<div id="addProjectModal" class="modal fade" role="dialog">-->
+  <!--<div class="modal-dialog">-->
 
-    <!-- Modal content-->
-    <h2>Tell us about your project</h2>
-    <br>
-    <form action="/addProject" method="POST">
+    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+    <!--<h2>Tell us about your project</h2>-->
+    <!--<br>-->
+    <!--<form action="/addProject" method="POST">-->
 
-      <input class="form-control" type="text" name="name" placeholder="what's your project's name?">
-      <br>
-      <input class="form-control" type="text" name="description" placeholder="give us a description">
-      <br>
-      <input class="form-control" type="text" name="role" placeholder="what was your role?">
-      <br>
-      <input class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">
-      <br>
-      <hr>
-      <h3>ADD YOUR SKILLS</h3>
-      <table>
-        <tbody id="skillTable">
-        </tbody>
-      </table>
-      <input class="form-control" id="input-skill" type="text" list="skill-list">
-      <datalist id="skill-list"></datalist>
-      <br>
-      <!--<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>-->
+      <!--<input class="form-control" type="text" name="name" placeholder="what's your project's name?">-->
       <!--<br>-->
-      <hr>
-      <br>
-      <button type="submit" class="btn btn-primary btn-lg" id="submit"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Submit</button>
+      <!--<input class="form-control" type="text" name="description" placeholder="give us a description">-->
+      <!--<br>-->
+      <!--<input class="form-control" type="text" name="role" placeholder="what was your role?">-->
+      <!--<br>-->
+      <!--<input class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">-->
+      <!--<br>-->
+      <!--<hr>-->
+      <!--<h3>ADD YOUR SKILLS</h3>-->
+      <!--<table>-->
+        <!--<tbody id="skillTable">-->
+        <!--</tbody>-->
+      <!--</table>-->
+      <!--<input class="form-control" id="input-skill" type="text" list="skill-list">-->
+      <!--<datalist id="skill-list"></datalist>-->
+      <!--<br>-->
+      <!--&lt;!&ndash;<button class="btn btn-lg btn-primary" id="addSkillButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Skills</button>&ndash;&gt;-->
+      <!--&lt;!&ndash;<br>&ndash;&gt;-->
+      <!--<hr>-->
+      <!--<br>-->
+      <!--<button type="submit" class="btn btn-primary btn-lg" id="submit"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Submit</button>-->
 
-    </form>
+    <!--</form>-->
 
 
-  </div>
-</div>
+  <!--</div>-->
+<!--</div>-->
 <!-- ************************MODAL END*************************************** -->
 
 <!-- ******************** EDIT MODAL START*************************************** -->
@@ -119,21 +121,22 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <h2>Edit your project</h2>
+    <h2 id="modal-title">Edit your project</h2>
     <br>
-    <form action='/update-portfolio?_method=PUT' method='POST'>
-	<img class="projectThumbnail" style="cursor: pointer" id="projectImage" src="" alt="project thumbnail">
-	<br>
-	<br>
-      <input id="input1" class="form-control" type="text" name="name" placeholder="what's your project's name?">
+    <form>
+      <img style="cursor: pointer" id="projectImage" src="/public/img/project-default.png" alt="project thumbnail">
+      <input id="project-image-input" type="file" accept="image/*">
       <br>
-      <input id="input2" class="form-control" type="text" name="description" placeholder="give us a description">
       <br>
-      <input id="input3" class="form-control" type="text" name="role" placeholder="what was your role?">
+      <input id="input1" class="form-control" type="text" name="name" placeholder="What's your project's name?">
       <br>
-      <input id="input4" class="form-control" type="text" name="teamMate" placeholder="did you have teammates?">
+      <input id="input2" class="form-control" type="text" name="description" placeholder="Give us a description">
       <br>
-       <input id="input5" class="form-control" type="text" name="url" placeholder="did the url change?">
+      <input id="input3" class="form-control" type="text" name="role" placeholder="What was your role?">
+      <br>
+      <input id="input4" class="form-control" type="text" name="teamMate" placeholder="Who are your teammates? (use comma to separate)">
+      <br>
+      <input id="input5" class="form-control" type="url" name="url" placeholder="Enter the project url">
       <br>
       <hr>
       <h3>ADD YOUR SKILLS</h3>
@@ -146,11 +149,9 @@
       <br>
       <hr>
       <br>
-      <button type="submit" class="btn btn-primary btn-lg themeButton" id="editSubmitButton"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Save Edit</button>
-
     </form>
-
-
+    <button type="button" class="btn btn-primary btn-lg themeButton" id="editSubmitButton"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Save </button>
+    <button type="button" class="btn btn-primary btn-lg themeButton" id="createSubmitButton"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Create </button>
   </div>
 </div>
 <!-- ************************MODAL END*************************************** -->
