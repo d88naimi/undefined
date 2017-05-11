@@ -5,7 +5,7 @@ function findUser(qs) {
     var qs = $("#typeahead").val();
     var option = {
         type: 'GET',
-        url: '/api/user/find-users/' + qs
+        url: '/search/' + qs
     }
     $.ajax(option)
         .then(function(result) {
