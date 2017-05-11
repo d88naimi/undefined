@@ -71,6 +71,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
+    weightValue: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    thumbnail: {
+      type: DataTypes.STRING,
+      defaultValue: null
+    }
   }, {
     classMethods: {
       associate: function(models) {

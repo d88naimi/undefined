@@ -8,6 +8,7 @@ const controller = require('../controller/skill.controller');
 
 router.get('/', controller.listAll);
 router.get('/:id', controller.findSkill);
+router.get('/project/:projectId', controller.findSkillOfProject);
 router.post('/', controller.createSkill);
 router.delete('/:id', controller.deleteSkill);
 module.exports = router;
