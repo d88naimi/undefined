@@ -2,30 +2,36 @@
   <div class="row ">
     <div class="col-md-12">
       <div class="error-template center">
-        {{#switch statusCode}}
+        {{#switch err.status}}
           {{#case 404}}
+            <h1>404 ERROR</h1>
             <h2>Not found...The requested resource could not be found but may be available in the future. Subsequent requests by
               the client are permissible.</h2>
           {{/case}}
           {{#case 401}}
+            <h1>401 ERROR</h1>
             <h2>Unauthorized access...The request requires user authentication.</h2>
           {{/case}}
           {{#case 400}}
+            <h1>400 ERROR</h1>
             <h2>Bad Request...The request could not be understood by the server due to malformed syntax.</h2>
           {{/case}}
           {{#case 500}}
+            <h1>500 ERROR</h1>
             <h2>Internal Server Error...The server encountered an unexpected condition which prevented it from fulfilling the request.</h2>
           {{/case}}
           {{#case 403}}
+            <h1>403 ERROR</h1>
             <h2>Forbidden...The server understood the request, but is refusing to fulfill it.</h2>
           {{/case}}
           {{#case 501}}
+            <h1>501 ERROR</h1>
             <h2>Not Implemented...The server does not support the functionality required to fulfill the request.</h2>
           {{/case}}
         {{/switch}}
-
-        <div class="error-actions ">
-          <a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+        <h3>{{err.message}}</h3>
+        <div class="error-actions">
+          <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
             Take Me Home </a>
 
         </div>

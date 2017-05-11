@@ -45,7 +45,7 @@
 
     //if user typed or selected the skill which exists in the skills array
     const index = skillNames.indexOf(typedText);
-    if (index > -1) return addToSkillList(typedText, skillsArray[index].id);
+    if (index > -1) return addToSkillTable(typedText, skillsArray[index].id);
 
     //else
     const filteredSkills = skillNames.filter((name, i) => {
@@ -110,13 +110,16 @@
     const editURL = $(this).attr('data-url');
     const editScreenshot = $(this).attr('data-screenshot') || "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQFEeGt4l7ksmLOwwBkvt5IaQYiQnbRvRscbCRBP823VxROxGGX";
 
+    //reset selectedSkills
+    emptySkillTable();
+    initSelectedSkills();
+
     //set selected skill
-    deleteSkillFromList();
     if($(this).attr('data-skills')) {
       const selectedSkills = JSON.parse($(this).attr('data-skills'));
       console.log(selectedSkills);
        selectedSkills.forEach(skill => {
-        addToSkillList(skill.name, skill.id);
+        addToSkillTable(skill.name, skill.id);
       });
     }
 
@@ -132,6 +135,11 @@
   //Add project button click
   $('#addButton').on("click", function (event) {
     event.preventDefault();
+
+    //reset selectedSkills
+    emptySkillTable();
+    initSelectedSkills();
+
     $('#modal-title').html("Tell us about your project");
     $('#editSubmitButton').css({display: 'none'});
     $('#createSubmitButton').css({display: 'inline-block'});
@@ -218,7 +226,7 @@
     $('#loading-wrapper').css('display', 'none');
   }
 
-  function addToSkillList(skillName, skillId) {
+  function addToSkillTable(skillName, skillId) {
     $('#skillTable').append(
       $('<tr>').append(
         $('<h3>').append($('<span class="label label-primary">')
@@ -232,8 +240,9 @@
     selectedSkillIds.push(skillId)
   }
 
-  function deleteSkillFromList() {
-    $('#skillTable').empty();
+  function emptySkillTable() {
+    console.log("HERE");
+    $('#skillTable').children().remove();
   }
 
   //submit project CREATED or EDITED
@@ -276,9 +285,7 @@
 
     return $.ajax({ type, url, data })
       .then(projectObj => {
-        console.log(projectObj);
-        //reset selectedSkills
-        initSelectedSkills();
+        // console.log(projectObj);
         if(forCreate) createProjectView(projectObj);
         else UpdateProjectView(projectObj);
       });

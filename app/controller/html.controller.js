@@ -4,11 +4,12 @@ const User = require('../models').user;
 const Project = require('../models').project;
 const Skill = require('../models').skill;
 
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return function(err) {
-    return res.status(statusCode).send(err);
-  };
+function handleError(err, req, res, statusCode) {
+  err = err ? err : new Error();
+  err.status = statusCode || 500;
+  let obj = {err};
+  if(req.user) obj.userInfo = req.user;
+  return res.status(err.status).render('error', obj);
 }
 
 const index = function(req, res, next) {
@@ -18,18 +19,16 @@ const index = function(req, res, next) {
     User.findById(userId)
       .then(user => {
         if(!user) {
-          return res.status(404).end();
+          return handleError(null, req, res, 404);
         }
         console.log(user.profile);
         res.render('index',{title: "Undefined Project", userInfo: user.profile});
-      });
+      })
+      .catch(e => handleError(e, req, res));
   }
   else res.render('index',{title: "Undefined Project"});
 };
 
-const upload = function (req, res, next) {
-  res.render('upload', {allowRemove: true})
-};
 
 //using this for list of public profiles,
 const search = function(req, res, next) {
@@ -45,12 +44,13 @@ const search = function(req, res, next) {
       if(req.user) obj.userInfo = req.user;
 
       res.render('search', obj);
-    });
+    })
+    .catch(e => handleError(e, req, res));
 };
 
 
 const myPage = function (req, res, next) {
-  if(!req.user) return res.render('error', {message: 'Please login to see the content'});
+  if(!req.user) return handleError(null, req, res, 401);
   const user = req.user;
   const userPromise = User.findById(user.id);
   const projectPromise = Project.findAll({
@@ -67,32 +67,30 @@ const myPage = function (req, res, next) {
     const skills = projectArray.skills;
 
     res.render('myDashboard', {userInfo: userInfo, projectInfo: projectArray, skills});
-
-    //console.log(values); // [3, 1337, "foo"] 
   })
-    .catch(e => res.status(404).end());
+    .catch(e => handleError(e, req, res));
 };
 
-const myPortfolio = function (req, res, next) {
+const publicPortfolio = function (req, res, next) {
   const userPromise = User.findById(req.params.id);
   const projectPromise = Project.findAll({where: {userId: req.params.id}});
 
   Promise.all([userPromise, projectPromise]).then(values => {
     const developer = values[0];
     const projectInfo = values[1];
+    if(!developer) return handleError(null, req, res, 404);
     let obj = {developer, projectInfo};
     if(req.user) obj.userInfo = req.user;
     res.render('myPublicPage', obj);
 
   })
-    .catch(handleError(res));
+    .catch(e => handleError(e, req, res));
 };
 
 
 module.exports = {
   index,
-  upload,
   myPage,
   search,
-  myPortfolio
+  publicPortfolio
 };
