@@ -7,7 +7,7 @@
    * VARIABLES
    */
   let selectedSkillNames = [];
-  let selectedSkillindexes = [];
+  let selectedSkillIds = [];
   let skillsArray = [];
   let skillNames = [];
   let selectedPjtId;
@@ -45,7 +45,7 @@
 
     //if user typed or selected the skill which exists in the skills array
     const index = skillNames.indexOf(typedText);
-    if (index > -1) return addToSkillList(typedText, index);
+    if (index > -1) return addToSkillList(typedText, skillsArray[index].id);
 
     //else
     const filteredSkills = skillNames.filter((name, i) => {
@@ -111,12 +111,14 @@
     const editScreenshot = $(this).attr('data-screenshot') || "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQFEeGt4l7ksmLOwwBkvt5IaQYiQnbRvRscbCRBP823VxROxGGX";
 
     //set selected skill
+    deleteSkillFromList();
     if($(this).attr('data-skills')) {
-      selectedSkillindexes = JSON.parse($(this).attr('data-skills'));
-    } else {
-      $.get()
+      const selectedSkills = JSON.parse($(this).attr('data-skills'));
+      console.log(selectedSkills);
+       selectedSkills.forEach(skill => {
+        addToSkillList(skill.name, skill.id);
+      });
     }
-
 
     $("#editProjectModal").modal('toggle');
     $("#projectImage").attr('src', editScreenshot);
@@ -216,7 +218,7 @@
     $('#loading-wrapper').css('display', 'none');
   }
 
-  function addToSkillList(skillName, index) {
+  function addToSkillList(skillName, skillId) {
     $('#skillTable').append(
       $('<tr>').append(
         $('<h3>').append($('<span class="label label-primary">')
@@ -224,14 +226,14 @@
           .text(skillName))
       )
     );
+    console.log("HERE CALLED")
     $('#input-skill').val('');
     selectedSkillNames.push(skillName);
-    selectedSkillindexes.push(index);
-    console.log(selectedSkillNames);
+    selectedSkillIds.push(skillId)
   }
 
   function deleteSkillFromList() {
-
+    $('#skillTable').empty();
   }
 
   //submit project CREATED or EDITED
@@ -241,7 +243,7 @@
     const description = $("#input2").val();
     const role = $("#input3").val();
     const teamMate = $("#input4").val();
-    const skills = selectedSkillindexes.map(index => skillsArray[index].id);
+    const skills = selectedSkillIds;
 
     let newInfo = {
       name,
@@ -330,7 +332,7 @@
 
   function initSelectedSkills() {
     selectedSkillNames = [];
-    selectedSkillindexes = [];
+    selectedSkillIds = [];
   }
 
 

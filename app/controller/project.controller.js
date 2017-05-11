@@ -40,12 +40,23 @@ const findProject = function (req, res, next) {
 };
 
 const findUserProjects = function (req, res, next) {
+  console.log("WOWOWO")
   const userId = req.params.userId;
-  Project.findAll({where: {userId}})
+  Project.findAll({
+    where: {userId},
+    include: [{
+      model: Skill,
+      as: 'skills',
+      attributes: ['id', 'name']
+    }]
+  })
     .then(result => {
       res.json({projects: result});
     })
-    .catch(e => handleError(res, 404));
+    .catch(e => {
+      console.log(e);
+      handleError(res, 404);
+    });
 
 };
 
