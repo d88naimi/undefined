@@ -1,9 +1,11 @@
-<div id="gitMeImage" class="container-fluid">
+<div id="gitMeImage" class="container-fluid text-center">
   <img src="../public/img/gitme.png" alt="logo">
   <br>
   {{#if userInfo}}
   {{else}}
-    <a id="loginSubmitButton" class="btn btn-lg btn-success" href="/auth/github"><i class="fa fa-github" aria-hidden="true"></i>  Login with Github</a>
+    <a id="loginSubmitButton" class="btn btn-lg btn-success" href="/auth/github">
+    <i class="fa fa-github" aria-hidden="true"></i>  Login with Github
+    </a>
   {{/if}}
 </div>
 

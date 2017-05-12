@@ -668,7 +668,7 @@ width:10px;
 
 #loginPhoto{
 	margin-top:6px;
-	margin-left: 30px;
+	margin-left: 25px;
 	margin-right: 1px;
 	width: 40px;
 	height: 40px;
@@ -886,14 +886,16 @@ rect {
 /*media query*/
 @media only screen and (max-width: 500px) {
 	#gitMeImage img{
-		width: 75%;
+		width: 100%;
 		height:auto;
 		margin: auto;
 		display: block;
 
 	}
+	#loginPhoto {
+		margin-left: 0;
+	}
 	.carousel-caption h3{
-	  font-size: 1.4em; !important
 	  font-family: 'Lobster', cursive;
 	  padding-bottom: .4em;
 	  color:#FFFAF0;
@@ -905,7 +907,14 @@ rect {
 	#leftSidebar{
 		display: block;
 		width: inherit;
-
+	}
+	#leftSidebar_PUBLIC{
+		display: block;
+		width: inherit;
+	}
+	#mainDashboardContainer_PUBLIC{
+		display: block;
+		width:initial;		
 	}
 	#mainDashboardContainer{
 		display: block;
