@@ -92,6 +92,21 @@ module.exports = {
 
 
       //frontend javascript framework, library
+       {
+        name: 'HTML 5',
+        frontEnd: true,
+        language: 'CSS'
+      },
+       {
+        name: 'CSS 3',
+        frontEnd: true,
+        language: 'CSS'
+      },
+      {
+        name: 'Javascript',
+        frontEnd: true,
+        language: 'Javascript'
+      },
       {
         name: 'jQuery',
         frontEnd: true,
