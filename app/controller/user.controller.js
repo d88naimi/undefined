@@ -62,7 +62,7 @@ const me = function(req, res, next) {
     where: {
       id: userId
     },
-    attributes: [ 'id', 'name', 'email', 'profileUrl', 'photo', 'githubId', 'role' ]
+    attributes: [ 'id', 'name', 'email', 'profileUrl', 'photo', 'githubUsername', 'role' ]
   })
     .then(user => { // don't ever give out the password or salt
       if(!user) {

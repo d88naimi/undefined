@@ -803,6 +803,36 @@ margin-right:10px;
 /*David Naimi*/
 
 /*hyungwu pae*/
+/*.legend,*/
+.percent {
+	 font-size: 12px;
+ }
+
+rect {
+	stroke-width: 2;
+}
+
+#pieChartLang, #pieChartType, #bubbleChart {
+	height: 450px;
+	position: relative;
+	width: 450px;
+}
+
+.tooltip-d3 {
+	background: #eee;
+	box-shadow: 0 0 5px #999999;
+	color: #333;
+	display: none;
+	font-size: 12px;
+	left: 130px;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	top: 95px;
+	width: 120px;
+	z-index: 10;
+}
+
 #upload-complete-alert {
 	position: fixed;
 	top: 20px;
@@ -852,7 +882,7 @@ margin-right:10px;
 .d-flex{
 	display: flex !important;
 }
-}
+
 /*media query*/
 @media only screen and (max-width: 500px) {
 	#gitMeImage img{

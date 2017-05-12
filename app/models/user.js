@@ -41,6 +41,7 @@ module.exports = function(sequelize, DataTypes) {
       // Public profile
       profile() {
         return {
+          id: this.id,
           name: this.name,
           profileUrl: this.profileUrl,
           photo: this.photo,
