@@ -15,16 +15,15 @@
         <input id="search-input" name="qs" type="text" class="form-control" placeholder="Search">
       </div>
       <!--<button type="submit" class="btn btn-success">Submit</button>-->
+    </form>
     {{#if userInfo}}
+      <div class="text-center">
       <a href="/mypage"><img class=" navbar-right"  alt="Brand" src="{{userInfo.photo}}" id="loginPhoto"></a>
-      <p class="navbar-text navbar-right">Signed in as <b>{{userInfo.name}}</b>  </p>
-
-      <form class="navbar-form navbar-right" role="search" id="logOut">
+      <p class="navbar-text navbar-right">Signed in as <b>{{userInfo.name}}</b>  </p>      </div>
+      <form class="navbar-form navbar-right text-center" role="search">
         <a href="/auth/logout" class="btn btn-danger">Log Out</a>
       </form>
     {{/if}}
-    </form>
-
   </div>
   </div>
 </nav>

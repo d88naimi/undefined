@@ -9,13 +9,22 @@
         {{#each users}}
           <a href="/portfolio/{{id}}"><tr class="rRows">
             <!-- <td> <span  class="userName">{{name}}</span></td> -->
-            <td>
-              <div class="hoverImg">
-                <figure><a href="/portfolio/{{id}}"><img class="userImg img-thumbnail" src="{{photo}}" alt="{{name}} GitMe profile image"></a></figure>
+            <td class="d-flex">
+              <div class="hoverImg imgUser">
+                <figure>
+                  <a href="/portfolio/{{id}}">
+                    <img class="userImg img-thumbnail" src="{{photo}}" alt="{{name}} GitMe profile image">
+                  </a>
+                </figure>
+              </div>
+              <div class="infoUser">
+              <span  class="userName">{{name}}</span><br>
+              <span  class="text-muted">@{{githubUsername}}</span><br>
+              <a class="text-muted glyphicon glyphicon-envelope muted-link" href="mailto:{{email}}">{{email}}</a> 
+
               </div>
             </td>
-            <td align="center"> <span  class="userName">{{name}}</span></td>
-            <td align="center" class="userRole">@{{githubUsername}}</td>
+ 
           </tr></a>
         {{/each}}
       {{/if}}

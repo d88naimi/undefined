@@ -577,8 +577,8 @@ text-align: center;
 }
 figure {
 	border-radius: 50%;
-	height: 60px;
-	width: 60px;
+	height: 100px;
+	width: 100px;
 	cursor: pointer;
 }
 figure:hover+span {
@@ -587,8 +587,8 @@ figure:hover+span {
 }
 .userImg {
 border-radius: 50%;
-height: 60px;
-width: 60px;
+height: 100px;
+width: 100px;
 } 
 .userName {
 	text-transform: capitalize;
@@ -629,7 +629,7 @@ width:10px;
 
 #loginPhoto{
 	margin-top:6px;
-	margin-left: 10px;
+	margin-left: 30px;
 	margin-right: 1px;
 	width: 40px;
 	height: 40px;
@@ -796,6 +796,24 @@ margin-right:10px;
 .content {
 	margin-top: 50px;
 }
+.infoUser {
+	display: inline-block;
+	margin-left: 25px;
+}
+.imgUser{
+	display: inline-block;
+}
+.userEmail {
+  text-decoration:  none;
+  font-size: 1em;
+}
+.text-muted {
+ font-size: .75em;
+}
+.d-flex{
+	display: flex !important;
+}
+}
 /*media query*/
 @media only screen and (max-width: 500px) {
 	#gitMeImage img{
@@ -823,12 +841,6 @@ margin-right:10px;
 	#mainDashboardContainer{
 		display: block;
 		width:initial;
-	}
-	#loginPhoto{
-		display: inline-block;
-	}
-	#logOut{
-		display: inline-block;
 	}
 
 }
