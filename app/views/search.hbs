@@ -1,24 +1,22 @@
-<div class="container">
+<div id="searchContainer" class="container">
 
   <section class="container-fluid">
-    <h3 style="color: white">Background color is dark, so we can't see black color text</h3>
-    <table class="table" style="color: white">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      </thead>
+    
+    <table id="resultRows" class="table" style="color: white">
+      <h1 style="color: white">Results</h2>
       <tbody>
       {{#if users}}
         {{#each users}}
-          <tr>
-            <td> <span  class="userName">{{name}}</span></td>
+          <a href="/portfolio/{{id}}"><tr class="rRows">
+            <!-- <td> <span  class="userName">{{name}}</span></td> -->
             <td>
-              <a href="/portfolio/{{id}}"><img class="userImg img-thumbnail" src="{{photo}}" alt="searchResults"></a>
+              <div class="hoverImg">
+                <figure><a href="/portfolio/{{id}}"><img class="userImg img-thumbnail" src="{{photo}}" alt="{{name}} GitMe profile image"></a></figure>
+              </div>
             </td>
-            <td class="userRole">{{email}}</td>
-          </tr>
+            <td align="center"> <span  class="userName">{{name}}</span></td>
+            <td align="center" class="userRole">@{{githubUsername}}</td>
+          </tr></a>
         {{/each}}
       {{/if}}
       </tbody>

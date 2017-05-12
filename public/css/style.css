@@ -564,17 +564,52 @@ text-align: center;
 /*MARCO CSS END*/
 
 /*Stephen CSS start*/
+.hoverImg figure img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+
+}
+.hoverImg figure:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+figure {
+	border-radius: 50%;
+	height: 60px;
+	width: 60px;
+	cursor: pointer;
+}
+figure:hover+span {
+	bottom: -36px;
+	opacity: 1;
+}
 .userImg {
 border-radius: 50%;
-height: 150px;
-width: 150px;
+height: 60px;
+width: 60px;
 } 
 .userName {
 	text-transform: capitalize;
 }
-.userRole {
-	text-transform: capitalize;
+
+#resultRows > tbody > tr {
+	vertical-align: middle;
+	font-size: 2em;
 }
+#mainProjectsContainer_PUBLIC table tbody tr:hover{
+	background-color: rgba(0,0,0,.2);
+}
+table tbody tr:hover {
+	background-color: rgba(0,0,0,.5);
+	
+}
+#searchContainer {
+	overflow: scroll;
+}
+
+
 /*Stephen CSS end */
 
 /*--------Davey--------*/

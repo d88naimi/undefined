@@ -35,7 +35,7 @@ const search = function(req, res, next) {
   const qs = req.query.qs;
   User.findAll(
     {
-      attributes: ['id', 'name', 'email', 'profileUrl', 'photo', 'role'],
+      attributes: ['id', 'name', 'email', 'githubUsername', 'profileUrl', 'photo', 'role'],
       where: { name: { $like: `${qs}%` } },
 
     })
