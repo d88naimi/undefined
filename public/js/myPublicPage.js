@@ -4,16 +4,19 @@
 (function(){
   const projectRow = $(".projectRow");
   const imageBox = $("#imageBox");
+
   projectRow.mouseenter(function (event) {
 
-    const screenshot = $(this).data('screenshot').toString();
+    var screenshot = $(this).attr('data-screenshot');
+    console.log("SS: "+ screenshot);
 
-    if( screenshot === "{{projectInfo.screenshot}}" || "undefined" || null){
+
+    if( !screenshot){
       imageBox.css({"background-image": "url('/public/img/code_banner.png')"});
     }
     else{
 
-      $("#imageBox").css({"background-image": "url("+ screenshot +")"});
+     imageBox.css({"background-image": "url("+ screenshot +")"});
     }
   });
 

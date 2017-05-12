@@ -16,7 +16,7 @@
       <div id="projectBox_PUBLIC">
 
         <div id="imageBox">
-          <h1>{{developer.name}}</h1>
+          <h1 class="tracking-in-expand ">{{developer.name}}</h1>
         </div>
 
         <table class="table">
@@ -29,7 +29,7 @@
           <tbody>
           {{#each projectInfo}}
             {{#if this.showToPublic}}
-              <tr class="projectRow" data-screenshot="{{projectInfo.screenshot}}">
+              <tr class="projectRow" data-screenshot="{{this.screenshot}}">
                 <td>{{this.name}}</td>
                 <td>{{this.description}}</td>
                 <td>
