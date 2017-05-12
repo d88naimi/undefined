@@ -16,8 +16,9 @@
       <div id="projectBox_PUBLIC">
 
         <div id="imageBox">
-          <h1>{{developer.name}}</h1>
+          <h1 class="tracking-in-expand ">{{developer.name}}</h1>
         </div>
+        
 
         <table class="table">
           <thead>
@@ -29,7 +30,7 @@
           <tbody>
           {{#each projectInfo}}
             {{#if this.showToPublic}}
-              <tr class="projectRow" data-screenshot="{{projectInfo.screenshot}}">
+              <tr class="projectRow" data-screenshot="{{this.screenshot}}"  data-watchers="{{this.watchersCount}}" data-stargazers="{{this.stargazersCount}}" data-forks="{{this.forksCount}}">
                 <td>{{this.name}}</td>
                 <td>{{this.description}}</td>
                 <td>
@@ -52,6 +53,31 @@
         "This will host the chart"
       </div>
 
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade jello-horizontal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+ <!--      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div> -->
+      <div class="modal-body myModalBody">
+        <img src="" alt="project image" id="modalClickImage">
+        <p ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Watchers: <span id="watchers"></span></p>
+        <p ><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Stargazers: <span id="stargazers"></span></p>
+        <p ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Forks: <span id="forks"></span></p>
+        
+      </div>
     </div>
 
   </div>

@@ -39,14 +39,10 @@ const index = function (req, res, next) {
 //using this for list of public profiles,
 const search = function (req, res, next) {
   const qs = req.query.qs;
-  User.findAll({
-      attributes: ['id', 'name', 'email', 'profileUrl', 'photo', 'role'],
-      where: {
-        name: {
-          $like: `${qs}%`
-        }
-      },
-
+  User.findAll(
+    {
+      attributes: ['id', 'name', 'email', 'githubUsername', 'profileUrl', 'photo', 'role'],
+      where: { name: { $like: `${qs}%` } },
     })
     .then(function (users) {
       let obj = {
@@ -154,7 +150,6 @@ const chartPage = function (req, res, next) {
       }));
 
       res.render('chart', {projects, skills});
-      // res.json(skills);
     })
     .catch(e => handleError(e, req, res, null));
 };

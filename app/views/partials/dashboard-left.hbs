@@ -1,5 +1,5 @@
 <!-- left side bar containing main info -->
-<section id="leftSidebar">
+<section id="leftSidebar" class="col-sm-12 col-md-6">
   <div class="image-container">
     <img src="{{userInfo.photo}}" alt="{{userInfo.name}} profile image for dashboard" class="mypic">
     <button id="change-photo" class="btn btn-success">
@@ -7,7 +7,7 @@
     </button>
   </div>
   <input type="file" id="profile-image-input" accept="image/*">
-  <h3>Hello, <b>{{userInfo.name}}</b> !</h3>
+  <h3>Hello, <b>{{userInfo.name}}</b>!</h3>
   <h4>{{userInfo.githubUsername}}</h4>
   <h4>{{userInfo.githubId}}</h4>
 </section>
