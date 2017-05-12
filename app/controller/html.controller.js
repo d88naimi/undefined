@@ -85,7 +85,12 @@ const myPage = function (req, res, next) {
 };
 
 const publicPortfolio = function (req, res, next) {
-  const userPromise = User.findById(req.params.id);
+  const developerPromise = User.find({where: {id: +req.params.id}})
+    .then(user => {
+      if(!user) return handleError(null, req, res, 404);
+      return user.profile;
+    });
+
   const projectPromise = Project.findAll({
     where: {
       userId: req.params.id
@@ -97,7 +102,7 @@ const publicPortfolio = function (req, res, next) {
     }]
   });
 
-  Promise.all([userPromise, projectPromise]).then(values => {
+  Promise.all([developerPromise, projectPromise]).then(values => {
       const developer = values[0];
       const projectInfo = values[1];
       if (!developer) return handleError(null, req, res, 404);
@@ -114,12 +119,19 @@ const publicPortfolio = function (req, res, next) {
 
 const chartPage = function (req, res, next) {
   const userId = +req.params.id;
+
+  const developerPromise = User.find({where: {id: userId}})
+    .then(user => {
+      if(!user) return handleError(null, req, res, 404);
+      return user.profile;
+    });
+
   const projectPromise = Project.findAll({
     where: {
       userId
     },
     attributes: ['language', 'role']
-  })
+  });
 
   const skillPromise = Skill.findAll({
     include: [{
@@ -132,12 +144,12 @@ const chartPage = function (req, res, next) {
     }]
   });
 
-  const promiseArr = [projectPromise, skillPromise];
+  const promiseArr = [projectPromise, skillPromise, developerPromise];
   Promise.all(promiseArr)
     .then(result => {
+      const developer = result[2];
       const projects = JSON.stringify(result[0]);
       const skills = JSON.stringify(result[1].map(skill => {
-        console.log(skill.projects.length);
         return {
           id: skill.id,
           name: skill.name,
@@ -148,8 +160,12 @@ const chartPage = function (req, res, next) {
           projects: skill.projects.length
         };
       }));
+      let obj = {projects, skills, developer};
+      if (req.user) obj.userInfo = req.user;
+      console.log("WOWO")
+      console.log(developer);
 
-      res.render('chart', {projects, skills});
+      res.render('chart', obj);
     })
     .catch(e => handleError(e, req, res, null));
 };

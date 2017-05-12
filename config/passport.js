@@ -51,7 +51,7 @@ module.exports.setTokenCookie = function (req, res) {
     name: req.user.name,
     role: req.user.role
   });
-  res.cookie('id_token', token);
+  res.cookie('jwt_token', token);
   res.redirect('/');
 };
 
@@ -60,7 +60,7 @@ module.exports.serializeUser = function(req, res, next) {
   let token;
   if(req.headers.authorization) {
     token = req.headers.authorization;
-  } else token = req.cookies.id_token;
+  } else token = req.cookies.jwt_token;
   if(token) {
     jwt.verify(token, config.secrets, function (err, user) {
       if(err) {

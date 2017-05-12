@@ -21,7 +21,7 @@ router.get('/logout', function(req, res){
   const name = req.user ? req.user.name : "Guest";
   console.log("LOG OUT " + name);
   req.logout();
-  res.cookie('id_token', '', {expires: new Date('1970-01-01 00:00:00 UTC+00')}); //expire
+  res.cookie('jwt_token', '', {expires: new Date('1970-01-01 00:00:00 UTC+00')}); //expire
   res.redirect('/');
 });
 
