@@ -664,6 +664,7 @@ width: 400px;
 height:auto;
 margin: auto;
 display: block;
+
 }
 
 #gitMeImage a{
@@ -721,12 +722,13 @@ display: block;
   background-position: center;
   background-size: cover;
 }
-.carousel-caption h1{
-  font-size: 5.4em;
+.carousel-caption h3{
+  font-size: 3em; 
   font-family: 'Lobster', cursive;
   padding-bottom: .4em;
   color:#FFFAF0;
 }
+
 .carousel-caption p{
   font-size: 2em;
   color:#FFFAF0;
@@ -793,4 +795,40 @@ margin-right:10px;
 }
 .content {
 	margin-top: 50px;
+}
+/*media query*/
+@media only screen and (max-width: 500px) {
+	#gitMeImage img{
+		width: 75%;
+		height:auto;
+		margin: auto;
+		display: block;
+
+	}
+	.carousel-caption h3{
+	  font-size: 1.4em; !important
+	  font-family: 'Lobster', cursive;
+	  padding-bottom: .4em;
+	  color:#FFFAF0;
+	}
+	#mainProjectsContainer{
+		display: block;
+		width: inherit;
+	}
+	#leftSidebar{
+		display: block;
+		width: inherit;
+
+	}
+	#mainDashboardContainer{
+		display: block;
+		width:initial;
+	}
+	#loginPhoto{
+		display: inline-block;
+	}
+	#logOut{
+		display: inline-block;
+	}
+
 }
