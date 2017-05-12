@@ -1,10 +1,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.min.js"></script>
+<script src="/public/js/d3.min.js"></script>
+{{!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-hierarchy/1.1.4/d3-hierarchy.min.js"></script>--}}
 <h1>Hello!! I am a chart view</h1>
 
-<div id="chart"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <h1 style="color: #eee" class="text-center">Language</h1>
+            <section class="center-block" id="chart"></section>
+        </div>
+        <div class="con-md-6">
+            <h1 style="color: #eee" class="text-center">Skills</h1>
+            <section class="center-block" id="graph"></section>
+        </div>
+    </div>
+
 
 <script>
  const projects = {{{projects}}};
+ const skills= {{{skills}}};
 </script>
 <script src="/public/js/chart.js"></script>
 
@@ -20,9 +33,9 @@
     }
 
     #chart {
-        height: 360px;
+        height: 450px;
         position: relative;
-        width: 360px;
+        width: 450px;
     }
 
     .tooltip-d3 {

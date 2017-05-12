@@ -73,14 +73,7 @@ const me = function(req, res, next) {
     .catch(e => handleError(e, req, res, null));
 };
 
-const showChart = function (req, res, next) {
-  const userId = req.params.id;
-  Project.findAll({where: {userId}})
-    .then(result => {
-      res.render('chart', {projects: JSON.stringify(result), message: "HEY!!!!"});
-    })
-    .catch(e => handleError(e, req, res, null));
-};
+
 
 const saveProfileImageUrl = function (req, res, next) {
   if(!req.user) return handleError(null, req, res, 401);
@@ -99,6 +92,5 @@ module.exports = {
   show,
   destroy,
   me,
-  showChart,
   saveProfileImageUrl
 };
