@@ -1,4 +1,4 @@
-[Live](https://google.com/) Fake link.
+
 
 ![Alt text](public/img/gitme.png?raw=true "GitMe")
 
@@ -57,7 +57,7 @@ GitMe is currently extended with the following plugins. Instructions on how to u
 # Prerequisites
 What things you need to install the software and how to install them
 Github Account
-*Node.js
+Node.js
 MySQL 
 Workbench mySQL
 
@@ -67,7 +67,7 @@ Npm install
 Create new MySQL connection using the information provided from sequelize.config.json file under config folder.
 
 # Motivation
-GitHub developer lack a section in their GitHub profile that demonstrates all there skillset in one clean location. GitMe allows GitHub developers to use this resource and share to the world and future employers. 
+GitHub developers lacks a section in their GitHub profile that demonstrates all there skillset in one clean location. GitMe allows GitHub developers to use this resource and share to the world and future employers. 
 
 					
 # Tests
@@ -81,10 +81,9 @@ GitHub developer lack a section in their GitHub profile that demonstrates all th
 
 
 
-
 #License
 
-© GitMe was created by and maintained by  Hyungwu Pae (https://github.com/monad98)
+© GitMe was created by and maintained by Hyungwu Pae (https://github.com/monad98)
 Marco Alvarado(https://github.com/marcodarko) 
 Stephen Urena(https://github.com/stephenurena)
 David Naimi(https://github.com/d88naimi)
