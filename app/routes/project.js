@@ -14,8 +14,6 @@ router.get('/user/:userId', controller.findUserProjects);
 router.post('/', controller.createProject);
 
 router.put('/:id', controller.editProject);
-router.put('/:id/skill', controller.addSkillToPjt);
-router.put('/:id/skills', controller.addSkillsToPjt);
 
 router.delete('/:id', controller.deleteProject);
 
