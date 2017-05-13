@@ -234,13 +234,8 @@
 
   function addToSkillTable(skillName, skillId) {
     $('#skillTable').append(
-      $('<tr>').append(
-        $('<h3>').append($('<span class="label label-primary">')
-          .append($('<span class="glyphicon glyphicon-remove">'))
-          .text(skillName))
-      )
+        $('<h3 style="display: inline-block;margin: 0 10px 15px 0;">').append($('<span class="label label-primary">').text(skillName))
     );
-    console.log("HERE CALLED")
     $('#input-skill').val('');
     selectedSkillNames.push(skillName);
     selectedSkillIds.push(skillId)
