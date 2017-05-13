@@ -5,7 +5,7 @@
       <th>Project</th>
       <th>Screenshot</th>
       <th>Description</th>
-      <th>Add to Portfolio</th>
+      <th>Add / Remove</th>
       <th>Edit Info</th>
       </thead>
       <tbody>
@@ -19,7 +19,9 @@
           {{/if}}
           <td class="descField">{{this.description}}</td>
           {{#if this.showToPublic}}
-            <td class="text-center"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></td>
+             <td class="text-center">
+              <button type="submit" class="btn btn-danger removeBtn"  data-id="{{this.id}}">Remove</button>
+            </td>
           {{else}}
             <td class="text-center">
               <button type="submit" class="btn btn-danger addBtn"  data-id="{{this.id}}">Add</button>
