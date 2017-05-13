@@ -44,7 +44,6 @@ module.exports.setTokenCookie = function (req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }
-  console.log(req.user);
   const token = signToken({
     id: req.user.id,
     photo: req.user.photo,
@@ -60,11 +59,13 @@ module.exports.serializeUser = function(req, res, next) {
   let token;
   if(req.headers.authorization) {
     token = req.headers.authorization;
+
   } else token = req.cookies.jwt_token;
   if(token) {
     jwt.verify(token, config.secrets, function (err, user) {
       if(err) {
         return next();
+
       }
       req.user = user;
       return next();

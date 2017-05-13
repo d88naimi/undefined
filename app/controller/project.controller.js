@@ -19,7 +19,7 @@ function handleError(err, req, res, statusCode) {
 const listAll = function (req, res, next) {
   Project.findAll({})
     .then(pjts => {
-      res.json({pjts});
+      res.json(pjts);
     })
     .catch(e => handleError(e, req, res));
 };
@@ -28,13 +28,7 @@ const findProject = function (req, res, next) {
   Project.findOne({
     where: {
       id: req.params.id
-    },
-    include: [{
-      model: Skill,
-      through: {
-        where: { projectId }
-      }
-    }]
+    }
   })
     .then(project => {
       if(!project) return handleError(null, req, res, 404);
@@ -79,11 +73,13 @@ const createProject = function(req, res, next) {
   }
   Project.create(newProject)
     .then(project => {
-      project.addSkills(JSON.parse(req.body.skills))
-        .then(skills => {
-          res.json({project, skills: skills[0]});
-        })
-        .catch(e => handleError(e, req, res));
+      if(req.body.skills) {
+        project.addSkills(JSON.parse(req.body.skills))
+          .then(skills => {
+            res.json({project, skills: skills[0]});
+          })
+          .catch(e => handleError(e, req, res));
+      } else res.status(200).json({project, skills:[]})
     })
     .catch(e => handleError(e, req, res));
 
@@ -91,46 +87,13 @@ const createProject = function(req, res, next) {
 
 const deleteProject = function(req, res, next) {
   const id = req.query.id;
-  Project.delete({where: { id }})
+  Project.destroy({where: { id }})
     .then(() => {
       res.json({result:"deleted"});
     })
     .catch(e => handleError(e, req, res));
 };
 
-const addSkillToPjt = function (req, res, next) {
-  const projectId = +req.params.id;
-  const skillId = +req.body.skill;
-
-  if(!skillId) return handleError(null, req, res, 400);
-
-  Project.findById(projectId)
-    .then(project => {
-      if(!project) return handleError(null, req, res, 404);
-      project.addSkill(skillId)
-        .then(() => {
-          res.status(200).end();
-        });
-    })
-    .catch(e => handleError(e, req, res));
-
-};
-
-const addSkillsToPjt = function (req, res, next) {
-  const projectId = req.param.id;
-  const skillIds = req.body.skills;
-  if(!skillIds.length) return handleError(req, res, 400);
-
-  Project.findById(projectId)
-    .then(project => {
-      if(project) return handleError(req, res, 404);
-      project.addSkills(skillIds)
-        .then(() => {
-          res.status(200).end();
-        });
-    })
-    .catch(e => handleError(e, req, res, null));
-};
 
 const editProject = function(req, res, next) {
   if(!req.user) return handleError(req, res, 401);
@@ -162,7 +125,7 @@ const editProject = function(req, res, next) {
       if(req.body.skills) promiseArray.push(project.addSkills(JSON.parse(req.body.skills)));
       Promise.all(promiseArray)
         .then(([project, skills]) => {
-          res.json({project, skills: skills[0]});
+          res.json({project, skills: skills ? skills[0] : []});
         })
         .catch(e => handleError(e, req, res));
 
@@ -237,8 +200,6 @@ module.exports = {
   findProject,
   createProject,
   deleteProject,
-  addSkillToPjt,
-  addSkillsToPjt,
   findUserProjects,
   githubSync,
   editProject

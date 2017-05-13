@@ -44,6 +44,7 @@ const show = function(req, res, next) {
  * restriction: 'admin'???????
  */
 const destroy = function(req, res) {
+  if(req.user && req.user.id !== req.params.id) return handleError(null, req, res, 401);
   return User.destroy({ where: { _id: req.params.id } })
     .then(function() {
       res.status(204).end();
