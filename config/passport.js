@@ -117,3 +117,4 @@ function getRepos(user) {
     });
 
 }
+module.exports.getRepos = getRepos;

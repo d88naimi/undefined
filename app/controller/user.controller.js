@@ -1,7 +1,9 @@
 'use strict';
 
 const User = require('../models').user;
-const Project = require('../models').project;
+const config = require('../../config');
+const passportConfig = require('../../config/passport');
+const request = require('request-promise');
 
 function handleError(err, req, res, statusCode) {
   err = err ? err : new Error();
@@ -88,10 +90,44 @@ const saveProfileImageUrl = function (req, res, next) {
     .catch(e => handleError(e, req, res, null));
 };
 
+
+const addFakeUser = function (req, res) {
+  const githubUsername = req.query.fakeuser;
+  const options = {
+    uri: `https://api.github.com/users/${githubUsername}`,
+    qs: {
+      client_id: config.github.clientID,
+      client_secret: config.github.clientSecret
+    },
+    headers: {
+      'User-Agent': 'Request-Promise'
+    },
+    json: true
+  };
+
+  request(options)
+    .then(user => {
+      const userInfo = {
+        name: user.name,
+        email: user.emails,
+        profileUrl: user.url,
+        username: user.login,
+        githubUsername: user.login,
+        photo: user.avatar_url
+      };
+      User.create(userInfo)
+        .then(user => {
+          passportConfig.getRepos(user);
+          res.redirect('/portfolio/' + user.id);
+        });
+    });
+};
+
 module.exports = {
   index,
   show,
   destroy,
   me,
-  saveProfileImageUrl
+  saveProfileImageUrl,
+  addFakeUser
 };

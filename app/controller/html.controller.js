@@ -1,5 +1,4 @@
 'use strict';
-const Sequelize = require('sequelize');
 const User = require('../models').user;
 const Project = require('../models').project;
 const Skill = require('../models').skill;
@@ -16,14 +15,12 @@ function handleError(err, req, res, statusCode) {
 
 const index = function (req, res, next) {
   const userId = req.user ? req.user.id : null;
-  console.log(userId);
   if (userId) {
     User.findById(userId)
       .then(user => {
         if (!user) {
           return handleError(null, req, res, 404);
         }
-        console.log(user.profile);
         res.render('index', {
           title: "Undefined Project",
           userInfo: user.profile
@@ -71,16 +68,16 @@ const myPage = function (req, res, next) {
     }]
   });
   Promise.all([userPromise, projectPromise]).then(values => {
-      const userInfo = values[0];
-      const projectArray = values[1];
-      const skills = projectArray.skills;
+    const userInfo = values[0];
+    const projectArray = values[1];
+    const skills = projectArray.skills;
 
-      res.render('myDashboard', {
-        userInfo: userInfo,
-        projectInfo: projectArray,
-        skills
-      });
-    })
+    res.render('myDashboard', {
+      userInfo: userInfo,
+      projectInfo: projectArray,
+      skills
+    });
+  })
     .catch(e => handleError(e, req, res));
 };
 
@@ -103,17 +100,17 @@ const publicPortfolio = function (req, res, next) {
   });
 
   Promise.all([developerPromise, projectPromise]).then(values => {
-      const developer = values[0];
-      const projectInfo = values[1];
-      if (!developer) return handleError(null, req, res, 404);
-      let obj = {
-        developer,
-        projectInfo
-      };
-      if (req.user) obj.userInfo = req.user;
-      res.render('myPublicPage', obj);
+    const developer = values[0];
+    const projectInfo = values[1];
+    if (!developer) return handleError(null, req, res, 404);
+    let obj = {
+      developer,
+      projectInfo
+    };
+    if (req.user) obj.userInfo = req.user;
+    res.render('myPublicPage', obj);
 
-    })
+  })
     .catch(e => handleError(e, req, res));
 };
 
@@ -162,12 +159,14 @@ const chartPage = function (req, res, next) {
       }));
       let obj = {projects, skills, developer};
       if (req.user) obj.userInfo = req.user;
-      console.log("WOWO")
-      console.log(developer);
 
       res.render('chart', obj);
     })
     .catch(e => handleError(e, req, res, null));
+};
+
+const showFakeUserForm = function (req, res) {
+  res.render('fakeUserAdd');
 };
 
 module.exports = {
@@ -175,5 +174,6 @@ module.exports = {
   myPage,
   search,
   publicPortfolio,
-  chartPage
+  chartPage,
+  showFakeUserForm
 };

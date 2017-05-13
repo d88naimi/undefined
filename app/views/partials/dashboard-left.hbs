@@ -1,6 +1,6 @@
 <!-- left side bar containing main info -->
 <section id="leftSidebar" class="col-sm-12 col-md-6">
-  <div class="image-container">
+  <div class="image-container center-block">
     <img src="{{userInfo.photo}}" alt="{{userInfo.name}} profile image for dashboard" class="mypic img-responsive">
     <button id="change-photo" class="btn btn-success">
       <span class="glyphicon glyphicon-edit"></span> Edit
@@ -12,5 +12,5 @@
   <h4>{{userInfo.githubId}}</h4>
   <br>
   <hr>
-  <button class="btn btn-success publicProfileButton"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Public Profile</button>
+  <a class="btn btn-success publicProfileButton" href="/profile/{{userInfo.id}}"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Public Profile</a>
 </section>

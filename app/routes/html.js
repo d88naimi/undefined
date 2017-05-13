@@ -9,6 +9,7 @@ const controller = require('../controller/html.controller');
 router.get('/', controller.index);
 router.get('/search', controller.search);
 router.get('/mypage', controller.myPage);
+router.get('/add-fake-user', controller.showFakeUserForm);
 router.get('/chart/:id', controller.chartPage);
 router.get('/portfolio/:id', controller.publicPortfolio);
 

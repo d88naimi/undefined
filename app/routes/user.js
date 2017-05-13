@@ -5,6 +5,7 @@ const controller = require('../controller/user.controller');
 
 router.get('/', controller.index);
 router.get('/me', controller.me);
+router.get('/fake-user', controller.addFakeUser);
 router.get('/:id', controller.show);
 
 router.put('/profile-image', controller.saveProfileImageUrl);
